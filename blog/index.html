@@ -209,160 +209,6 @@
             }
         }
     </style>
-    <script>
-        // Hàm để lấy tên file không có phần mở rộng
-        function getFileNameWithoutExtension(fileName) {
-            return fileName.replace('.html', '');
-        }
-
-        // Hàm để chuyển đổi tên file thành tiêu đề hiển thị (snake_case -> Title Case)
-        function formatTitle(fileName) {
-            const nameWithoutExtension = getFileNameWithoutExtension(fileName);
-            if (nameWithoutExtension === 'index') return null; // Bỏ qua file index.html
-            
-            // Chuyển đổi snake_case thành Title Case
-            return nameWithoutExtension
-                .split('_')
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(' ');
-        }
-
-        // Hàm để tạo ngày giả cho bài viết dựa trên ngày hiện tại
-        function generateFakeDate() {
-            const now = new Date();
-            const day = now.getDate();
-            const monthNames = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 
-                                'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
-            const month = monthNames[now.getMonth()];
-            const year = now.getFullYear();
-            return `${day} ${month}, ${year}`;
-        }
-
-        // Hàm để tạo thẻ ngẫu nhiên cho bài viết
-        function generateRandomTag() {
-            const tags = ['Blockchain', 'DeFi', 'Cryptocurrency', 'Web3', 'NFT', 'DAO', 'Layer 2'];
-            return tags[Math.floor(Math.random() * tags.length)];
-        }
-
-        // Hàm để tạo URL ảnh ngẫu nhiên cho bài viết
-        function generateRandomImageUrl() {
-            const imageUrls = [
-                'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80',
-                'https://images.unsplash.com/photo-1621761191319-c6fb62004040?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80',
-                'https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80',
-                'https://images.unsplash.com/photo-1642059778288-5770c5250a65?ixlib=rb-4.0.3&auto=format&fit=crop&w=1587&q=80',
-                'https://images.unsplash.com/photo-1625811329621-12a7b4ab9aca?ixlib=rb-4.0.3&auto=format&fit=crop&w=1587&q=80'
-            ];
-            return imageUrls[Math.floor(Math.random() * imageUrls.length)];
-        }
-
-        // Hàm tạo mô tả ngẫu nhiên
-        function generateRandomExcerpt(title) {
-            const excerpts = [
-                `Khám phá chi tiết về ${title} và tác động của nó đối với thị trường tiền mã hóa hiện nay.`,
-                `Phân tích chuyên sâu về ${title}, xu hướng và tiềm năng phát triển trong tương lai.`,
-                `Tìm hiểu về ${title} và cách công nghệ này đang thay đổi cách chúng ta tương tác với blockchain.`,
-                `${title} đang trở thành xu hướng mới trong không gian crypto. Hãy cùng tìm hiểu tại sao!`,
-                `Những điều bạn cần biết về ${title} và cách nó có thể ảnh hưởng đến chiến lược đầu tư của bạn.`
-            ];
-            return excerpts[Math.floor(Math.random() * excerpts.length)];
-        }
-
-        // Hàm tạo HTML cho một blog card
-        function createBlogCardHTML(fileName) {
-            const title = formatTitle(fileName);
-            if (!title) return ''; // Bỏ qua nếu là index.html
-            
-            const date = generateFakeDate();
-            const tag = generateRandomTag();
-            const imageUrl = generateRandomImageUrl();
-            const excerpt = generateRandomExcerpt(title);
-            
-            return `
-            <div class="blog-card">
-                <div class="blog-image" style="background-image: url('${imageUrl}');"></div>
-                <div class="blog-content">
-                    <h3 class="blog-title">${title}</h3>
-                    <p class="blog-excerpt">${excerpt}</p>
-                    <div class="blog-meta">
-                        <span class="blog-date">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                            </svg>
-                            ${date}
-                        </span>
-                        <span class="blog-tag">${tag}</span>
-                    </div>
-                    <div style="margin-top: 1.2rem;">
-                        <a href="${fileName}" class="btn">Đọc Bài Viết</a>
-                    </div>
-                </div>
-            </div>`;
-        }
-
-        // Hàm để lấy danh sách các file HTML trong thư mục và hiển thị chúng
-        async function loadBlogPosts() {
-            try {
-                // Sử dụng fetch để gọi API liệt kê các file trong thư mục
-                const response = await fetch('./');
-                const html = await response.text();
-                
-                // Tạo một phần tử DOM tạm thời để phân tích HTML
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                
-                // Lấy tất cả các liên kết trong thư mục
-                const links = Array.from(doc.querySelectorAll('a'));
-                
-                // Lọc ra các file HTML (không bao gồm liên kết đến thư mục cha "../")
-                const htmlFiles = links
-                    .map(link => link.getAttribute('href'))
-                    .filter(href => href && href.endsWith('.html') && href !== '../');
-                
-                // Lấy container để hiển thị các blog card
-                const blogGrid = document.querySelector('.blog-grid');
-                if (blogGrid) {
-                    // Xóa nội dung hiện tại
-                    blogGrid.innerHTML = '';
-                    
-                    // Tạo và thêm các blog card mới
-                    htmlFiles.forEach(file => {
-                        const cardHTML = createBlogCardHTML(file);
-                        if (cardHTML) {
-                            blogGrid.innerHTML += cardHTML;
-                        }
-                    });
-                    
-                    // Nếu không có bài viết nào, hiển thị thông báo
-                    if (blogGrid.innerHTML.trim() === '') {
-                        blogGrid.innerHTML = `
-                        <div class="blog-card" style="grid-column: 1 / -1; text-align: center;">
-                            <div class="blog-content">
-                                <h3 class="blog-title">Chưa có bài viết</h3>
-                                <p class="blog-excerpt">Các bài viết mới sẽ sớm được cập nhật.</p>
-                            </div>
-                        </div>`;
-                    }
-                }
-            } catch (error) {
-                console.error('Không thể tải danh sách bài viết:', error);
-                // Hiển thị thông báo lỗi
-                const blogGrid = document.querySelector('.blog-grid');
-                if (blogGrid) {
-                    blogGrid.innerHTML = `
-                    <div class="blog-card" style="grid-column: 1 / -1; text-align: center;">
-                        <div class="blog-content">
-                            <h3 class="blog-title">Có lỗi xảy ra</h3>
-                            <p class="blog-excerpt">Không thể tải danh sách bài viết. Vui lòng thử lại sau.</p>
-                        </div>
-                    </div>`;
-                }
-            }
-        }
-
-        // Gọi hàm tải bài viết khi trang được tải xong
-        document.addEventListener('DOMContentLoaded', loadBlogPosts);
-    </script>
 </head>
 <body>
     <header>
@@ -374,11 +220,66 @@
         <h1>Bài Viết Mới Nhất</h1>
         
         <div class="blog-grid">
-            <!-- Nội dung sẽ được tạo động bằng JavaScript -->
-            <div class="blog-card" style="grid-column: 1 / -1; text-align: center;">
+            <!-- Bài viết 1 -->
+            <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2232&q=80');"></div>
                 <div class="blog-content">
-                    <h3 class="blog-title">Đang tải bài viết...</h3>
-                    <p class="blog-excerpt">Vui lòng đợi trong giây lát.</p>
+                    <h3 class="blog-title">Cuộc Cách Mạng Tài Khoản Thông Minh</h3>
+                    <p class="blog-excerpt">Tìm hiểu về công nghệ tài khoản thông minh và cách chúng định hình lại trải nghiệm người dùng trong không gian cryptocurrency.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                            </svg>
+                            12 Tháng 6, 2025
+                        </span>
+                        <span class="blog-tag">Blockchain</span>
+                    </div>
+                    <div style="margin-top: 1.2rem;">
+                        <a href="smart_account.html" class="btn">Đọc Bài Viết</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bài viết 2 -->
+            <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1621761191319-c6fb62004040?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80');"></div>
+                <div class="blog-content">
+                    <h3 class="blog-title">Tổng quan Dự án Enso.build</h3>
+                    <p class="blog-excerpt">Phân tích chuyên sâu về dự án Enso.build, công nghệ nền tảng và tiềm năng tác động đến hệ sinh thái DeFi.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                            </svg>
+                            5 Tháng 6, 2025
+                        </span>
+                        <span class="blog-tag">DeFi</span>
+                    </div>
+                    <div style="margin-top: 1.2rem;">
+                        <a href="enso_finance.html" class="btn">Đọc Bài Viết</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Thêm bài viết mẫu để giới thiệu trang web -->
+            <div class="blog-card">
+                <div class="blog-image" style="background-image: url('https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80');"></div>
+                <div class="blog-content">
+                    <h3 class="blog-title">Sắp Ra Mắt</h3>
+                    <p class="blog-excerpt">Nhiều bài viết phân tích chuyên sâu về các dự án blockchain mới và các xu hướng công nghệ đang phát triển sẽ sớm được cập nhật.</p>
+                    <div class="blog-meta">
+                        <span class="blog-date">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                            </svg>
+                            Sắp ra mắt
+                        </span>
+                        <span class="blog-tag">Sắp có</span>
+                    </div>
+                    <div style="margin-top: 1.2rem;">
+                        <button class="btn btn-secondary" disabled>Đang Chuẩn Bị</button>
+                    </div>
                 </div>
             </div>
         </div>
