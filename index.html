@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary-color: #2ecc71;
@@ -21,6 +22,9 @@
             --border-color: #333;
             --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             --hover-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            --discord-color: #5865F2;
+            --youtube-color: #FF0000;
+            --facebook-color: #1877F2;
         }
         
         * {
@@ -193,6 +197,72 @@
             box-shadow: 0 0 15px rgba(46, 204, 113, 0.6);
         }
         
+        /* Phần CSS mới cho các nút cộng đồng */
+        .community-section {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .community-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .community-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-background);
+            color: var(--text-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            min-width: 180px;
+            border: 2px solid transparent;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .community-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .community-btn.discord {
+            border-color: var(--discord-color);
+        }
+        
+        .community-btn.youtube {
+            border-color: var(--youtube-color);
+        }
+        
+        .community-btn.facebook {
+            border-color: var(--facebook-color);
+        }
+        
+        .community-btn.discord:hover {
+            background-color: var(--discord-color);
+            color: white;
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.6);
+        }
+        
+        .community-btn.youtube:hover {
+            background-color: var(--youtube-color);
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+        }
+        
+        .community-btn.facebook:hover {
+            background-color: var(--facebook-color);
+            color: white;
+            box-shadow: 0 0 15px rgba(24, 119, 242, 0.6);
+        }
+        
         footer {
             background-color: #0a0a0a;
             color: var(--muted-text);
@@ -213,6 +283,16 @@
             
             .logo img {
                 max-width: 120px;
+            }
+            
+            .community-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .community-btn {
+                width: 100%;
+                max-width: 280px;
             }
         }
     </style>
@@ -268,6 +348,24 @@
                     <h3>Cộng đồng</h3>
                     <p>Chúng tôi tin rằng sức mạnh lớn nhất đến từ cộng đồng, nơi mọi người cùng nhau học hỏi, chia sẻ và phát triển trong tinh thần hợp tác và tôn trọng lẫn nhau.</p>
                 </div>
+            </div>
+        </section>
+        
+        <!-- Phần mới: Các liên kết cộng đồng -->
+        <section id="community" class="community-section">
+            <h2 style="text-align: center;">Tham gia cộng đồng của chúng tôi</h2>
+            <p style="text-align: center;">Kết nối với chúng tôi trên các nền tảng mạng xã hội để cập nhật những thông tin mới nhất về ESC Base và các dự án blockchain tiềm năng.</p>
+            
+            <div class="community-links">
+                <a href="https://discord.gg/SMhy8RjDCf" target="_blank" rel="noopener noreferrer" class="community-btn discord">
+                    <i class="fab fa-discord"></i>Discord
+                </a>
+                <a href="https://www.youtube.com/@ESCBase" target="_blank" rel="noopener noreferrer" class="community-btn youtube">
+                    <i class="fab fa-youtube"></i>YouTube
+                </a>
+                <a href="https://www.facebook.com/escbasexyz" target="_blank" rel="noopener noreferrer" class="community-btn facebook">
+                    <i class="fab fa-facebook-f"></i>Facebook
+                </a>
             </div>
         </section>
         
