@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic Phân Tích Chuyên Sâu: Helios Chain</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #f8f9fa;
+            color: #343434;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            line-height: 2.5rem;
+            color: #00A6ED;
+        }
+        .section-subtitle {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #F72585;
+            margin-top: 0.5rem;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .flowchart-node {
+            border: 2px solid #00A6ED;
+            background-color: #E6F6FE;
+            color: #005A82;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        .flowchart-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #FFB400;
+            margin: 0.5rem 0;
+        }
+        .risk-bar-high { background-color: #F72585; }
+        .risk-bar-medium { background-color: #FFB400; }
+        .risk-bar-low { background-color: #7FB800; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#343434] mb-2">Phân Tích Chuyên Sâu</h1>
+            <h2 class="section-title">Helios Chain</h2>
+            <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">Trực quan hóa dữ liệu từ báo cáo phân tích toàn diện: Tầm nhìn công nghệ, lợi thế cạnh tranh và những rủi ro tiềm ẩn của một blockchain Lớp 1 đầy tham vọng.</p>
+        </header>
+
+        <main class="space-y-16">
+            <section id="architecture">
+                <h3 class="section-title text-center mb-2">Tầm Nhìn & Kiến Trúc Cốt Lõi</h3>
+                <h4 class="section-subtitle text-center mb-8">Nền tảng kép cho sự linh hoạt tối đa</h4>
+                <div class="card md:col-span-2 p-6">
+                    <p class="text-gray-700 mb-6 text-center">Helios Chain xây dựng một kiến trúc chiến lược, kết hợp sức mạnh của hai hệ sinh thái blockchain hàng đầu. Điều này cho phép các nhà phát triển vừa tận dụng sự phổ biến của Solidity và EVM, vừa có khả năng tùy biến sâu với Cosmos SDK, tạo ra một môi trường phát triển đa năng.</p>
+                    <div class="flex flex-col md:flex-row justify-center items-center md:items-stretch gap-4">
+                        <div class="flowchart-node w-full md:w-1/3">
+                            <span class="text-xl">🛠️</span>
+                            <h5 class="mt-2">Tương thích EVM</h5>
+                            <p class="text-sm font-normal mt-1">Triển khai hợp đồng Solidity dễ dàng, tiếp cận hệ sinh thái Ethereum rộng lớn.</p>
+                        </div>
+                        <div class="flowchart-arrow hidden md:flex">+</div>
+                        <div class="flowchart-node w-full md:w-1/3">
+                            <span class="text-xl">🧱</span>
+                             <h5 class="mt-2">Tích hợp Cosmos SDK</h5>
+                            <p class="text-sm font-normal mt-1">Xây dựng logic nghiệp vụ tùy chỉnh, khả năng tương tác qua IBC.</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-center my-4">
+                        <div class="flowchart-arrow text-4xl transform rotate-90 md:rotate-0">↓</div>
+                    </div>
+                    <div class="flowchart-node w-full md:w-2/3 mx-auto bg-[#7FB800]/20 border-[#7FB800] text-[#3E5C00]">
+                        <span class="text-xl">🚀</span>
+                        <h5 class="mt-2">Lớp Thực Thi Helios</h5>
+                        <p class="text-sm font-normal mt-1">Một môi trường thống nhất, mạnh mẽ xử lý giao dịch và logic hợp đồng thông minh.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="competition">
+                <h3 class="section-title text-center mb-2">Bối Cảnh Cạnh Tranh</h3>
+                <h4 class="section-subtitle text-center mb-8">Định vị giữa các gã khổng lồ tương tác chuỗi chéo</h4>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="card h-full flex flex-col justify-center">
+                        <h5 class="font-bold text-xl mb-2 text-[#00A6ED]">So sánh Đa Chiều</h5>
+                        <p class="text-gray-700 mb-4">Helios Chain cố gắng tạo ra một "con đường thứ ba" bằng cách cân bằng giữa các yếu tố chủ quyền, bảo mật và rào cản gia nhập so với Polkadot và Cosmos. Biểu đồ radar này trực quan hóa vị thế tương đối của Helios dựa trên các tiêu chí chính được phân tích trong báo cáo.</p>
+                        <div class="chart-container h-80 md:h-96">
+                            <canvas id="competitionRadarChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card h-full flex flex-col justify-center">
+                         <h5 class="font-bold text-xl mb-2 text-[#00A6ED]">Mô Hình Bảo Mật Độc Đáo</h5>
+                        <p class="text-gray-700 mb-4">Trái tim của Helios là cơ chế đồng thuận I-PoSR. Thay vì chỉ dựa vào vốn, mô hình này kết hợp cả danh tiếng của validator và "vay mượn" an ninh kinh tế từ các chuỗi lớn khác, tạo ra một lá chắn bảo mật đa dạng và phức tạp.</p>
+                        <div class="chart-container h-80 md:h-96">
+                            <canvas id="iposrDonutChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="usp">
+                <h3 class="section-title text-center mb-2">Lợi Thế Cạnh Tranh Độc Nhất</h3>
+                <h4 class="section-subtitle text-center mb-8">Các tính năng đột phá định hình tương lai</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card">
+                        <h5 class="font-bold text-xl mb-2 flex items-center"><span class="text-2xl mr-2">⏰</span> Chronos Tasks</h5>
+                        <p class="text-gray-700">Helios tích hợp sẵn một hệ thống tự động hóa ở cấp độ giao thức. Điều này cho phép hợp đồng thông minh tự thực thi theo lịch trình hoặc điều kiện định trước, loại bỏ sự phụ thuộc vào các bot bên ngoài, giảm chi phí và tăng tính phi tập trung cho dApps.</p>
+                    </div>
+                    <div class="card">
+                        <h5 class="font-bold text-xl mb-2 flex items-center"><span class="text-2xl mr-2">💸</span> Chia Sẻ Doanh Thu Phí Gas</h5>
+                        <p class="text-gray-700">Đây là một mô hình kinh tế đột phá. Các nhà phát triển sẽ tự động nhận được một phần doanh thu từ phí gas mà ứng dụng của họ tạo ra, tạo ra một dòng tiền bền vững và là động lực mạnh mẽ để xây dựng các sản phẩm chất lượng trên Helios.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="risks">
+                <h3 class="section-title text-center mb-2">Phân Tích Các Yếu Tố Rủi Ro Trọng Yếu</h3>
+                <h4 class="section-subtitle text-center mb-8">Những "Red Flag" không thể bỏ qua</h4>
+                <div class="card md:col-span-2">
+                    <p class="text-gray-700 mb-6">Mặc dù có công nghệ hứa hẹn, Helios Chain phải đối mặt với những rủi ro cực kỳ nghiêm trọng liên quan đến sự thiếu minh bạch. Các rủi ro này tạo ra một "món nợ niềm tin" khổng lồ, cản trở khả năng thu hút đầu tư, hợp tác và xây dựng cộng đồng một cách bền vững.</p>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-[#343434]">Đội ngũ phát triển ẩn danh</span>
+                                <span class="text-sm font-medium text-red-700">Rất Cao</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-4">
+                                <div class="risk-bar-high h-4 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-[#343434]">Thiếu Whitepaper & Roadmap</span>
+                                <span class="text-sm font-medium text-orange-600">Cao</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-4">
+                                <div class="risk-bar-medium h-4 rounded-full" style="width: 80%"></div>
+                            </div>
+                        </div>
+                         <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-[#343434]">Mô hình Tokenomics không rõ ràng</span>
+                                <span class="text-sm font-medium text-orange-600">Cao</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-4">
+                                <div class="risk-bar-medium h-4 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-base font-medium text-[#343434]">Thách thức về thương hiệu (Tên phổ biến)</span>
+                                <span class="text-sm font-medium text-yellow-500">Trung bình</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-4">
+                                <div class="risk-bar-low h-4 rounded-full" style="width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="recommendations">
+                 <h3 class="section-title text-center mb-2">Viễn Cảnh & Khuyến Nghị</h3>
+                 <h4 class="section-subtitle text-center mb-8">Phán quyết cuối cùng dựa trên phân tích</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                     <div class="card border-t-4 border-[#F72585]">
+                         <h5 class="font-bold text-xl mb-2 text-[#F72585]">Nhà Đầu Tư</h5>
+                         <p class="text-gray-700"><strong class="text-red-600">KHÔNG ĐẦU TƯ</strong> ở giai đoạn này. Rủi ro do thiếu minh bạch là quá cao. Chỉ nên theo dõi từ xa và chờ đợi sự thay đổi cơ bản về tính minh bạch của đội ngũ và dự án.</p>
+                     </div>
+                     <div class="card border-t-4 border-[#FFB400]">
+                         <h5 class="font-bold text-xl mb-2 text-[#FFB400]">Nhà Phát Triển</h5>
+                         <p class="text-gray-700">Có thể tham gia một cách <strong class="text-yellow-600">thận trọng</strong> trên Testnet để trải nghiệm công nghệ. Tuy nhiên, cần nhận thức rõ rủi ro khi xây dựng trên một nền tảng có đội ngũ ẩn danh.</p>
+                     </div>
+                     <div class="card border-t-4 border-[#7FB800]">
+                         <h5 class="font-bold text-xl mb-2 text-[#7FB800]">Nhà Nghiên Cứu</h5>
+                         <p class="text-gray-700">Đây là một <strong class="text-green-600">cơ hội học thuật</strong> hấp dẫn để phân tích mã nguồn và mô hình hóa lý thuyết trò chơi của cơ chế đồng thuận I-PoSR, một lĩnh vực còn mới mẻ và nhiều tiềm năng khám phá.</p>
+                     </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-200">
+            <p class="text-gray-500">Infographic được tạo dựa trên "Báo Cáo Phân Tích Chuyên Sâu: Helios Chain".</p>
+            <p class="text-sm text-gray-400 mt-1">Trực quan hóa dữ liệu được thực hiện bởi AI. Không phải là lời khuyên đầu tư.</p>
+        </footer>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const wrapLabel = (label, maxLength = 16) => {
+        const words = label.split(' ');
+        let currentLine = '';
+        const lines = [];
+        words.forEach(word => {
+            if ((currentLine + ' ' + word).trim().length > maxLength) {
+                lines.push(currentLine.trim());
+                currentLine = word;
+            } else {
+                currentLine = (currentLine + ' ' + word).trim();
+            }
+        });
+        if (currentLine) {
+            lines.push(currentLine.trim());
+        }
+        return lines;
+    };
+
+    const sharedTooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        return Array.isArray(label) ? label.join(' ') : label;
+    };
+
+    const colorPalette = {
+        blue: '#00A6ED',
+        green: '#7FB800',
+        yellow: '#FFB400',
+        pink: '#F72585',
+        gray: '#343434'
+    };
+
+    const competitionRadarCtx = document.getElementById('competitionRadarChart')?.getContext('2d');
+    if (competitionRadarCtx) {
+        new Chart(competitionRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: [
+                    'Chủ quyền', 
+                    'Bảo mật chia sẻ', 
+                    'Rào cản gia nhập', 
+                    'Linh hoạt phát triển', 
+                    'Tính phi tập trung'
+                ],
+                datasets: [{
+                    label: 'Helios Chain',
+                    data: [3, 4, 5, 5, 4],
+                    borderColor: colorPalette.pink,
+                    backgroundColor: 'rgba(247, 37, 133, 0.2)',
+                    pointBackgroundColor: colorPalette.pink,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: colorPalette.pink
+                }, {
+                    label: 'Cosmos',
+                    data: [5, 2, 3, 4, 5],
+                    borderColor: colorPalette.blue,
+                    backgroundColor: 'rgba(0, 166, 237, 0.2)',
+                    pointBackgroundColor: colorPalette.blue,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: colorPalette.blue
+                }, {
+                    label: 'Polkadot',
+                    data: [2, 5, 2, 3, 3],
+                    borderColor: colorPalette.green,
+                    backgroundColor: 'rgba(127, 184, 0, 0.2)',
+                    pointBackgroundColor: colorPalette.green,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: colorPalette.green
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: sharedTooltipTitleCallback
+                        }
+                    }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
+                        grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                        pointLabels: { 
+                            font: { size: 12, family: "'Be Vietnam Pro', sans-serif" },
+                            color: colorPalette.gray
+                        },
+                        ticks: {
+                            backdropColor: 'transparent',
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    const iposrDonutCtx = document.getElementById('iposrDonutChart')?.getContext('2d');
+    if (iposrDonutCtx) {
+        new Chart(iposrDonutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Proof of Stake', 'Hệ thống Danh tiếng', wrapLabel('Bảo mật "vay mượn" (Restaking)')],
+                datasets: [{
+                    label: 'Thành phần I-PoSR',
+                    data: [33.3, 33.3, 33.3],
+                    backgroundColor: [
+                        colorPalette.blue,
+                        colorPalette.green,
+                        colorPalette.yellow
+                    ],
+                    borderColor: '#fff',
+                    borderWidth: 2,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                           font: { size: 12, family: "'Be Vietnam Pro', sans-serif" }
+                        }
+                    },
+                    tooltip: {
+                         callbacks: {
+                            title: sharedTooltipTitleCallback
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Cấu thành Cơ chế Đồng thuận I-PoSR',
+                        font: { size: 16, weight: 'bold', family: "'Be Vietnam Pro', sans-serif" },
+                        color: colorPalette.gray,
+                        padding: {
+                            top: 10,
+                            bottom: 20
+                        }
+                    }
+                },
+                cutout: '60%'
+            }
+        });
+    }
+
+});
+</script>
+</body>
+</html>
