@@ -6,20 +6,32 @@
     <title>ESC Base - Cộng đồng Cryptocurrency tiên phong</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2ecc71;
-            --background-color: #f9f9f9;
-            --text-color: #333;
-            --accent-color: #9b59b6;
+            --primary-color: #2ecc71;
+            --secondary-color: #27ae60;
+            --background-color: #121212;
+            --card-background: #1e1e1e;
+            --text-color: #e0e0e0;
+            --accent-color: #27ae60;
+            --muted-text: #a0a0a0;
+            --border-color: #333;
+            --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            --hover-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            --discord-color: #5865F2;
+            --youtube-color: #FF0000;
+            --facebook-color: #1877F2;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Be Vietnam Pro', sans-serif;
         }
         
         body {
@@ -29,17 +41,48 @@
         }
         
         header {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            background: url('page.jpg') center center/cover no-repeat;
             color: white;
             text-align: center;
-            padding: 2rem 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 4rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
         }
         
         .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo img {
+            max-width: 150px;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px rgba(46, 204, 113, 0.5));
+        }
+        
+        .logo-text {
             font-size: 2.5rem;
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
         }
         
         .tagline {
@@ -78,6 +121,7 @@
         p {
             margin-bottom: 1rem;
             font-size: 1.1rem;
+            color: var(--muted-text);
         }
         
         .features {
@@ -88,16 +132,18 @@
         }
         
         .feature-card {
-            background: white;
+            background: var(--card-background);
             border-radius: 8px;
             padding: 1.5rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--card-shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 3px solid var(--primary-color);
         }
         
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--hover-shadow);
+            border-color: var(--accent-color);
         }
         
         .feature-card h3 {
@@ -107,16 +153,34 @@
         
         .cta-section {
             text-align: center;
-            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            background: url('page.jpg') center center/cover no-repeat;
             padding: 3rem 1rem;
             border-radius: 10px;
             color: white;
             margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(46, 204, 113, 0.6);
+            z-index: 1;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
         }
         
         .btn {
             display: inline-block;
-            background: white;
+            background: rgba(0, 0, 0, 0.6);
             color: var(--primary-color);
             padding: 0.8rem 2rem;
             border-radius: 30px;
@@ -124,21 +188,88 @@
             text-decoration: none;
             margin-top: 1.5rem;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            border: 2px solid var(--primary-color);
         }
         
         .btn:hover {
-            background: transparent;
+            background-color: var(--primary-color);
+            color: black;
+            box-shadow: 0 0 15px rgba(46, 204, 113, 0.6);
+        }
+        
+        /* Phần CSS mới cho các nút cộng đồng */
+        .community-section {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .community-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .community-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-background);
+            color: var(--text-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            min-width: 180px;
+            border: 2px solid transparent;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .community-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .community-btn.discord {
+            border-color: var(--discord-color);
+        }
+        
+        .community-btn.youtube {
+            border-color: var(--youtube-color);
+        }
+        
+        .community-btn.facebook {
+            border-color: var(--facebook-color);
+        }
+        
+        .community-btn.discord:hover {
+            background-color: var(--discord-color);
             color: white;
-            border-color: white;
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.6);
+        }
+        
+        .community-btn.youtube:hover {
+            background-color: var(--youtube-color);
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+        }
+        
+        .community-btn.facebook:hover {
+            background-color: var(--facebook-color);
+            color: white;
+            box-shadow: 0 0 15px rgba(24, 119, 242, 0.6);
         }
         
         footer {
-            background-color: #333;
-            color: white;
+            background-color: #0a0a0a;
+            color: var(--muted-text);
             text-align: center;
             padding: 1.5rem 0;
             margin-top: 4rem;
+            border-top: 1px solid var(--border-color);
         }
         
         @media (max-width: 768px) {
@@ -146,16 +277,35 @@
                 grid-template-columns: 1fr;
             }
             
-            .logo {
+            .logo-text {
                 font-size: 2rem;
+            }
+            
+            .logo img {
+                max-width: 120px;
+            }
+            
+            .community-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .community-btn {
+                width: 100%;
+                max-width: 280px;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo">ESC Base</div>
-        <div class="tagline">Cộng đồng Cryptocurrency tiên phong</div>
+        <div class="header-content">
+            <div class="logo">
+                <img src="esclogo.png" alt="ESC Base Logo">
+                <div class="logo-text">ESC Base</div>
+            </div>
+            <div class="tagline">Cộng đồng Cryptocurrency tiên phong</div>
+        </div>
     </header>
     
     <div class="container">
@@ -201,10 +351,30 @@
             </div>
         </section>
         
+        <!-- Phần mới: Các liên kết cộng đồng -->
+        <section id="community" class="community-section">
+            <h2 style="text-align: center;">Tham gia cộng đồng của chúng tôi</h2>
+            <p style="text-align: center;">Kết nối với chúng tôi trên các nền tảng mạng xã hội để cập nhật những thông tin mới nhất về ESC Base và các dự án blockchain tiềm năng.</p>
+            
+            <div class="community-links">
+                <a href="https://discord.gg/SMhy8RjDCf" target="_blank" rel="noopener noreferrer" class="community-btn discord">
+                    <i class="fab fa-discord"></i>Discord
+                </a>
+                <a href="https://www.youtube.com/@ESCBase" target="_blank" rel="noopener noreferrer" class="community-btn youtube">
+                    <i class="fab fa-youtube"></i>YouTube
+                </a>
+                <a href="https://www.facebook.com/escbasexyz" target="_blank" rel="noopener noreferrer" class="community-btn facebook">
+                    <i class="fab fa-facebook-f"></i>Facebook
+                </a>
+            </div>
+        </section>
+        
         <div class="cta-section">
-            <h2 style="color: white; text-align: center;">Khám phá blog của chúng tôi</h2>
-            <p>Tìm hiểu những phân tích chuyên sâu về các dự án cryptocurrency tiềm năng và công nghệ blockchain mới nhất.</p>
-            <a href="blog/index.html" class="btn">Đọc blog ngay</a>
+            <div class="cta-content">
+                <h2 style="color: white; text-align: center;">Khám phá blog của chúng tôi</h2>
+                <p style="color: white;">Tìm hiểu những phân tích chuyên sâu về các dự án cryptocurrency tiềm năng và công nghệ blockchain mới nhất.</p>
+                <a href="blog/index.html" class="btn">Đọc blog ngay</a>
+            </div>
         </div>
     </div>
     
