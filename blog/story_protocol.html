@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: Phân Tích Chuyên Sâu Story Protocol</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F051A;
+            color: #E0E0E0;
+        }
+        .card {
+            background-color: rgba(30, 23, 49, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(106, 27, 154, 0.5);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #F57C00, #FFB300);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .flowchart-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        .flowchart-box {
+            background-color: #4A148C;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            border: 2px solid #6A1B9A;
+            width: 90%;
+            max-width: 400px;
+        }
+        .flowchart-arrow {
+            width: 2px;
+            height: 2rem;
+            background-color: #6A1B9A;
+            position: relative;
+        }
+        .flowchart-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid #6A1B9A;
+        }
+        .flowchart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            width: 100%;
+        }
+        .flowchart-sub-box {
+            background-color: #1E88E5;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        <header class="text-center my-8 md:my-16">
+            <h1 class="text-4xl md:text-6xl font-black gradient-text">STORY PROTOCOL</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-300">Hạ Tầng Sở Hữu Trí Tuệ Gốc Cho Kỷ Nguyên Internet và AI</p>
+        </header>
+
+        <main class="space-y-16">
+            <section id="problem">
+                <div class="card rounded-xl shadow-2xl p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 items-center gap-8">
+                    <div class="text-center md:text-left">
+                        <h2 class="text-3xl font-bold text-white">"Khoảnh khắc Napster" của ngành Sở hữu Trí tuệ</h2>
+                        <p class="mt-4 text-gray-300">Sự bùng nổ của AI tạo sinh đã tạo ra một cuộc khủng hoảng. Các mô hình AI được huấn luyện trên dữ liệu khổng lồ mà không ghi công hay bồi thường cho tác giả gốc, phá vỡ giao ước kinh tế và đe dọa động lực sáng tạo.</p>
+                    </div>
+                    <div class="text-center p-6">
+                        <div class="text-5xl md:text-7xl font-extrabold gradient-text">$54M+</div>
+                        <p class="mt-2 text-gray-300">đã được huy động từ các quỹ hàng đầu như a16z để xây dựng giải pháp cho cuộc khủng hoảng này.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="architecture" class="text-center">
+                <h2 class="text-3xl font-bold text-white mb-2">Kiến Trúc Kỹ Thuật Đột Phá</h2>
+                <p class="text-gray-300 mb-8 max-w-3xl mx-auto">Story Protocol không phải là một dApp, mà là một blockchain L1 chuyên dụng, được xây dựng với kiến trúc đa lớp, đa lõi để tối ưu cho việc quản lý IP.</p>
+                <div class="card rounded-xl shadow-2xl p-6 md:p-8">
+                    <div class="flowchart-container">
+                        <div class="flowchart-box">
+                            <h3 class="font-bold text-lg">Lớp Đồng Thuận (Consensus)</h3>
+                            <p class="text-sm">CometBFT (Proof-of-Stake)</p>
+                        </div>
+                        <div class="flowchart-arrow"></div>
+                        <div class="flowchart-box">
+                            <h3 class="font-bold text-lg">Lớp Thực Thi Đa Lõi (Execution)</h3>
+                            <p class="text-sm">Xử lý song song, chuyên môn hóa</p>
+                        </div>
+                        <div class="flowchart-grid mt-4">
+                            <div class="flowchart-sub-box">Lõi EVM Chính (Tương thích Solidity)</div>
+                            <div class="flowchart-sub-box">Lõi Sở Hữu Trí Tuệ (Tối ưu cho Đồ thị IP)</div>
+                            <div class="flowchart-sub-box">Các lõi khác (Oracle, Giao tiếp...)</div>
+                        </div>
+                        <div class="flowchart-arrow mt-4"></div>
+                        <div class="flowchart-box">
+                            <h3 class="font-bold text-lg">Lớp Lưu Trữ (Storage)</h3>
+                            <p class="text-sm">Lưu trữ kết hợp On-chain & Off-chain</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="comparison">
+                <h2 class="text-3xl font-bold text-white text-center mb-8">So Sánh Vị Thế với các Blockchain Hàng Đầu</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="card rounded-xl shadow-2xl p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-white mb-4 text-center">Thời Gian Hoàn Tất Giao Dịch (TTF)</h3>
+                        <p class="text-sm text-gray-400 text-center mb-4">Story Protocol đạt được tốc độ xác nhận gần như tức thì, vượt trội so với Ethereum.</p>
+                        <div class="chart-container">
+                            <canvas id="ttfChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card rounded-xl shadow-2xl p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-white mb-4 text-center">Mức Độ Phi Tập Trung (Số lượng Validators)</h3>
+                        <p class="text-sm text-gray-400 text-center mb-4">Bắt đầu với một bộ validator giới hạn nhưng có lộ trình mở rộng rõ ràng, hướng tới phi tập trung cao hơn.</p>
+                        <div class="chart-container">
+                            <canvas id="validatorChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="tokenomics">
+                <h2 class="text-3xl font-bold text-white text-center mb-8">Phân Tích Tokenomics của $IP</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
+                    <div class="card rounded-xl shadow-2xl p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-white mb-4 text-center">Phân Bổ Token (Tổng cung: 1 Tỷ)</h3>
+                        <p class="text-sm text-gray-400 text-center mb-4">Một phần lớn token được dành cho việc phát triển cộng đồng và hệ sinh thái, thể hiện cam kết dài hạn.</p>
+                        <div class="chart-container h-[400px] md:h-[450px]">
+                            <canvas id="tokenomicsChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="text-left space-y-4">
+                         <div class="card rounded-lg p-4">
+                            <h4 class="font-bold text-lg gradient-text">Phí Giao Dịch (Gas)</h4>
+                            <p class="text-sm text-gray-300">Mọi hoạt động trên mạng như đăng ký, cấp phép IP đều yêu cầu $IP.</p>
+                        </div>
+                        <div class="card rounded-lg p-4">
+                            <h4 class="font-bold text-lg gradient-text">Staking</h4>
+                            <p class="text-sm text-gray-300">Người dùng stake $IP để bảo mật mạng lưới và nhận phần thưởng.</p>
+                        </div>
+                         <div class="card rounded-lg p-4">
+                            <h4 class="font-bold text-lg gradient-text">Quản Trị (Governance)</h4>
+                            <p class="text-sm text-gray-300">Người nắm giữ $IP có quyền bỏ phiếu cho các đề xuất phát triển mạng lưới.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="ecosystem" class="text-center">
+                <h2 class="text-3xl font-bold text-white mb-8">Hệ Sinh Thái Đang Phát Triển Nhanh Chóng</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="card rounded-xl shadow-2xl p-6">
+                        <div class="text-4xl mb-4">💰</div>
+                        <h3 class="text-xl font-bold text-white">IPFi (Tài chính IP)</h3>
+                        <p class="text-gray-300 mt-2">Biến IP thành tài sản có thanh khoản. Dự án: PiperX (DEX), Unleash (Lending), Verio (Liquid Staking).</p>
+                    </div>
+                    <div class="card rounded-xl shadow-2xl p-6">
+                        <div class="text-4xl mb-4">🤖</div>
+                        <h3 class="text-xl font-bold text-white">AI & Sáng Tạo</h3>
+                        <p class="text-gray-300 mt-2">Hiện thực hóa tầm nhìn sáng tạo mở. Dự án: Magma (Nghệ thuật), Sekai (Kể chuyện), Ablo (Thời trang).</p>
+                    </div>
+                    <div class="card rounded-xl shadow-2xl p-6">
+                        <div class="text-4xl mb-4">🛠️</div>
+                        <h3 class="text-xl font-bold text-white">Cơ Sở Hạ Tầng</h3>
+                        <p class="text-gray-300 mt-2">Công cụ hỗ trợ nhà phát triển. Dự án: StoryKit (API), MetaMask & Subwallet (Ví).</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-16 py-8 border-t border-gray-700">
+            <p class="text-gray-400">Infographic được tạo dựa trên báo cáo phân tích về Story Protocol. Đây không phải là lời khuyên đầu tư.</p>
+        </footer>
+    </div>
+
+<script>
+    function wrapText(label) {
+        const maxLength = 16;
+        if (typeof label === 'string' && label.length > maxLength) {
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        }
+        return label;
+    }
+    
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        return Array.isArray(label) ? label.join(' ') : label;
+    };
+
+    const sharedChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                labels: {
+                    color: '#E0E0E0',
+                    font: {
+                        family: "'Inter', sans-serif"
+                    }
+                }
+            },
+            tooltip: {
+                callbacks: {
+                    title: tooltipTitleCallback
+                },
+                 bodyFont: {
+                    family: "'Inter', sans-serif"
+                },
+                titleFont: {
+                    family: "'Inter', sans-serif"
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    color: '#9E9E9E'
+                },
+                grid: {
+                    color: 'rgba(158, 158, 158, 0.2)'
+                }
+            },
+            x: {
+                ticks: {
+                    color: '#9E9E9E'
+                },
+                grid: {
+                    color: 'rgba(158, 158, 158, 0.1)'
+                }
+            }
+        }
+    };
+
+    const colors = {
+        purple: '#6A1B9A',
+        darkPurple: '#4A148C',
+        orange: '#F57C00',
+        yellow: '#FFB300',
+        blue: '#1E88E5'
+    };
+
+    const ttfData = {
+        labels: ['Story Protocol', 'BNB Chain', 'Solana', 'Ethereum L1'],
+        datasets: [{
+            label: 'Thời gian hoàn tất (giây, thang log)',
+            data: [3, 3, 12.8, 780],
+            backgroundColor: [colors.orange, colors.yellow, colors.purple, colors.blue],
+            borderColor: 'rgba(255, 255, 255, 0.2)',
+            borderWidth: 1
+        }]
+    };
+    new Chart(document.getElementById('ttfChart'), {
+        type: 'bar',
+        data: ttfData,
+        options: {
+            ...sharedChartOptions,
+            indexAxis: 'y',
+             scales: {
+                x: {
+                    type: 'logarithmic',
+                    beginAtZero: false,
+                    ticks: {
+                        color: '#9E9E9E',
+                        callback: function(value, index, values) {
+                            if (value === 1 || value === 10 || value === 100 || value === 1000) {
+                                return value + 's';
+                            }
+                        }
+                    },
+                    grid: { color: 'rgba(158, 158, 158, 0.2)' }
+                },
+                y: { ticks: { color: '#E0E0E0' }, grid: { display: false } }
+            }
+        }
+    });
+
+    const validatorData = {
+        labels: ['BNB Chain (Active)', 'Story (Ban đầu)', 'Cosmos (Active)', 'Solana', 'Ethereum'],
+        datasets: [{
+            label: 'Số lượng Validators (thang log)',
+            data: [40, 64, 180, 1600, 1000000],
+            backgroundColor: [colors.yellow, colors.orange, colors.purple, colors.blue, colors.darkPurple],
+            borderColor: 'rgba(255, 255, 255, 0.2)',
+            borderWidth: 1
+        }]
+    };
+    new Chart(document.getElementById('validatorChart'), {
+        type: 'bar',
+        data: validatorData,
+        options: {
+            ...sharedChartOptions,
+            scales: {
+                y: {
+                    type: 'logarithmic',
+                    ticks: { color: '#9E9E9E' },
+                    grid: { color: 'rgba(158, 158, 158, 0.2)' }
+                },
+                x: { ticks: { color: '#E0E0E0' }, grid: { display: false } }
+            }
+        }
+    });
+
+    const tokenomicsLabels = [
+        wrapText('Hệ sinh thái & Cộng đồng'),
+        wrapText('Nhà đầu tư sớm'),
+        wrapText('Đội ngũ đóng góp cốt lõi'),
+        wrapText('Quỹ Foundation'),
+        wrapText('Khuyến khích Ban đầu')
+    ];
+
+    const tokenomicsData = {
+        labels: tokenomicsLabels,
+        datasets: [{
+            label: 'Phân bổ Token $IP',
+            data: [38.4, 21.6, 20, 10, 10],
+            backgroundColor: [colors.blue, colors.orange, colors.purple, colors.darkPurple, colors.yellow],
+            borderColor: '#0F051A',
+            borderWidth: 2,
+            hoverOffset: 4
+        }]
+    };
+
+    new Chart(document.getElementById('tokenomicsChart'), {
+        type: 'doughnut',
+        data: tokenomicsData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: '#E0E0E0',
+                        font: {
+                            size: 12,
+                            family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback,
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed !== null) {
+                                label += context.parsed + '%';
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+    <div style="text-align: center; padding: 3rem 0;">
+        <a href="index.html" style="display: inline-block; background-color: #3498db; color: white; padding: 0.8rem 1.8rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid transparent; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            Quay lại Trang Blog
+        </a>
+    </div>
+</body>
+</html>
