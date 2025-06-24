@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: Phân tích Chuyên sâu Mạng lưới Pharos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flowchart-line {
+            width: 2px;
+            height: 30px;
+            background-color: #366E8A; /* brilliant-blues-2 */
+        }
+        .flowchart-arrow {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid #366E8A; /* brilliant-blues-2 */
+        }
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #A5CAD6; /* brilliant-blues-4 */
+            transform: translateX(-50%);
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #003F5C; /* brilliant-blues-1 */
+            border: 4px solid #A5CAD6; /* brilliant-blues-4 */
+            transform: translateX(-50%);
+        }
+        .swot-card {
+            border-left-width: 8px;
+        }
+    </style>
+    <!--
+    Narrative Plan & Structure:
+    1. Hero: Introduce Pharos, vision for RWA, and the >$50T market opportunity.
+    2. Key Performance Indicators (KPIs): Showcase standout metrics (TPS, Finality).
+    3. Core Pillars: Detail the three strategic advantages (Team, Tech, Focus).
+    4. Technology Architecture: Visualize the 3-layer modular structure.
+    5. Competitive Analysis: Compare Pharos with rivals using a bar chart.
+    6. Funding & Partners: Highlight the $8M seed round and key strategic partners like ZAN.
+    7. Use Cases: Illustrate primary target markets with icons and text.
+    8. Ecosystem Grants: Visualize the grant distribution with a donut chart.
+    9. SWOT Analysis: Present Strengths, Weaknesses, Opportunities, and Threats in a card format.
+    10. Roadmap: Display key milestones on a vertical timeline.
+    11. Call to Action: Encourage community participation.
+    -->
+    <!--
+    Visualization Choices:
+    - Market Opportunity: Single Big Number. Goal: Inform. Method: Large HTML Text. Confirmed: NO SVG.
+    - KPIs: Single Big Numbers. Goal: Inform. Method: Large HTML Text. Confirmed: NO SVG.
+    - Modular Architecture: Flow Chart. Goal: Organize. Method: Structured HTML/CSS with Tailwind. Confirmed: NO SVG, NO MERMAID JS.
+    - Competitive Comparison: Bar Chart. Goal: Compare. Method: Chart.js Canvas. Confirmed: NO SVG.
+    - Ecosystem Grants: Donut Chart. Goal: Compare. Method: Chart.js Canvas. Confirmed: NO SVG.
+    - SWOT Analysis: Card Layout. Goal: Organize. Method: Structured HTML/CSS with Tailwind. Confirmed: NO SVG.
+    - Roadmap: Timeline. Goal: Change. Method: Structured HTML/CSS with Tailwind. Confirmed: NO SVG.
+    - Use Cases: Unicode Icons. Goal: Inform. Method: Styled HTML text. Confirmed: NO SVG.
+    -->
+    <!-- Color Palette Chosen: Brilliant Blues -->
+    <!-- Confirmation: NEITHER Mermaid JS NOR SVG were used anywhere in this output. -->
+</head>
+<body class="bg-[#E2F2F8] text-[#003F5C]">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <!-- Section 1: Hero -->
+        <header class="text-center py-12">
+            <h1 class="text-4xl md:text-6xl font-black text-[#003F5C] uppercase tracking-wider">Pharos Network</h1>
+            <p class="mt-4 text-xl md:text-2xl font-light text-[#366E8A]">Cây Cầu Nối Tài Sản Thế Giới Thực (RWA) và Tài chính Doanh nghiệp</p>
+            <div class="mt-8 bg-white/70 backdrop-blur-sm rounded-xl shadow-lg p-6 inline-block">
+                <p class="text-lg text-[#366E8A]">Mở khóa Thị trường Tiềm năng</p>
+                <p class="text-5xl md:text-7xl font-bold text-[#003F5C] mt-2">>$50 Nghìn Tỷ USD</p>
+            </div>
+        </header>
+
+        <!-- Section 2: KPIs -->
+        <section class="py-12">
+            <h2 class="text-3xl font-bold text-center mb-8">Hiệu suất Vượt trội ở Quy mô Lớn</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="text-5xl font-extrabold text-[#003F5C]">50,000</p>
+                    <p class="mt-2 text-lg text-[#366E8A]">Giao dịch mỗi giây (TPS)</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="text-5xl font-extrabold text-[#003F5C]">&lt;1 giây</p>
+                    <p class="mt-2 text-lg text-[#366E8A]">Thời gian hoàn tất Giao dịch</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="text-5xl font-extrabold text-[#003F5C]">2 Gigagas</p>
+                    <p class="mt-2 text-lg text-[#366E8A]">Thông lượng Gas mỗi giây</p>
+                </div>
+            </div>
+            <p class="text-center mt-6 text-[#366E8A] max-w-3xl mx-auto">Pharos được thiết kế để xử lý khối lượng giao dịch khổng lồ của thị trường tài chính toàn cầu, đảm bảo tốc độ và hiệu quả cho các ứng dụng cấp doanh nghiệp.</p>
+        </section>
+
+        <!-- Section 3: Core Pillars -->
+        <section class="py-12">
+            <h2 class="text-3xl font-bold text-center mb-8">Nền tảng của Sự Tin cậy</h2>
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-5xl mb-4">🏆</div>
+                    <h3 class="text-xl font-bold mb-2">Đội ngũ Ưu tú</h3>
+                    <p class="text-[#366E8A]">Sáng lập bởi các cựu lãnh đạo cấp cao từ AntChain & Alibaba, mang lại kinh nghiệm thực thi và sự tín nhiệm ở quy mô toàn cầu.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow duration-300">
+                     <div class="text-5xl mb-4">⚙️</div>
+                    <h3 class="text-xl font-bold mb-2">Công nghệ Song song hóa</h3>
+                    <p class="text-[#366E8A]">Kiến trúc "song song hóa sâu" đột phá, xử lý đồng thời nhiều giao dịch để đạt hiệu suất cực cao và loại bỏ tắc nghẽn.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow duration-300">
+                     <div class="text-5xl mb-4">🏦</div>
+                    <h3 class="text-xl font-bold mb-2">Tập trung vào RWA & Tuân thủ</h3>
+                    <p class="text-[#366E8A]">Thiết kế chuyên biệt cho thị trường RWA với các tính năng tuân thủ (ZK-KYC/AML) tích hợp sẵn tại lõi giao thức.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Architecture -->
+        <section class="py-12">
+            <h2 class="text-3xl font-bold text-center mb-2">Kiến trúc Module Ba Lớp Linh hoạt</h2>
+            <p class="text-center text-[#366E8A] max-w-3xl mx-auto mb-12">Cấu trúc module cho phép chuyên môn hóa và tối ưu hóa ở từng lớp, mang lại hiệu suất và khả năng mở rộng tối đa.</p>
+            <div class="flex flex-col items-center">
+                <div class="bg-white p-6 rounded-lg shadow-md w-full md:w-2/3 lg:w-1/2 text-center">
+                    <p class="text-sm font-semibold uppercase text-[#6B9DB3]">Lớp Mở rộng</p>
+                    <h3 class="text-xl font-bold">L1-Extension</h3>
+                    <p class="mt-2 text-[#366E8A]">SPNs (Mạng xử lý đặc biệt), Native Restaking & Tương tác chéo.</p>
+                </div>
+                <div class="flowchart-line"></div>
+                <div class="flowchart-arrow"></div>
+                <div class="flowchart-line"></div>
+                <div class="bg-white p-6 rounded-lg shadow-md w-full md:w-2/3 lg:w-1/2 text-center">
+                    <p class="text-sm font-semibold uppercase text-[#6B9DB3]">Lớp Lõi</p>
+                    <h3 class="text-xl font-bold">L1-Core</h3>
+                    <p class="mt-2 text-[#366E8A]">Mạng lưới phi tập trung hiệu suất cao, đồng thuận AsyncBFT & thực thi giao dịch.</p>
+                </div>
+                <div class="flowchart-line"></div>
+                <div class="flowchart-arrow"></div>
+                <div class="flowchart-line"></div>
+                <div class="bg-white p-6 rounded-lg shadow-md w-full md:w-2/3 lg:w-1/2 text-center">
+                    <p class="text-sm font-semibold uppercase text-[#6B9DB3]">Lớp Nền tảng</p>
+                    <h3 class="text-xl font-bold">L1-Base</h3>
+                    <p class="mt-2 text-[#366E8A]">Tính sẵn có của Dữ liệu (DA) & Tăng tốc phần cứng.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Competitive Analysis -->
+        <section class="py-12 bg-white rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-center mb-2 px-4">Phân tích Cạnh tranh</h2>
+            <p class="text-center text-[#366E8A] max-w-3xl mx-auto mb-8 px-4">So sánh thông lượng giao dịch (TPS) lý thuyết của Pharos với các Lớp 1 hiệu suất cao khác.</p>
+            <div class="chart-container">
+                <canvas id="competitorChart"></canvas>
+            </div>
+            <p class="text-center mt-6 text-[#366E8A] max-w-3xl mx-auto px-4">Trong khi các đối thủ có thể có TPS lý thuyết cao, lợi thế của Pharos nằm ở kiến trúc tối ưu hóa cho tài chính, ưu tiên EVM và các tính năng tuân thủ tích hợp sẵn, tạo ra một nền tảng chuyên biệt và đáng tin cậy cho các tổ chức.</p>
+        </section>
+
+        <!-- Section 6: Funding & Partners -->
+        <section class="py-12">
+            <h2 class="text-3xl font-bold text-center mb-8">Hậu thuẫn Tài chính và Đối tác Chiến lược</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                    <p class="text-xl text-[#366E8A]">Hoàn thành Vòng gọi vốn Hạt giống</p>
+                    <p class="text-7xl font-extrabold text-[#003F5C] my-4">$8M</p>
+                    <p class="text-md text-[#366E8A]">Đồng dẫn dắt bởi</p>
+                    <p class="text-xl font-bold mt-2">Lightspeed Faction & Hack VC</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md text-center">
+                    <p class="text-xl text-[#366E8A]">Đối tác Chiến lược</p>
+                    <div class="my-4">
+                        <span class="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#003F5C] to-[#6B9DB3]">ZAN</span>
+                    </div>
+                    <p class="text-md text-[#366E8A]">Thương hiệu Web3 của</p>
+                    <p class="text-xl font-bold mt-2">Ant Digital Technologies</p>
+                </div>
+            </div>
+            <p class="text-center mt-8 text-[#366E8A] max-w-3xl mx-auto">Sự ủng hộ từ các quỹ VC hàng đầu và quan hệ đối tác với ZAN cung cấp cho Pharos nguồn lực và "đầu cầu" chiến lược để tiếp cận thị trường doanh nghiệp toàn cầu, đặc biệt là tại châu Á.</p>
+        </section>
+
+        <!-- Section 7: Use Cases -->
+        <section class="py-12">
+             <h2 class="text-3xl font-bold text-center mb-8">Các Trường hợp sử dụng Mục tiêu</h2>
+             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                 <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                     <span class="text-4xl">🏛️</span>
+                     <h3 class="text-lg font-bold mt-3">RWA Cấp tổ chức</h3>
+                     <p class="text-sm text-[#366E8A] mt-1">Mã hóa tín dụng, bất động sản và các công cụ tài chính truyền thống.</p>
+                 </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                     <span class="text-4xl">💳</span>
+                     <h3 class="text-lg font-bold mt-3">Thanh toán Thời gian thực</h3>
+                     <p class="text-sm text-[#366E8A] mt-1">Chuyển tiền xuyên biên giới và giao dịch B2B với chi phí thấp.</p>
+                 </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                     <span class="text-4xl">📈</span>
+                     <h3 class="text-lg font-bold mt-3">DEX Sổ lệnh (CLOB)</h3>
+                     <p class="text-sm text-[#366E8A] mt-1">Xây dựng sàn giao dịch phi tập trung với trải nghiệm như sàn tập trung.</p>
+                 </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                     <span class="text-4xl">🌐</span>
+                     <h3 class="text-lg font-bold mt-3">DePIN Có thể mở rộng</h3>
+                     <p class="text-sm text-[#366E8A] mt-1">Nền tảng hiệu suất cao cho các mạng lưới cơ sở hạ tầng vật lý phi tập trung.</p>
+                 </div>
+             </div>
+        </section>
+
+        <!-- Section 8: Ecosystem Grants -->
+        <section class="py-12 bg-white rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-center mb-2 px-4">Phát triển Hệ sinh thái</h2>
+            <p class="text-center text-[#366E8A] max-w-3xl mx-auto mb-8 px-4">Chương trình tài trợ $20 triệu USD và cuộc thi hackathon $300k để thu hút các nhà phát triển tài năng.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-4">
+                <div class="chart-container h-[300px] md:h-auto">
+                    <canvas id="grantsChart"></canvas>
+                </div>
+                <div class="text-[#366E8A]">
+                    <h3 class="text-xl font-bold text-[#003F5C] mb-4">Các lĩnh vực được tập trung tài trợ:</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start"><span class="w-4 h-4 rounded-full bg-[#003F5C] mt-1 mr-3 flex-shrink-0"></span><span><b>RWA & Thanh toán:</b> Các giải pháp kết nối tài chính truyền thống và phi tập trung.</span></li>
+                        <li class="flex items-start"><span class="w-4 h-4 rounded-full bg-[#366E8A] mt-1 mr-3 flex-shrink-0"></span><span><b>DeFi:</b> Các giao thức sáng tạo yêu cầu hiệu suất cao và tuân thủ.</span></li>
+                        <li class="flex items-start"><span class="w-4 h-4 rounded-full bg-[#6B9DB3] mt-1 mr-3 flex-shrink-0"></span><span><b>Công cụ & Cơ sở hạ tầng:</b> Các dự án hỗ trợ nhà phát triển và người dùng.</span></li>
+                        <li class="flex items-start"><span class="w-4 h-4 rounded-full bg-[#A5CAD6] mt-1 mr-3 flex-shrink-0"></span><span><b>Sáng tạo Mở:</b> Các ý tưởng đột phá khác, bao gồm AI và gaming.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: SWOT -->
+        <section class="py-12">
+            <h2 class="text-3xl font-bold text-center mb-8">Phân tích SWOT</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="swot-card bg-white p-6 rounded-lg shadow-md border-green-500">
+                    <h3 class="text-xl font-bold text-green-600 mb-2">Điểm mạnh (Strengths)</h3>
+                    <ul class="list-disc list-inside text-[#366E8A] space-y-1">
+                        <li>Đội ngũ sáng lập đẳng cấp từ Ant/Alibaba.</li>
+                        <li>Công nghệ song song hóa vượt trội.</li>
+                        <li>Hậu thuẫn tài chính & đối tác chiến lược mạnh.</li>
+                        <li>Định vị thị trường ngách RWA rõ ràng.</li>
+                    </ul>
+                </div>
+                <div class="swot-card bg-white p-6 rounded-lg shadow-md border-red-500">
+                    <h3 class="text-xl font-bold text-red-600 mb-2">Điểm yếu (Weaknesses)</h3>
+                    <ul class="list-disc list-inside text-[#366E8A] space-y-1">
+                        <li>Dự án ở giai đoạn sớm, chưa ra mainnet.</li>
+                        <li>Tokenomics chi tiết chưa được công bố.</li>
+                        <li>Cần thời gian để xây dựng cộng đồng.</li>
+                    </ul>
+                </div>
+                <div class="swot-card bg-white p-6 rounded-lg shadow-md border-blue-500">
+                    <h3 class="text-xl font-bold text-blue-600 mb-2">Cơ hội (Opportunities)</h3>
+                    <ul class="list-disc list-inside text-[#366E8A] space-y-1">
+                        <li>Thị trường RWA bùng nổ.</li>
+                        <li>Nhu cầu từ các tổ chức tài chính truyền thống.</li>
+                        <li>Làn sóng hội tụ AI và Blockchain.</li>
+                    </ul>
+                </div>
+                <div class="swot-card bg-white p-6 rounded-lg shadow-md border-yellow-500">
+                    <h3 class="text-xl font-bold text-yellow-600 mb-2">Thách thức (Threats)</h3>
+                    <ul class="list-disc list-inside text-[#366E8A] space-y-1">
+                        <li>Cạnh tranh khốc liệt từ các L1 & L2 khác.</li>
+                        <li>Rủi ro thực thi kỹ thuật tiềm ẩn.</li>
+                        <li>Môi trường pháp lý chưa ổn định.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Section 10: Roadmap -->
+        <section class="py-12">
+            <h2 class="text-3xl font-bold text-center mb-12">Lộ trình Phát triển</h2>
+            <div class="relative max-w-2xl mx-auto">
+                <div class="timeline-line"></div>
+                <div class="relative mb-12">
+                    <div class="timeline-dot" style="top: 0;"></div>
+                    <div class="md:ml-[calc(50%+30px)] md:pl-8 relative">
+                         <div class="bg-white p-6 rounded-lg shadow-md">
+                            <p class="font-bold text-lg text-[#003F5C]">Quý 2, 2025</p>
+                            <p class="mt-2 text-[#366E8A]">Chính thức ra mắt Public Testnet, cho phép cộng đồng và nhà phát triển bắt đầu xây dựng và thử nghiệm.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                     <div class="timeline-dot" style="top: 0;"></div>
+                    <div class="md:mr-[calc(50%+30px)] md:text-right md:pr-8 relative">
+                         <div class="bg-white p-6 rounded-lg shadow-md inline-block md:block">
+                            <p class="font-bold text-lg text-[#003F5C]">Nửa cuối 2025 (Dự kiến)</p>
+                            <p class="mt-2 text-[#366E8A]">Ra mắt Mainnet và sự kiện tạo Token (TGE), đánh dấu sự khởi đầu hoạt động chính thức của mạng lưới.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 11: CTA -->
+        <footer class="text-center py-12">
+            <h2 class="text-3xl font-bold text-center mb-4">Tham gia Xây dựng Tương lai Tài chính</h2>
+            <p class="text-[#366E8A] max-w-2xl mx-auto mb-8">Pharos đang tích cực tìm kiếm các nhà phát triển, nhà đầu tư và người dùng tiên phong. Hãy trở thành một phần của cuộc cách mạng RWA.</p>
+            <a href="https://pharosnetwork.xyz/" target="_blank" rel="noopener noreferrer" class="bg-[#003F5C] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-[#366E8A] transition-colors duration-300">
+                Khám phá Pharos Network
+            </a>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const brilliantBlues = ['#003F5C', '#366E8A', '#6B9DB3', '#A5CAD6'];
+
+            function processLabels(labels, maxLength = 16) {
+                return labels.map(label => {
+                    if (typeof label !== 'string' || label.length <= maxLength) {
+                        return label;
+                    }
+                    const words = label.split(' ');
+                    const lines = [];
+                    let currentLine = '';
+                    words.forEach(word => {
+                        if ((currentLine + ' ' + word).trim().length > maxLength) {
+                            lines.push(currentLine.trim());
+                            currentLine = word;
+                        } else {
+                            currentLine = (currentLine + ' ' + word).trim();
+                        }
+                    });
+                    lines.push(currentLine.trim());
+                    return lines;
+                });
+            }
+
+            const tooltipTitleCallback = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                  return label.join(' ');
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                    legend: {
+                        labels: {
+                            color: '#003F5C'
+                        }
+                    }
+                }
+            };
+            
+            const commonChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                ...tooltipTitleCallback
+            };
+
+            // Competitor Chart
+            const competitorCtx = document.getElementById('competitorChart');
+            if(competitorCtx) {
+                new Chart(competitorCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Pharos', 'Sei', 'Aptos', 'Sui'],
+                        datasets: [{
+                            label: 'TPS Lý thuyết Tối đa',
+                            data: [50000, 20000, 160000, 297000],
+                            backgroundColor: brilliantBlues,
+                            borderColor: brilliantBlues.map(c => c + 'B3'),
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...commonChartOptions,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    color: '#366E8A',
+                                    callback: function(value) {
+                                        return value / 1000 + 'k';
+                                    }
+                                },
+                                grid: {
+                                    color: '#A5CAD6'
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: '#003F5C',
+                                    font: {
+                                        weight: 'bold'
+                                    }
+                                },
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        },
+                         plugins: {
+                            ...commonChartOptions.plugins,
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Grants Chart
+            const grantsCtx = document.getElementById('grantsChart');
+            if (grantsCtx) {
+                new Chart(grantsCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: processLabels(['RWA & Thanh toán', 'DeFi', 'Công cụ & Cơ sở hạ tầng', 'Sáng tạo Mở']),
+                        datasets: [{
+                            label: 'Phân bổ Tài trợ',
+                            data: [35, 25, 20, 20],
+                            backgroundColor: brilliantBlues,
+                            hoverOffset: 4
+                        }]
+                    },
+                    options: {
+                       ...commonChartOptions,
+                       plugins: {
+                           ...commonChartOptions.plugins,
+                           legend: {
+                               position: 'top',
+                               labels: {
+                                  color: '#003F5C'
+                               }
+                           }
+                       }
+                    }
+                });
+            }
+        });
+    </script>
+    <div style="text-align: center; padding: 3rem 0;">
+        <a href="index.html" style="display: inline-block; background-color: #3498db; color: white; padding: 0.8rem 1.8rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid transparent; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            Quay lại Trang Blog
+        </a>
+    </div>
+</body>
+</html>
