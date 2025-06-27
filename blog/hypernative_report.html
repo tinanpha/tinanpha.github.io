@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo Tương tác: Phân tích Chuyên sâu về Hypernative</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm & Natural -->
+    <!-- Application Structure Plan: The SPA is designed as an interactive dashboard with tab-based navigation (Tổng quan, Vấn đề & Giải pháp, Công nghệ, Thị trường, Phân tích, Kết luận). This non-linear structure allows users—from investors to tech evaluators—to directly access the information most relevant to them. The "Tổng quan" tab acts as a landing dashboard with key metrics to immediately convey impact. Subsequent tabs group related report content into thematic, digestible sections, using interactive cards, charts, and diagrams to make complex information explorable rather than static. This design prioritizes user-driven discovery and efficient information synthesis over the report's original linear format. -->
+    <!-- Visualization & Content Choices: 
+        - Key Metrics (Tài sản được bảo vệ, Tiền tiết kiệm, etc.): Goal: Inform. Method: Large HTML text stats. Interaction: Animate on scroll. Justification: High-impact introduction to Hypernative's scale.
+        - Funding Rounds: Goal: Change/Compare. Method: Chart.js Bar Chart. Interaction: Hover tooltips. Justification: Clearly visualizes funding growth over distinct rounds.
+        - Detection/False Positive Rates: Goal: Inform. Method: Chart.js Doughnut Charts. Justification: Ideal for showing single, powerful part-to-whole percentages.
+        - Attack Stages Diagram: Goal: Organize (Process). Method: HTML/CSS Flexbox diagram with Unicode icons. Interaction: Hover effects. Justification: Visually engaging process flow without using forbidden SVG/Mermaid.
+        - Product Suite: Goal: Organize/Inform. Method: Interactive HTML cards. Interaction: Click to reveal details. Justification: More engaging than a static data table.
+        - Competitor Comparison: Goal: Compare. Method: Interactive HTML table. Interaction: JS-powered filters/highlights. Justification: Simplifies comparison by focusing user attention.
+        - SWOT Analysis: Goal: Organize. Method: 2x2 grid of interactive HTML cards. Interaction: Click to expand. Justification: Modern, interactive presentation of a classic framework.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5DC; /* Warm Neutral - Beige */
+            color: #5C5C3D; /* Earthy Green-Brown */
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        .nav-link.active {
+            border-bottom-color: #A0522D; /* Accent - Sienna */
+            color: #A0522D;
+        }
+        .nav-link:hover {
+            color: #A0522D;
+        }
+        .card {
+            background-color: #FAF9F6; /* Off-white */
+            border: 1px solid #EAE6D7;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .tab-content {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#2F4F4F] mb-2">Báo cáo Tương tác: Hypernative</h1>
+            <p class="text-lg text-gray-600">Phân tích chuyên sâu về Lớp Bảo mật Chủ động cho Web3</p>
+        </header>
+
+        <nav id="main-nav" class="sticky top-0 z-10 bg-[#F5F5DC]/80 backdrop-blur-md mb-8 py-2">
+            <div class="flex justify-center flex-wrap gap-x-4 sm:gap-x-8 text-sm sm:text-base font-semibold text-gray-600">
+                <a href="#overview" data-tab="overview" class="nav-link active py-2">Tổng quan</a>
+                <a href="#problem" data-tab="problem" class="nav-link py-2">Vấn đề & Giải pháp</a>
+                <a href="#tech" data-tab="tech" class="nav-link py-2">Công nghệ</a>
+                <a href="#market" data-tab="market" class="nav-link py-2">Thị trường</a>
+                <a href="#analysis" data-tab="analysis" class="nav-link py-2">Phân tích</a>
+                <a href="#conclusion" data-tab="conclusion" class="nav-link py-2">Kết luận</a>
+            </div>
+        </nav>
+
+        <main id="main-content">
+            
+            <section id="overview-content" class="tab-content">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-[#2F4F4F] mb-3">Tóm tắt Điều hành</h2>
+                    <p class="max-w-3xl mx-auto text-gray-700">Hypernative đang định vị mình là cơ sở hạ tầng bảo mật chủ động và không thể thiếu cho Web3. Bằng cách chuyển đổi từ phòng thủ phản ứng sang ngăn chặn mối đe dọa theo thời gian thực, họ giải quyết rào cản lớn nhất đối với việc áp dụng của các tổ chức: <span class="font-semibold text-[#A0522D]">niềm tin</span>. Đây là cái nhìn tổng quan về tác động của họ.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <div class="card rounded-lg p-6 text-center">
+                        <p class="text-4xl lg:text-5xl font-extrabold text-[#A0522D]" data-stat-target="2">0</p>
+                        <p class="text-sm font-semibold mt-2">Tỷ USD đã cứu</p>
+                    </div>
+                    <div class="card rounded-lg p-6 text-center">
+                        <p class="text-4xl lg:text-5xl font-extrabold text-[#A0522D]" data-stat-target="100">0</p>
+                        <p class="text-sm font-semibold mt-2">Tỷ USD tài sản được bảo vệ</p>
+                    </div>
+                    <div class="card rounded-lg p-6 text-center">
+                        <p class="text-4xl lg:text-5xl font-extrabold text-[#A0522D]" data-stat-target="200">0</p>
+                        <p class="text-sm font-semibold mt-2">Khách hàng trở lên</p>
+                    </div>
+                    <div class="card rounded-lg p-6 text-center">
+                        <p class="text-4xl lg:text-5xl font-extrabold text-[#A0522D]" data-stat-target="60">0</p>
+                        <p class="text-sm font-semibold mt-2">Chuỗi được hỗ trợ</p>
+                    </div>
+                </div>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="card rounded-lg p-6">
+                        <h3 class="font-bold text-lg text-center text-[#2F4F4F] mb-4">Tỷ lệ phát hiện & Dương tính giả</h3>
+                        <p class="text-sm text-center text-gray-600 mb-4">Hai chỉ số quan trọng nhất của một hệ thống bảo mật là độ chính xác và độ tin cậy. Hypernative xuất sắc ở cả hai, đảm bảo các cảnh báo có ý nghĩa và có thể hành động.</p>
+                        <div class="chart-container h-64"><canvas id="detectionRateChart"></canvas></div>
+                    </div>
+                    <div class="card rounded-lg p-6">
+                        <h3 class="font-bold text-lg text-center text-[#2F4F4F] mb-4">Quỹ đạo Huy động vốn</h3>
+                        <p class="text-sm text-center text-gray-600 mb-4">Sự tin tưởng của nhà đầu tư, đặc biệt là từ các quỹ VC hàng đầu về an ninh mạng, đã tăng tốc qua các vòng gọi vốn liên tiếp, chứng tỏ sức hút mạnh mẽ trên thị trường.</p>
+                        <div class="chart-container h-64"><canvas id="fundingChart"></canvas></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="problem-content" class="tab-content hidden">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-[#2F4F4F] mb-3">Một Mô hình Bảo mật Mới</h2>
+                    <p class="max-w-3xl mx-auto text-gray-700">Không gian Web3 đã mất hàng tỷ đô la do các biện pháp bảo mật truyền thống không đủ khả năng đối phó với các mối đe dọa năng động. Hypernative được xây dựng dựa trên sự thay đổi mô hình cơ bản từ phản ứng sang ngăn chặn.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card rounded-lg p-8 border-l-4 border-red-400">
+                        <h3 class="text-2xl font-bold text-red-800 mb-4">Mô hình Cũ: Phòng thủ Tĩnh</h3>
+                        <p class="text-gray-700 mb-4">Phụ thuộc chủ yếu vào kiểm toán mã nguồn trước khi triển khai. Tuy nhiên, các cuộc kiểm toán chỉ là ảnh chụp nhanh tại một thời điểm.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li><span class="font-bold text-red-700">Điểm mù:</span> Bỏ qua các rủi ro vận hành, logic kinh doanh và các mối đe dọa zero-day.</li>
+                            <li><span class="font-bold text-red-700">Thực tế phũ phàng:</span> 100% các dự án bị hack đều đã được kiểm toán.</li>
+                            <li><span class="font-bold text-red-700">Kết quả:</span> Phản ứng sau khi thiệt hại đã xảy ra.</li>
+                        </ul>
+                    </div>
+                    <div class="card rounded-lg p-8 border-l-4 border-green-400">
+                        <h3 class="text-2xl font-bold text-green-800 mb-4">Giải pháp của Hypernative: Ngăn chặn Chủ động</h3>
+                        <p class="text-gray-700 mb-4">Cung cấp giám sát liên tục, theo thời gian thực và khả năng phản ứng tự động để ngăn chặn các cuộc tấn công trước khi chúng gây ra thiệt hại.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li><span class="font-bold text-green-700">Cách tiếp cận:</span> Giám sát hành vi, mô phỏng giao dịch và phát hiện ý định độc hại.</li>
+                            <li><span class="font-bold text-green-700">Lợi ích:</span> Cung cấp những phút cảnh báo sớm quan trọng để hành động.</li>
+                            <li><span class="font-bold text-green-700">Kết quả:</span> Ngăn chặn thảm họa, bảo vệ tài sản và danh tiếng.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tech-content" class="tab-content hidden">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-[#2F4F4F] mb-3">Nền tảng "Pre-Cog"</h2>
+                    <p class="max-w-3xl mx-auto text-gray-700">Công nghệ của Hypernative không phải là một công cụ duy nhất mà là một nền tảng tích hợp, đa tầng. Nó kết hợp các mô hình học máy độc quyền, mô phỏng và các phương pháp suy nghiệm để đạt được độ chính xác hàng đầu thị trường.</p>
+                </div>
+                <div class="mb-12">
+                    <h3 class="text-2xl font-bold text-center text-[#2F4F4F] mb-6">Phát hiện Tấn công Zero-Day: Theo dõi Dấu chân Kẻ tấn công</h3>
+                    <div class="card rounded-lg p-8">
+                        <div class="flex flex-col md:flex-row justify-around items-center text-center gap-4">
+                            <div class="flex-1">
+                                <p class="text-5xl mb-2">💰</p>
+                                <h4 class="font-bold">1. Cấp vốn</h4>
+                                <p class="text-sm text-gray-600">Phát hiện dòng tiền từ các mixer như Tornado Cash.</p>
+                            </div>
+                             <p class="text-2xl font-bold text-[#A0522D] transform rotate-90 md:rotate-0">→</p>
+                            <div class="flex-1">
+                                <p class="text-5xl mb-2">🛠️</p>
+                                <h4 class="font-bold">2. Chuẩn bị</h4>
+                                <p class="text-sm text-gray-600">Nhận diện việc triển khai các hợp đồng tấn công đáng ngờ.</p>
+                            </div>
+                             <p class="text-2xl font-bold text-[#A0522D] transform rotate-90 md:rotate-0">→</p>
+                            <div class="flex-1">
+                                <p class="text-5xl mb-2">💥</p>
+                                <h4 class="font-bold">3. Tấn công</h4>
+                                <p class="text-sm text-gray-600">Mô phỏng giao dịch trong mempool để dự báo tác động.</p>
+                            </div>
+                            <p class="text-2xl font-bold text-[#A0522D] transform rotate-90 md:rotate-0">→</p>
+                            <div class="flex-1">
+                                <p class="text-5xl mb-2">💸</p>
+                                <h4 class="font-bold">4. Tẩu tán</h4>
+                                <p class="text-sm text-gray-600">Theo dõi dòng tiền bị đánh cắp sau khi khai thác.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                     <h3 class="text-2xl font-bold text-center text-[#2F4F4F] mb-6">Khám phá Bộ sản phẩm</h3>
+                     <p class="text-center text-gray-700 max-w-2xl mx-auto mb-8">Mỗi sản phẩm giải quyết một vectơ rủi ro cụ thể, nhưng chúng hoạt động cùng nhau để tạo ra một hệ thống phòng thủ toàn diện. Nhấp vào mỗi thẻ để tìm hiểu thêm.</p>
+                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="product-suite">
+                     </div>
+                </div>
+            </section>
+            
+            <section id="market-content" class="tab-content hidden">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-[#2F4F4F] mb-3">Vị thế & Sức hút trên Thị trường</h2>
+                    <p class="max-w-3xl mx-auto text-gray-700">Hypernative đã nhanh chóng thiết lập vị thế dẫn đầu thông qua việc thu hút khách hàng doanh nghiệp, các mối quan hệ đối tác chiến lược và sự xác thực mạnh mẽ từ các nhà đầu tư chuyên về an ninh mạng.</p>
+                </div>
+                <div class="card rounded-lg p-6">
+                    <h3 class="text-2xl font-bold text-center text-[#2F4F4F] mb-6">Phân tích Đối thủ cạnh tranh</h3>
+                    <p class="text-center text-gray-700 max-w-2xl mx-auto mb-8">Thị trường bảo mật Web3 rất đa dạng. Hypernative khác biệt bằng cách tập trung vào ngăn chặn chủ động cấp doanh nghiệp, trong khi các đối thủ khác tập trung vào kiểm toán, công cụ cho nhà phát triển hoặc các mô hình phi tập trung.</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full min-w-[600px] text-sm text-left">
+                            <thead class="bg-[#EAE6D7] text-[#5C5C3D] uppercase">
+                                <tr>
+                                    <th class="p-4 rounded-tl-lg">Đối thủ</th>
+                                    <th class="p-4">Trọng tâm Chính</th>
+                                    <th class="p-4">Đối tượng Mục tiêu</th>
+                                    <th class="p-4 rounded-tr-lg">Lợi thế của Hypernative</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-[#EAE6D7]">
+                                    <td class="p-4 font-semibold">Forta Network</td>
+                                    <td class="p-4">Phát hiện phi tập trung (do cộng đồng)</td>
+                                    <td class="p-4">Nhà phát triển, Nhà nghiên cứu</td>
+                                    <td rowspan="3" class="p-4 align-middle bg-[#FAF9F6] font-semibold text-[#A0522D] border-l border-[#EAE6D7]">Phát hiện <span class="font-bold">TRƯỚC KHI</span> khai thác với phản ứng tự động & dịch vụ cấp doanh nghiệp.</td>
+                                </tr>
+                                <tr class="border-b border-[#EAE6D7]">
+                                    <td class="p-4 font-semibold">CertiK</td>
+                                    <td class="p-4">Kiểm toán tĩnh & Phân tích trước triển khai</td>
+                                    <td class="p-4">Trưởng dự án, Kỹ sư</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-semibold">OpenZeppelin</td>
+                                    <td class="p-4">Vận hành an toàn (SecOps) cho nhà phát triển</td>
+                                    <td class="p-4">Kỹ sư, DevOps/SRE</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="analysis-content" class="tab-content hidden">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-[#2F4F4F] mb-3">Đánh giá Chiến lược</h2>
+                    <p class="max-w-3xl mx-auto text-gray-700">Phân tích SWOT cung cấp một cái nhìn cân bằng về vị thế chiến lược của Hypernative, nêu bật các động lực tăng trưởng chính cũng như các rủi ro tiềm tàng cần quản lý.</p>
+                </div>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card rounded-lg p-6">
+                        <h3 class="font-bold text-lg text-green-800">Điểm mạnh (Strengths)</h3>
+                        <ul class="mt-2 list-disc list-inside space-y-1 text-sm text-gray-600">
+                            <li>Đội ngũ sáng lập đẳng cấp thế giới với DNA bảo mật doanh nghiệp.</li>
+                            <li>Bộ máy phát hiện AI/ML độc quyền, đã được chứng minh.</li>
+                            <li>Thành tích ngăn chặn các vụ hack lớn (>2 tỷ USD đã cứu).</li>
+                            <li>Hậu thuẫn mạnh mẽ từ các quỹ VC hàng đầu về an ninh mạng.</li>
+                        </ul>
+                    </div>
+                     <div class="card rounded-lg p-6">
+                        <h3 class="font-bold text-lg text-red-800">Điểm yếu (Weaknesses)</h3>
+                         <ul class="mt-2 list-disc list-inside space-y-1 text-sm text-gray-600">
+                            <li>Mô hình tập trung có thể không hấp dẫn những người theo chủ nghĩa thuần túy.</li>
+                            <li>Thách thức trong việc mở rộng quy mô các dịch vụ chuyên nghiệp.</li>
+                            <li>Bản chất "hộp đen" của AI trong một thế giới ưa chuộng mã nguồn mở.</li>
+                        </ul>
+                    </div>
+                     <div class="card rounded-lg p-6">
+                        <h3 class="font-bold text-lg text-blue-800">Cơ hội (Opportunities)</h3>
+                         <ul class="mt-2 list-disc list-inside space-y-1 text-sm text-gray-600">
+                            <li>Trở thành tiêu chuẩn bảo mật cho làn sóng áp dụng của tổ chức.</li>
+                            <li>Tận dụng hiệu ứng mạng lưới dữ liệu để tạo ra con hào cạnh tranh.</li>
+                            <li>Mở rộng sang các thị trường liền kề như bảo hiểm không gian mạng.</li>
+                        </ul>
+                    </div>
+                     <div class="card rounded-lg p-6">
+                        <h3 class="font-bold text-lg text-yellow-800">Thách thức (Threats)</h3>
+                        <ul class="mt-2 list-disc list-inside space-y-1 text-sm text-gray-600">
+                            <li>Cuộc chạy đua vũ trang công nghệ không ngừng với các hacker.</li>
+                            <li>Cạnh tranh từ cả giải pháp phi tập trung và các công ty hiện hữu.</li>
+                            <li>Rủi ro pháp lý trong bối cảnh Web3 đang phát triển.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="conclusion-content" class="tab-content hidden">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-[#2F4F4F] mb-3">Kết luận & Khuyến nghị</h2>
+                    <p class="max-w-3xl mx-auto text-gray-700">Hypernative không chỉ là một người tham gia mà còn là một nhà lãnh đạo đang định hình tương lai của bảo mật Web3. Cách tiếp cận của họ là yếu tố then chốt cho sự tăng trưởng an toàn của internet phi tập trung.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card rounded-lg p-8">
+                        <h3 class="text-xl font-bold text-[#A0522D] mb-3">Dành cho Nhà đầu tư</h3>
+                        <p class="text-gray-700">Hypernative đại diện cho một sự đặt cược vào sự chuyên nghiệp hóa của Web3. Với đội ngũ, công nghệ và vị thế chiến lược, họ có tiềm năng trở thành một công ty định hình danh mục. Đây là một khoản đầu tư cơ sở hạ tầng vào sự trưởng thành của toàn bộ không gian tài sản kỹ thuật số.</p>
+                    </div>
+                    <div class="card rounded-lg p-8">
+                        <h3 class="text-xl font-bold text-[#A0522D] mb-3">Dành cho Đối tác & Khách hàng</h3>
+                        <p class="text-gray-700">Việc áp dụng một giải pháp bảo mật chủ động như Hypernative nên được coi là một tiêu chuẩn chăm sóc không thể thương lượng. ROI đã được chứng minh trong việc ngăn chặn thảm họa làm cho nó trở thành một khoản đầu tư cơ sở hạ tầng quan trọng, không phải là một chi phí tùy chọn.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const nav = document.getElementById('main-nav');
+            const navLinks = nav.querySelectorAll('a.nav-link');
+            const contentSections = document.getElementById('main-content').querySelectorAll('section.tab-content');
+
+            nav.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const tab = e.target.dataset.tab;
+                    
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.dataset.tab === tab) {
+                            link.classList.add('active');
+                        }
+                    });
+
+                    contentSections.forEach(section => {
+                        section.classList.add('hidden');
+                        if (section.id === `${tab}-content`) {
+                            section.classList.remove('hidden');
+                        }
+                    });
+
+                    window.history.pushState(null, '', `#${tab}`);
+                }
+            });
+
+            function handleInitialTab() {
+                const hash = window.location.hash.substring(1);
+                const targetLink = document.querySelector(`.nav-link[data-tab="${hash}"]`);
+                if (targetLink) {
+                    targetLink.click();
+                }
+            }
+            handleInitialTab();
+
+            const productData = [
+                {
+                    name: "Platform",
+                    icon: "📡",
+                    desc: "Giải pháp giám sát, phát hiện và phản ứng trung tâm. Đây là 'hệ thần kinh' thu thập dữ liệu và cung cấp các cảnh báo có thể hành động.",
+                    details: "Bao phủ hơn 300 loại rủi ro trên các lĩnh vực bảo mật, tài chính, vận hành và quản trị. Cho phép các phản ứng tự động như tạm dừng hợp đồng."
+                },
+                {
+                    name: "Firewall",
+                    icon: "🛡️",
+                    desc: "Một lớp thực thi chính sách có thể lập trình trên chuỗi, hoạt động như một người gác cổng để chặn các tương tác độc hại trong thời gian thực.",
+                    details: "Được thiết kế để tiết kiệm gas (khoảng 7K gas), một yếu tố quan trọng để áp dụng trên chuỗi."
+                },
+                {
+                    name: "Screener",
+                    icon: "🔍",
+                    desc: "Dịch vụ đánh giá danh tiếng địa chỉ chuỗi chéo theo thời gian thực, sàng lọc dựa trên danh sách đen, trừng phạt và các vụ hack đã biết.",
+                     details: "Cung cấp một điểm số rủi ro trước khi tương tác. Có thể truy cập qua API hoặc một luồng cơ sở dữ liệu để tránh độ trễ."
+                },
+                {
+                    name: "Guardian",
+                    icon: "👼",
+                    desc: "Bảo vệ người dùng khỏi lừa đảo và 'ký mù' bằng cách mô phỏng kết quả giao dịch trong thời gian thực trước khi phê duyệt.",
+                    details: "Đưa việc bảo vệ đến gần hơn với người dùng cuối và cấp độ vận hành."
+                },
+                {
+                    name: "Frontend Monitoring",
+                    icon: "🖥️",
+                    desc: "Giám sát liên tục các ứng dụng web để bảo vệ chống lại việc chiếm quyền DNS và chèn mã độc vào giao diện người dùng.",
+                    details: "Mô phỏng luồng người dùng và phát hiện các bất thường trên giao diện."
+                }
+            ];
+
+            const productSuiteContainer = document.getElementById('product-suite');
+            productData.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'card rounded-lg p-6 cursor-pointer';
+                card.innerHTML = `
+                    <div class="flex items-center mb-3">
+                        <span class="text-3xl mr-4">${product.icon}</span>
+                        <h4 class="font-bold text-lg text-[#2F4F4F]">${product.name}</h4>
+                    </div>
+                    <p class="text-sm text-gray-600">${product.desc}</p>
+                    <div class="text-sm text-[#A0522D] font-semibold mt-4">Nhấp để xem chi tiết</div>
+                `;
+                card.addEventListener('click', () => {
+                    alert(`Chi tiết về ${product.name}:\n\n${product.details}`);
+                });
+                productSuiteContainer.appendChild(card);
+            });
+            
+            const universalTooltipCallback = {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    }
+                    return label;
+                }
+            };
+
+            const chartColors = {
+                bg: '#FAF9F6',
+                text: '#5C5C3D',
+                accent: '#A0522D',
+                grid: 'rgba(92, 92, 61, 0.1)',
+                series: ['#A0522D', '#8B4513', '#D2B48C', '#BC8F8F']
+            };
+            
+            const detectionRateCtx = document.getElementById('detectionRateChart').getContext('2d');
+            new Chart(detectionRateCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Phát hiện (99.5%)', 'Dương tính giả (<0.001%)'],
+                    datasets: [{
+                        data: [99.5, 0.5], 
+                        backgroundColor: [chartColors.series[0], chartColors.series[3]],
+                        borderColor: chartColors.bg,
+                        borderWidth: 4,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: chartColors.text } },
+                        tooltip: { callbacks: universalTooltipCallback }
+                    },
+                    cutout: '70%'
+                }
+            });
+
+            const fundingCtx = document.getElementById('fundingChart').getContext('2d');
+            new Chart(fundingCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Seed', 'Series A', 'Series B'],
+                    datasets: [{
+                        label: 'Số tiền huy động (triệu USD)',
+                        data: [9, 16, 40],
+                        backgroundColor: chartColors.series,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { grid: { color: chartColors.grid }, ticks: { color: chartColors.text } },
+                        y: { beginAtZero: true, grid: { color: chartColors.grid }, ticks: { color: chartColors.text } }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: universalTooltipCallback }
+                    }
+                }
+            });
+
+            const stats = document.querySelectorAll('[data-stat-target]');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = +el.dataset.statTarget;
+                        let current = 0;
+                        const increment = target / 100;
+
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                clearInterval(timer);
+                                el.textContent = target.toLocaleString('vi-VN');
+                            } else {
+                                el.textContent = Math.ceil(current).toLocaleString('vi-VN');
+                            }
+                        }, 20);
+                        observer.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+            stats.forEach(stat => observer.observe(stat));
+
+        });
+    </script>
+    <div style="text-align: center; padding: 3rem 0;">
+        <a href="index.html" style="display: inline-block; background-color: #3498db; color: white; padding: 0.8rem 1.8rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid transparent; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            Quay lại Trang Blog
+        </a>
+    </div>
+</body>
+</html>
