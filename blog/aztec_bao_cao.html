@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo Tương tác: Aztec Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony -->
+    <!-- Application Structure Plan: The application is designed as a narrative journey. It starts with the core problem ('Why'), introduces the solution ('What'), details the technology ('How'), establishes credibility with funding and team info ('Who'), provides market context (competitors, SWOT), shows progress (roadmap), and concludes with the future vision. This thematic, non-linear structure is more engaging and intuitive for a web experience than a direct reproduction of the report's chapters. Key interactions include hover effects for details, clickable chart legends to filter data, and a smooth scrolling navigation. -->
+    <!-- Visualization & Content Choices: 
+        - Funding Data -> Goal: Inform/Compare -> Viz: Donut Chart (Chart.js) & Big Number Stat -> Interaction: Hover on slices -> Justification: Donut charts excel at showing composition (funding rounds), and the large stat provides immediate impact.
+        - ZK-ZK Rollup Process -> Goal: Organize/Explain -> Viz: HTML/CSS Flowchart -> Interaction: Hover on steps for emphasis -> Justification: A custom HTML diagram makes a complex process digestible and interactive without relying on static images or forbidden SVG/Mermaid.
+        - Competitor Comparison -> Goal: Compare -> Viz: Radar Chart (Chart.js) -> Interaction: Clickable legend -> Justification: Radar charts are ideal for multivariate comparison, and toggling datasets allows users to focus their analysis.
+        - SWOT Analysis -> Goal: Organize/Summarize -> Viz: 4-Quadrant HTML Grid -> Interaction: None, clarity is key -> Justification: A simple, clean grid is the most effective way to present this framework.
+        - Roadmap -> Goal: Show Change over Time -> Viz: Vertical Timeline (HTML/CSS) -> Interaction: None -> Justification: A visual timeline is more engaging for showing historical progression than a simple list.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #0056b3;
+        }
+        .flow-step {
+            border: 2px dashed #dee2e6;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+        .flow-step:hover {
+            border-color: #007bff;
+            background-color: #f8f9fa;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: white;
+            border: 4px solid #007bff;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="header" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold text-gray-800">Aztec Network</div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#problem" class="nav-link text-gray-600">Vấn đề</a>
+                <a href="#tech" class="nav-link text-gray-600">Công nghệ</a>
+                <a href="#competition" class="nav-link text-gray-600">Cạnh tranh</a>
+                <a href="#roadmap" class="nav-link text-gray-600">Lộ trình</a>
+            </div>
+            <a href="#conclusion" class="hidden md:block bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition">Kết luận</a>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 md:px-6 md:py-12">
+        <section id="hero" class="text-center my-12 md:my-24">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">
+                <span class="text-blue-600">Quyền Riêng Tư</span> Lập Trình Được
+            </h1>
+            <p class="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-gray-600">
+                Aztec đang xây dựng một lớp cơ sở hạ tầng mới cho Web3, nơi quyền riêng tư không phải là một lựa chọn, mà là một tính năng mặc định. Báo cáo tương tác này sẽ phân tích sâu về công nghệ, vị thế và tiềm năng của dự án đột phá này.
+            </p>
+        </section>
+
+        <section id="problem" class="my-16 md:my-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold">Vấn Đề: "Cái Bẫy" Của Sự Minh Bạch</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">Các blockchain công khai như Ethereum, mặc dù tin cậy, lại phơi bày mọi hoạt động tài chính. Đây là một rủi ro bảo mật nghiêm trọng mà Aztec được sinh ra để giải quyết.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card p-6">
+                    <div class="text-4xl text-blue-600 mb-4">📈</div>
+                    <h3 class="text-xl font-bold mb-2">Đối Thủ Theo Dõi</h3>
+                    <p class="text-gray-600">Chiến lược kinh doanh, đầu tư và các hoạt động on-chain của các tổ chức có thể bị đối thủ cạnh tranh sao chép hoặc tấn công phủ đầu.</p>
+                </div>
+                <div class="card p-6">
+                     <div class="text-4xl text-blue-600 mb-4">🎯</div>
+                    <h3 class="text-xl font-bold mb-2">Nhắm Mục Tiêu Cá Nhân</h3>
+                    <p class="text-gray-600">Việc công khai số dư tài sản khiến các cá nhân có giá trị ròng cao trở thành mục tiêu cho các cuộc tấn công lừa đảo và xã hội.</p>
+                </div>
+                <div class="card p-6">
+                     <div class="text-4xl text-blue-600 mb-4">👁️</div>
+                    <h3 class="text-xl font-bold mb-2">Giám Sát Toàn Diện</h3>
+                    <p class="text-gray-600">Mọi người dùng đều mất đi quyền riêng tư tài chính cơ bản, một quyền được coi là nền tảng trong thế giới tài chính truyền thống.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="funding" class="my-16 md:my-24 bg-gray-100 rounded-2xl py-12 px-6">
+             <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold">Hậu Thuẫn Tài Chính & Chuyên Môn</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">Tầm nhìn dài hạn của Aztec được bảo chứng bởi nguồn vốn dồi dào và sự tin tưởng từ các quỹ đầu tư hàng đầu thế giới.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="text-center md:text-left">
+                    <p class="text-gray-700 font-semibold text-lg">Tổng vốn huy động</p>
+                    <div class="text-7xl font-extrabold text-blue-600 my-2">$119.1M+</div>
+                    <p class="text-gray-600">Được dẫn dắt bởi a16z và Paradigm, hai trong số những quỹ đầu tư có ảnh hưởng và chuyên môn kỹ thuật sâu sắc nhất ngành.</p>
+                </div>
+                 <div class="chart-container">
+                    <canvas id="fundingChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech" class="my-16 md:my-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold">Công Nghệ Cốt Lõi: Kiến Trúc ZK-ZK Rollup</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">Đây là trái tim của Aztec. Thay vì chỉ dùng ZK để mở rộng quy mô, Aztec dùng ZK cho cả hai mục đích: mở rộng quy mô VÀ bảo mật. Đây là một kiến trúc hai lớp bằng chứng độc đáo.</p>
+            </div>
+            <div class="space-y-8">
+                <div class="flow-step">
+                    <h3 class="text-2xl font-bold text-blue-600 mb-2">1. Mạch Riêng Tư (Phía người dùng)</h3>
+                    <p>Mỗi giao dịch của bạn được tạo ra trên chính thiết bị của bạn. Một bằng chứng ZK (SNARK) được tạo ra để mã hóa toàn bộ chi tiết (người gửi, người nhận, số tiền). Dữ liệu nhạy cảm không bao giờ bị lộ ra ngoài.</p>
+                </div>
+                <div class="text-center text-3xl font-bold text-gray-400">↓</div>
+                <div class="flow-step">
+                    <h3 class="text-2xl font-bold text-blue-600 mb-2">2. Tập Hợp Bởi Sequencer</h3>
+                    <p>Một thực thể của mạng lưới (Sequencer) sẽ thu thập nhiều "bằng chứng riêng tư" từ nhiều người dùng khác nhau thành một lô duy nhất.</p>
+                </div>
+                 <div class="text-center text-3xl font-bold text-gray-400">↓</div>
+                <div class="flow-step">
+                    <h3 class="text-2xl font-bold text-blue-600 mb-2">3. Mạch Rollup (Phía Sequencer)</h3>
+                    <p>Sequencer tạo ra một "bằng chứng tổng hợp" duy nhất. Bằng chứng này xác thực tất cả các giao dịch trong lô là hợp lệ, mà không tiết lộ bất kỳ thông tin nào về chúng.</p>
+                </div>
+                 <div class="text-center text-3xl font-bold text-gray-400">↓</div>
+                <div class="flow-step">
+                    <h3 class="text-2xl font-bold text-blue-600 mb-2">4. Gửi lên Ethereum (L1)</h3>
+                    <p>Chỉ có "bằng chứng tổng hợp" nhỏ gọn này được gửi và xác minh trên Ethereum. Điều này giúp nén dữ liệu, giảm đáng kể chi phí gas và tăng tốc độ cho toàn mạng lưới.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="competition" class="my-16 md:my-24 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold">Vị Thế Cạnh Tranh</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">Aztec không cạnh tranh trực tiếp về khả năng tương thích EVM. Thay vào đó, dự án tạo ra một thị trường ngách riêng biệt, nơi quyền riêng tư là ưu tiên số một. Bấm vào tên các dự án bên dưới để ẩn/hiện trên biểu đồ.</p>
+            </div>
+            <div class="card p-4 md:p-8">
+                <div class="chart-container h-[400px] md:h-[500px]">
+                    <canvas id="competitionChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="swot" class="my-16 md:my-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold">Phân Tích SWOT</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">Đánh giá cân bằng về các yếu tố nội bộ và bên ngoài ảnh hưởng đến Aztec.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card p-6 border-l-4 border-green-500">
+                    <h3 class="text-xl font-bold mb-3 text-green-600">Điểm Mạnh (Strengths)</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Đội ngũ mật mã hàng đầu thế giới (phát minh PLONK).</li>
+                        <li>Công nghệ độc quyền, khó sao chép (ZK-ZK-Rollup).</li>
+                        <li>Hậu thuẫn tài chính cực mạnh ($119M+).</li>
+                        <li>Tầm nhìn dài hạn, tập trung xây dựng nền tảng.</li>
+                    </ul>
+                </div>
+                <div class="card p-6 border-l-4 border-red-500">
+                    <h3 class="text-xl font-bold mb-3 text-red-600">Điểm Yếu (Weaknesses)</h3>
+                     <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Không tương thích EVM tạo rào cản học tập lớn.</li>
+                        <li>Hệ sinh thái ứng dụng còn rất non trẻ.</li>
+                        <li>Sự phức tạp của công nghệ có thể tiềm ẩn lỗi.</li>
+                    </ul>
+                </div>
+                <div class="card p-6 border-l-4 border-yellow-500">
+                    <h3 class="text-xl font-bold mb-3 text-yellow-600">Cơ Hội (Opportunities)</h3>
+                     <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Nhu cầu về quyền riêng tư trong web3 ngày càng tăng.</li>
+                        <li>Tiềm năng cho các ứng dụng cấp doanh nghiệp, DeFi bảo mật.</li>
+                        <li>Trở thành người dẫn đầu thị trường ngách "privacy-first".</li>
+                    </ul>
+                </div>
+                <div class="card p-6 border-l-4 border-gray-500">
+                    <h3 class="text-xl font-bold mb-3 text-gray-600">Thách Thức (Threats)</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Rủi ro pháp lý với công nghệ bảo mật (bài học Tornado Cash).</li>
+                        <li>Cạnh tranh khốc liệt từ các L2 có hiệu ứng mạng lớn.</li>
+                        <li>Nguy cơ có các lỗ hổng bảo mật chưa được phát hiện.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+         <section id="roadmap" class="my-16 md:my-24 scroll-mt-20">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold">Lộ Trình Hướng Tới Mainnet</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">Aztec đang tiến những bước vững chắc để hiện thực hóa tầm nhìn về một mạng lưới phi tập trung.</p>
+            </div>
+            <div class="relative pl-8 border-l-2 border-gray-300">
+                <div class="mb-12 relative timeline-item">
+                    <p class="text-sm font-semibold text-gray-500">2019</p>
+                    <h3 class="text-xl font-bold">Công Bố PLONK</h3>
+                    <p class="text-gray-600">Hệ thống chứng minh ZK-SNARK đột phá ra đời, đặt nền móng cho Aztec.</p>
+                </div>
+                <div class="mb-12 relative timeline-item">
+                    <p class="text-sm font-semibold text-gray-500">2021-2022</p>
+                    <h3 class="text-xl font-bold">Ra Mắt zk.money & Aztec Connect</h3>
+                    <p class="text-gray-600">Các sản phẩm đầu tiên chứng minh tính khả thi và nhu cầu thị trường cho giao dịch riêng tư.</p>
+                </div>
+                 <div class="mb-12 relative timeline-item">
+                    <p class="text-sm font-semibold text-gray-500">2023</p>
+                    <h3 class="text-xl font-bold">Ngừng Aztec Connect, Tập Trung 100%</h3>
+                    <p class="text-gray-600">Quyết định chiến lược: dồn toàn lực xây dựng nền tảng L2 privacy-first thế hệ mới.</p>
+                </div>
+                <div class="relative timeline-item">
+                    <p class="text-sm font-semibold text-blue-600">2025</p>
+                    <h3 class="text-xl font-bold text-blue-700">Public Testnet & Mainnet</h3>
+                    <p class="text-gray-600">Mở cửa cho nhà phát triển toàn cầu và tiến tới ra mắt mạng chính thức, hiện thực hóa tầm nhìn về quyền riêng tư có thể lập trình.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="conclusion" class="my-16 md:my-24 text-center bg-blue-600 text-white rounded-2xl py-12 px-6">
+            <h2 class="text-3xl md:text-4xl font-bold">Kết Luận: Một Cuộc Đặt Cược Dài Hạn</h2>
+            <p class="mt-6 max-w-3xl mx-auto text-lg text-blue-100">
+                Aztec Network không chỉ là một dự án L2 khác. Đây là một cuộc đặt cược táo bạo vào một tương lai nơi quyền riêng tư là nền tảng của web3. Thành công của họ phụ thuộc vào việc thu hút nhà phát triển, điều hướng pháp lý và chứng minh công nghệ của mình ở quy mô lớn. Nếu thành công, Aztec có thể trở thành cơ sở hạ tầng thiết yếu cho một thế hệ ứng dụng phi tập trung hoàn toàn mới.
+            </p>
+        </section>
+
+    </main>
+    
+    <footer class="bg-gray-100 border-t">
+        <div class="container mx-auto py-6 px-6 text-center text-gray-600">
+            <p>&copy; 2025. Báo cáo Tương tác được tạo dựa trên phân tích chuyên sâu về Aztec Network.</p>
+            <p class="text-sm text-gray-500 mt-2">Nội dung này chỉ dành cho mục đích thông tin, không phải là lời khuyên đầu tư.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        const FONT_COLOR = '#343a40';
+        const GRID_COLOR = '#dee2e6';
+
+        function createFundingChart() {
+            const ctx = document.getElementById('fundingChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Series B (a16z)', 'Series A (Paradigm)', 'Seed (ConsenSys)'],
+                    datasets: [{
+                        label: 'Vốn Huy Động',
+                        data: [100, 17, 2.1],
+                        backgroundColor: [
+                            '#007bff',
+                            '#28a745',
+                            '#ffc107',
+                        ],
+                        borderColor: '#f8f9fa',
+                        borderWidth: 4,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: FONT_COLOR,
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        tooltip: {
+                             callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' }).format(context.parsed * 1000000);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function createCompetitionChart() {
+            const ctx = document.getElementById('competitionChart').getContext('2d');
+            const data = {
+                labels: ['Quyền Riêng Tư', 'Khả Năng Mở Rộng', 'Tương Thích EVM', 'Hệ Sinh Thái', 'Mức độ Phi Tập Trung'],
+                datasets: [
+                    {
+                        label: 'Aztec',
+                        data: [10, 7, 2, 3, 9],
+                        borderColor: '#007bff',
+                        backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                        pointBackgroundColor: '#007bff',
+                        fill: true,
+                    },
+                    {
+                        label: 'zkSync',
+                        data: [4, 9, 9, 8, 7],
+                        borderColor: '#28a745',
+                        backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                        pointBackgroundColor: '#28a745',
+                        fill: true,
+                    },
+                    {
+                        label: 'StarkNet',
+                        data: [3, 10, 5, 7, 8],
+                        borderColor: '#ffc107',
+                        backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                        pointBackgroundColor: '#ffc107',
+                        fill: true,
+                    }
+                ]
+            };
+            
+            new Chart(ctx, {
+                type: 'radar',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { color: FONT_COLOR }
+                        },
+                         tooltip: {
+                            callbacks: {
+                                title: (tooltipItems) => {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) { return label.join(' '); }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: { color: GRID_COLOR },
+                            grid: { color: GRID_COLOR },
+                            pointLabels: {
+                                color: FONT_COLOR,
+                                font: { size: 12 }
+                            },
+                            ticks: {
+                                backdropColor: 'transparent',
+                                stepSize: 2
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        window.onload = function() {
+            createFundingChart();
+            createCompetitionChart();
+        };
+
+    </script>
+    <div style="text-align: center; padding: 3rem 0;">
+        <a href="index.html" style="display: inline-block; background-color: #3498db; color: white; padding: 0.8rem 1.8rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid transparent; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            Quay lại Trang Blog
+        </a>
+    </div>
+</body>
+</html>

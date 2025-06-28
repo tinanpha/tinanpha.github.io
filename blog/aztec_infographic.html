@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: Aztec Network - Quyền riêng tư Lập trình được</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #073B4C;
+            color: #F0F4F8;
+        }
+        .card {
+            background-color: #118AB2;
+            background-color: rgba(17, 138, 178, 0.2);
+            border: 1px solid rgba(17, 138, 178, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        .highlight-green { color: #06D6A0; }
+        .highlight-yellow { color: #FFD166; }
+        .highlight-red { color: #FF6B6B; }
+        .highlight-blue { color: #118AB2; }
+        .text-shadow { text-shadow: 0px 2px 4px rgba(0,0,0,0.5); }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center my-12">
+            <h1 class="text-4xl md:text-6xl font-extrabold highlight-green text-shadow">Aztec Network</h1>
+            <p class="text-xl md:text-2xl mt-4 font-light">Tái Kiến Trúc Web3 với Quyền Riêng Tư Lập Trình Được</p>
+        </header>
+
+        <section id="problem" class="my-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="card rounded-2xl p-6 md:p-8">
+                    <h2 class="text-3xl font-bold mb-4 highlight-yellow">Vấn Đề: "Cái Bẫy" Minh Bạch</h2>
+                    <p class="text-lg leading-relaxed">Các blockchain công khai như Ethereum ghi lại mọi giao dịch một cách công khai. Dù tạo ra sự tin cậy, sự minh bạch triệt để này lại phơi bày toàn bộ hoạt động tài chính của người dùng, tạo ra rủi ro bị giám sát, theo dõi và nhắm mục tiêu. Đây là một "cảm giác riêng tư sai lầm".</p>
+                </div>
+                <div class="text-center text-8xl md:text-9xl font-mono highlight-red animate-pulse">
+                    ⚠️
+                </div>
+            </div>
+        </section>
+
+        <section id="funding" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-8 highlight-yellow">Hậu Thuẫn Tài Chính Vững Chắc</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                 <div class="card rounded-2xl p-6 md:p-8">
+                    <h3 class="text-2xl font-bold mb-4">Tổng vốn huy động</h3>
+                    <div class="text-7xl font-extrabold highlight-green">
+                        $119.1M+
+                    </div>
+                    <p class="mt-4 text-lg">Được dẫn dắt bởi các quỹ đầu tư hàng đầu thế giới, thể hiện sự tin tưởng tuyệt đối vào tầm nhìn và công nghệ của Aztec.</p>
+                </div>
+                <div class="chart-container h-64 md:h-80">
+                    <canvas id="fundingDonutChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <section id="tech" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-8 highlight-yellow">Công Nghệ Cốt Lõi: Kiến Trúc ZK-ZK Rollup</h2>
+            <p class="text-center max-w-3xl mx-auto text-lg mb-12">Aztec sử dụng công nghệ Zero-Knowledge cho cả hai mục đích: Mở rộng quy mô và Bảo mật. Đây là điểm khác biệt cơ bản, tạo ra một kiến trúc ưu tiên quyền riêng tư từ gốc rễ.</p>
+            <div class="card rounded-2xl p-6 md:p-8">
+                <div class="flow-container space-y-4">
+                    <div class="flow-step text-center">
+                        <div class="font-bold text-lg highlight-green">1. Giao Dịch Phía Người Dùng</div>
+                        <div class="text-sm">Người dùng khởi tạo giao dịch (chuyển tiền, swap) trên thiết bị của mình.</div>
+                    </div>
+                    <div class="flex justify-center my-2"><span class="text-2xl highlight-yellow">↓</span></div>
+                    <div class="flow-step md:flex md:items-center md:justify-center md:space-x-8">
+                         <div class="border-2 border-dashed border-green-400 p-4 rounded-lg text-center md:w-1/3 mb-4 md:mb-0">
+                            <div class="font-bold text-lg highlight-green">2. Mạch Riêng Tư (Privacy Proof)</div>
+                            <div>Môi trường PXE trên máy khách tạo ra một bằng chứng ZK-SNARK, mã hóa toàn bộ chi tiết giao dịch. Dữ liệu nhạy cảm không bao giờ bị lộ.</div>
+                        </div>
+                         <div class="flex justify-center my-2 md:my-0"><span class="text-2xl highlight-yellow">→</span></div>
+                        <div class="border-2 border-dashed border-yellow-400 p-4 rounded-lg text-center md:w-1/3">
+                            <div class="font-bold text-lg highlight-yellow">3. Sequencer Tập Hợp</div>
+                            <div>Sequencer thu thập nhiều "bằng chứng riêng tư" từ người dùng khác nhau vào một lô.</div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center my-2"><span class="text-2xl highlight-yellow">↓</span></div>
+                    <div class="flow-step text-center">
+                        <div class="border-2 border-dashed border-red-400 p-4 rounded-lg">
+                            <div class="font-bold text-lg highlight-red">4. Mạch Rollup (Rollup Proof)</div>
+                            <div>Sequencer tạo ra một bằng chứng ZK tổng hợp duy nhất, xác thực tất cả giao dịch trong lô mà không tiết lộ nội dung của chúng.</div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center my-2"><span class="text-2xl highlight-yellow">↓</span></div>
+                     <div class="flow-step text-center">
+                        <div class="font-bold text-lg highlight-blue">5. Gửi lên Ethereum L1</div>
+                        <div class="text-sm">Chỉ có bằng chứng tổng hợp nhỏ gọn này được gửi và xác minh trên Ethereum, giúp tiết kiệm chi phí và tăng tốc độ.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-8 highlight-yellow">Vị Thế Cạnh Tranh Trong Cuộc Chiến Layer 2</h2>
+             <p class="text-center max-w-3xl mx-auto text-lg mb-12">Trong khi các đối thủ tập trung vào khả năng mở rộng tương thích EVM, Aztec tạo ra một con đường riêng bằng cách ưu tiên quyền riêng tư có thể lập trình, dẫn đến sự đánh đổi rõ rệt.</p>
+            <div class="card rounded-2xl p-6 md:p-8">
+                 <div class="chart-container h-96 md:h-[500px]">
+                    <canvas id="comparisonRadarChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="swot" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-8 highlight-yellow">Phân Tích SWOT</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card rounded-xl p-6">
+                    <h3 class="text-2xl font-bold mb-4 highlight-green">Điểm Mạnh (Strengths) <span class="font-mono">+</span></h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Đội ngũ mật mã hàng đầu thế giới (đồng sáng tạo PLONK).</li>
+                        <li>Công nghệ độc quyền ZK-ZK-Rollup và ngôn ngữ Noir.</li>
+                        <li>Hậu thuẫn tài chính cực mạnh ($119M+).</li>
+                        <li>Tầm nhìn dài hạn, tập trung vào nền tảng.</li>
+                    </ul>
+                </div>
+                <div class="card rounded-xl p-6">
+                    <h3 class="text-2xl font-bold mb-4 highlight-red">Điểm Yếu (Weaknesses) <span class="font-mono">-</span></h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Không tương thích EVM, rào cản học tập cao.</li>
+                        <li>Hệ sinh thái ứng dụng còn rất non trẻ.</li>
+                        <li>Hiệu suất ban đầu có thể chưa tối ưu.</li>
+                        <li>Sự phức tạp của công nghệ có thể tiềm ẩn lỗi.</li>
+                    </ul>
+                </div>
+                <div class="card rounded-xl p-6">
+                    <h3 class="text-2xl font-bold mb-4 highlight-yellow">Cơ Hội (Opportunities) <span class="font-mono">🚀</span></h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Nhu cầu về quyền riêng tư trong web3 ngày càng tăng.</li>
+                        <li>Tiềm năng cho các ứng dụng cấp doanh nghiệp, tài chính bảo mật.</li>
+                        <li>Trở thành người dẫn đầu thị trường ngách "privacy-first".</li>
+                        <li>Cho phép các loại dApp hoàn toàn mới (bầu cử, DeFi ẩn danh).</li>
+                    </ul>
+                </div>
+                <div class="card rounded-xl p-6">
+                    <h3 class="text-2xl font-bold mb-4 highlight-blue">Thách Thức (Threats) <span class="font-mono">⚖️</span></h3>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li>Rủi ro pháp lý với công cụ bảo mật (bài học Tornado Cash).</li>
+                        <li>Cạnh tranh khốc liệt từ các L2 tương thích EVM.</li>
+                        <li>Nguy cơ có các lỗ hổng bảo mật chưa được phát hiện.</li>
+                        <li>Cần vượt qua "hiệu ứng mạng" của hệ sinh thái EVM.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-12 highlight-yellow">Lộ Trình Phát Triển</h2>
+            <div class="relative">
+                <div class="border-l-4 border-dashed border-blue-400 absolute h-full top-0 left-1/2 -ml-0.5"></div>
+                
+                <div class="mb-8 flex justify-between items-center w-full">
+                    <div class="order-1 w-5/12"></div>
+                    <div class="z-20 flex items-center order-1 bg-green-500 shadow-xl w-12 h-12 rounded-full">
+                        <h1 class="mx-auto font-semibold text-lg text-white">2019</h1>
+                    </div>
+                    <div class="order-1 card rounded-lg shadow-xl w-5/12 px-6 py-4">
+                        <h3 class="mb-2 font-bold text-white text-xl">Công bố PLONK</h3>
+                        <p class="text-sm leading-snug tracking-wide text-gray-300">Phát minh ra hệ thống chứng minh ZK-SNARK đột phá, nền tảng cho Aztec.</p>
+                    </div>
+                </div>
+
+                <div class="mb-8 flex justify-between flex-row-reverse items-center w-full">
+                    <div class="order-1 w-5/12"></div>
+                    <div class="z-20 flex items-center order-1 bg-green-500 shadow-xl w-12 h-12 rounded-full">
+                        <h1 class="mx-auto text-white text-lg font-semibold">2021</h1>
+                    </div>
+                    <div class="order-1 card rounded-lg shadow-xl w-5/12 px-6 py-4">
+                        <h3 class="mb-2 font-bold text-white text-xl">zk.money</h3>
+                        <p class="text-sm leading-snug tracking-wide text-gray-300">Ra mắt sản phẩm đầu tiên, cho phép giao dịch riêng tư trên Ethereum.</p>
+                    </div>
+                </div>
+                
+                <div class="mb-8 flex justify-between items-center w-full">
+                    <div class="order-1 w-5/12"></div>
+                    <div class="z-20 flex items-center order-1 bg-yellow-500 shadow-xl w-12 h-12 rounded-full">
+                        <h1 class="mx-auto font-semibold text-lg text-white">2023</h1>
+                    </div>
+                    <div class="order-1 card rounded-lg shadow-xl w-5/12 px-6 py-4">
+                        <h3 class="mb-2 font-bold text-white text-xl">Ngừng Aztec Connect</h3>
+                        <p class="text-sm leading-snug tracking-wide text-gray-300">Quyết định chiến lược: tập trung 100% nguồn lực vào xây dựng L2 privacy-first.</p>
+                    </div>
+                </div>
+
+                <div class="mb-8 flex justify-between flex-row-reverse items-center w-full">
+                    <div class="order-1 w-5/12"></div>
+                    <div class="z-20 flex items-center order-1 bg-blue-500 shadow-xl w-12 h-12 rounded-full">
+                        <h1 class="mx-auto text-white text-lg font-semibold">2025</h1>
+                    </div>
+                    <div class="order-1 card rounded-lg shadow-xl w-5/12 px-6 py-4">
+                        <h3 class="mb-2 font-bold text-white text-xl">Public Testnet & Mainnet</h3>
+                        <p class="text-sm leading-snug tracking-wide text-gray-300">Mở cửa cho nhà phát triển và tiến tới ra mắt mạng chính thức, hiện thực hóa tầm nhìn.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-16 py-8 border-t border-gray-700">
+             <p>Infographic được tạo dựa trên báo cáo nghiên cứu chuyên sâu về Aztec Network.</p>
+             <p class="text-xs text-gray-400 mt-2">Đây là một sản phẩm trực quan hóa dữ liệu, không phải lời khuyên đầu tư.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const FONT_COLOR = '#F0F4F8';
+        const GRID_COLOR = 'rgba(240, 244, 248, 0.2)';
+
+        function wrapText(text) {
+            const maxLength = 16;
+            if (typeof text !== 'string' || text.length <= maxLength) {
+                return text;
+            }
+            const words = text.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > maxLength) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine += (currentLine ? ' ' : '') + word;
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const commonTooltipOptions = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            }
+        };
+
+        const fundingData = {
+            labels: ['Series B (a16z)', 'Series A (Paradigm)', 'Seed (ConsenSys)'],
+            datasets: [{
+                label: 'Vốn Huy Động (USD)',
+                data: [100000000, 17000000, 2100000],
+                backgroundColor: ['#06D6A0', '#FFD166', '#FF6B6B'],
+                borderColor: '#073B4C',
+                borderWidth: 4,
+                hoverOffset: 8
+            }]
+        };
+
+        new Chart(document.getElementById('fundingDonutChart'), {
+            type: 'doughnut',
+            data: fundingData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: FONT_COLOR,
+                            font: { size: 14 }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Phân Bổ Vốn Theo Vòng',
+                        color: FONT_COLOR,
+                        font: { size: 18, weight: 'bold' }
+                    },
+                    tooltip: commonTooltipOptions.plugins.tooltip
+                }
+            }
+        });
+        
+        const comparisonData = {
+            labels: [
+                wrapText('Quyền Riêng Tư'),
+                wrapText('Khả Năng Mở Rộng'),
+                wrapText('Tương Thích EVM'),
+                wrapText('Hệ Sinh Thái'),
+                wrapText('Mục Tiêu Phi Tập Trung')
+            ],
+            datasets: [{
+                label: 'Aztec Network',
+                data: [10, 7, 2, 3, 9],
+                fill: true,
+                backgroundColor: 'rgba(6, 214, 160, 0.2)',
+                borderColor: '#06D6A0',
+                pointBackgroundColor: '#06D6A0',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: '#06D6A0'
+            }, {
+                label: 'zkSync',
+                data: [4, 9, 9, 8, 7],
+                fill: true,
+                backgroundColor: 'rgba(255, 209, 102, 0.2)',
+                borderColor: '#FFD166',
+                pointBackgroundColor: '#FFD166',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: '#FFD166'
+            }, {
+                label: 'StarkNet',
+                data: [3, 10, 5, 7, 8],
+                fill: true,
+                backgroundColor: 'rgba(255, 107, 107, 0.2)',
+                borderColor: '#FF6B6B',
+                pointBackgroundColor: '#FF6B6B',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: '#FF6B6B'
+            }]
+        };
+
+        new Chart(document.getElementById('comparisonRadarChart'), {
+            type: 'radar',
+            data: comparisonData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: GRID_COLOR },
+                        grid: { color: GRID_COLOR },
+                        pointLabels: { 
+                            color: FONT_COLOR,
+                            font: { size: 12 }
+                        },
+                        ticks: {
+                            color: FONT_COLOR,
+                            backdropColor: 'transparent',
+                            stepSize: 2
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: FONT_COLOR,
+                            font: { size: 14 }
+                        }
+                    },
+                     tooltip: commonTooltipOptions.plugins.tooltip
+                }
+            }
+        });
+
+    </script>
+    <div style="text-align: center; padding: 3rem 0;">
+        <a href="index.html" style="display: inline-block; background-color: #3498db; color: white; padding: 0.8rem 1.8rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid transparent; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            Quay lại Trang Blog
+        </a>
+    </div>
+</body>
+</html>
