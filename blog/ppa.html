@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: Các Khẳng Định Tiên Quyết Có Thể Chứng Minh (PPA)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #E0F3FF;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-arrow {
+            position: relative;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flowchart-arrow::after {
+            content: '▼';
+            font-size: 2rem;
+            color: #366E8A;
+        }
+        .flowchart-card {
+            border-left: 4px solid #366E8A;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .flowchart-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center mb-12 md:mb-16">
+            <h1 class="text-4xl md:text-6xl font-black text-[#003F5C] mb-2">Khẳng Định Tiên Quyết Có Thể Chứng Minh</h1>
+            <p class="text-xl md:text-2xl text-[#366E8A] font-semibold">Mở khóa Tính Tương Tác Tức Thời giữa L1-L2</p>
+        </header>
+
+        <section id="problem" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-8">Thách Thức Hiện Tại: Sự Phân Mảnh Hệ Sinh Thái</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-6xl mb-4">⛓️</div>
+                    <h3 class="text-xl font-bold text-[#003F5C] mb-2">Các Silo Độc Lập</h3>
+                    <p class="text-[#366E8A]">Mỗi Rollup là một môi trường riêng biệt, gây phân mảnh trạng thái và thanh khoản.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                     <div class="text-6xl font-black text-red-500 mb-4">7+</div>
+                    <h3 class="text-xl font-bold text-[#003F5C] mb-2">Độ Trễ Cao</h3>
+                    <p class="text-[#366E8A]">Optimistic Rollups yêu cầu thời gian chờ đợi lên tới 7 ngày để xác nhận giao dịch trên L1.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="text-6xl mb-4">🌉</div>
+                    <h3 class="text-xl font-bold text-[#003F5C] mb-2">Cầu Nối Phức Tạp</h3>
+                    <p class="text-[#366E8A]">Tương tác liên miền phải dựa vào các cầu nối chậm, tốn kém và kém an toàn.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="mb-16 bg-white rounded-lg shadow-lg p-8 md:p-12">
+            <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-8">Đột Phá: Mô Hình "Khẳng Định Trước, Chứng Minh Sau"</h2>
+            <p class="text-lg text-center max-w-3xl mx-auto text-[#366E8A] mb-10">PPA thay đổi cuộc chơi bằng cách cho phép L2 hành động <span class="font-bold text-[#003F5C]">ngay lập tức</span> dựa trên một <span class="font-bold text-[#003F5C]">lời hứa</span> (khẳng định) về trạng thái L1 trong tương lai. Lời hứa này được đảm bảo bằng một cơ chế hủy bỏ toàn bộ lô giao dịch nếu nó không được chứng minh là đúng.</p>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 text-center">
+                <div class="bg-[#E0F3FF] p-6 rounded-lg w-full md:w-1/3">
+                    <div class="text-4xl font-black text-[#003F5C]">1. KHẲNG ĐỊNH</div>
+                    <p class="mt-2 text-[#366E8A]">Trình sắp xếp L2 đưa ra một khẳng định về sự kiện L1.</p>
+                </div>
+                <div class="text-4xl font-bold text-[#366E8A] hidden md:block">→</div>
+                 <div class="text-4xl font-bold text-[#366E8A] md:hidden">↓</div>
+                <div class="bg-[#A5CAD9] p-6 rounded-lg w-full md:w-1/3">
+                    <div class="text-4xl font-black text-[#003F5C]">2. HÀNH ĐỘNG</div>
+                    <p class="mt-2 text-[#003F5C]">Hợp đồng L2 thực thi ngay lập tức dựa trên khẳng định.</p>
+                </div>
+                 <div class="text-4xl font-bold text-[#366E8A] hidden md:block">→</div>
+                 <div class="text-4xl font-bold text-[#366E8A] md:hidden">↓</div>
+                <div class="bg-[#6B9DB2] p-6 rounded-lg w-full md:w-1/3">
+                    <div class="text-4xl font-black text-white">3. CHỨNG MINH</div>
+                    <p class="mt-2 text-white">Khẳng định được xác thực. Nếu sai, toàn bộ lô bị hủy.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="lifecycle" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-8">Vòng Đời của một Khẳng Định PPA</h2>
+             <div class="max-w-2xl mx-auto">
+                <div class="flowchart-card bg-white p-6 rounded-lg shadow-md mb-4">
+                    <h3 class="text-xl font-bold text-[#003F5C]">Bước 1: Khẳng định</h3>
+                    <p class="text-[#366E8A]">Trình sắp xếp (Sequencer) quan sát sự kiện L1 (ví dụ: giao dịch nạp tiền) và tạo một "tín hiệu" khẳng định trên L2.</p>
+                </div>
+                <div class="flowchart-arrow"></div>
+                <div class="flowchart-card bg-white p-6 rounded-lg shadow-md mb-4">
+                    <h3 class="text-xl font-bold text-[#003F5C]">Bước 2: Thực thi Tiên quyết</h3>
+                    <p class="text-[#366E8A]">Hợp đồng L2 thấy tín hiệu và hành động ngay (ví dụ: đúc token cho người dùng). Người dùng nhận kết quả với độ trễ gần như bằng không.</p>
+                </div>
+                <div class="flowchart-arrow"></div>
+                <div class="flowchart-card bg-white p-6 rounded-lg shadow-md mb-4">
+                    <h3 class="text-xl font-bold text-[#003F5C]">Bước 3: Công bố Lô</h3>
+                    <p class="text-[#366E8A]">Trình sắp xếp đóng gói lô giao dịch L2 (bao gồm cả các giao dịch tiên quyết) và đăng lên hợp đồng Inbox trên L1.</p>
+                </div>
+                <div class="flowchart-arrow"></div>
+                <div class="flowchart-card bg-white p-6 rounded-lg shadow-md mb-4">
+                    <h3 class="text-xl font-bold text-[#003F5C]">Bước 4: Chứng minh</h3>
+                    <p class="text-[#366E8A]">Một giao dịch đặc biệt cuối lô sẽ kiểm tra khẳng định so với trạng thái L1 đã được xác nhận, sử dụng bằng chứng Merkle.</p>
+                </div>
+                <div class="flowchart-arrow"></div>
+                <div class="flowchart-card bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold text-[#003F5C]">Bước 5: Hoàn tất hoặc Hủy bỏ</h3>
+                    <p class="text-green-600 font-semibold">Thành công: Lô giao dịch được chấp nhận và hoàn tất.</p>
+                    <p class="text-red-600 font-semibold mt-2">Thất bại: Toàn bộ lô giao dịch bị hủy bỏ. Hệ thống tự sửa chữa, đảm bảo an toàn.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="foundation" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-8">Nền Tảng Lý Tưởng: Tại Sao PPA Cần "Based Rollups"?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="text-lg text-[#366E8A]">
+                    <p class="mb-4">PPA yêu cầu một môi trường sắp xếp giao dịch <span class="font-bold text-[#003F5C]">trung lập và không thể bị kiểm duyệt</span>. Các "Based Rollups" (rollup được sắp xếp bởi L1) là lựa chọn hoàn hảo vì chúng thừa hưởng trực tiếp các đặc tính an ninh và phi tập trung từ chính Ethereum L1.</p>
+                    <p>Ngược lại, một trình sắp xếp tập trung có thể thao túng, trì hoãn hoặc kiểm duyệt việc chứng minh, phá vỡ mô hình bảo mật của PPA.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="chart-container">
+                        <canvas id="sequencerComparisonChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tradeoff" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-8">Sự Đánh Đổi Quan Trọng: "Bán Kính Ảnh Hưởng" Khi Lỗi</h2>
+            <p class="text-lg text-center max-w-3xl mx-auto text-[#366E8A] mb-10">Sức mạnh của PPA đi kèm với một rủi ro lớn: nếu một khẳng định sai, toàn bộ lô giao dịch sẽ bị hủy, ảnh hưởng đến cả những người dùng vô tội. Đây là sự khác biệt cơ bản so với các mô hình khác.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <h3 class="text-2xl font-bold text-[#003F5C] mb-4">PPA: Thất Bại Thảm Khốc Cấp Lô</h3>
+                    <div class="chart-container h-64 md:h-72">
+                        <canvas id="ppaFailureChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-[#366E8A]">Một lỗi duy nhất làm <span class="font-bold text-red-600">toàn bộ lô</span> bị hủy bỏ.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <h3 class="text-2xl font-bold text-[#003F5C] mb-4">Optimistic Rollup: Thử Thách Cấp Giao Dịch</h3>
+                    <div class="chart-container h-64 md:h-72">
+                        <canvas id="optimisticFailureChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-[#366E8A]">Chỉ <span class="font-bold text-red-600">giao dịch gian lận</span> và các giao dịch phụ thuộc bị hủy.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="usecases" class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-[#003F5C] mb-8">Mở Ra Các Khả Năng Mới</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">
+                    <div class="text-6xl mb-4">⚛️</div>
+                    <h3 class="text-xl font-bold text-[#003F5C] mb-2">Hoán đổi Nguyên tử Xuyên Rollup</h3>
+                    <p class="text-[#366E8A]">Thực hiện swap tài sản giữa hai rollup khác nhau một cách gần như tức thời và an toàn.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">
+                    <div class="text-6xl mb-4">🔮</div>
+                    <h3 class="text-xl font-bold text-[#003F5C] mb-2">Oracle Nhận biết L1 Thời gian thực</h3>
+                    <p class="text-[#366E8A]">Hợp đồng L2 có thể phản ứng ngay lập tức với dữ liệu giá hoặc sự kiện từ L1.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">
+                    <div class="text-6xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold text-[#003F5C] mb-2">Tương tác L1-L2 Cùng Slot</h3>
+                    <p class="text-[#366E8A]">Gửi một giao dịch trên L1 và nhận kết quả xử lý trên L2 trong cùng một slot 12 giây.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-16 pt-8 border-t border-[#A5CAD9]">
+            <p class="text-[#366E8A]">Dữ liệu và khái niệm được tổng hợp từ nghiên cứu "Preemptive Provable Assertions" của Nikesh Nazareth (OpenZeppelin).</p>
+            <p class="text-sm text-[#6B9DB2] mt-2">Infographic được tạo bởi Canvas Infographics.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const brilliantBlues = {
+            dark: '#003F5C',
+            mediumDark: '#366E8A',
+            medium: '#6B9DB2',
+            light: '#A5CAD9',
+            lightest: '#E0F3FF',
+            red: '#E53E3E',
+            green: '#38A169'
+        };
+
+        function wrapLabels(label, maxLength) {
+            if (typeof label !== 'string') return label;
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: brilliantBlues.dark,
+                        font: {
+                            family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: { color: brilliantBlues.mediumDark },
+                    grid: { color: brilliantBlues.light }
+                },
+                x: {
+                    ticks: { color: brilliantBlues.mediumDark },
+                    grid: { color: brilliantBlues.lightest }
+                }
+            }
+        };
+
+        new Chart(document.getElementById('sequencerComparisonChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Chống Kiểm duyệt', 'Tính Sống động (Liveness)', 'Độ phức tạp'],
+                datasets: [{
+                    label: 'Trình sắp xếp Tập trung',
+                    data: [2, 2, 9],
+                    backgroundColor: brilliantBlues.medium,
+                    borderColor: brilliantBlues.mediumDark,
+                    borderWidth: 1
+                }, {
+                    label: 'Based Rollup (Sắp xếp bởi L1)',
+                    data: [9, 9, 2],
+                    backgroundColor: brilliantBlues.mediumDark,
+                    borderColor: brilliantBlues.dark,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...commonChartOptions,
+                scales: {
+                     y: {
+                        beginAtZero: true,
+                        max: 10,
+                        ticks: { 
+                            color: brilliantBlues.mediumDark,
+                            callback: function(value) {
+                                if (value === 2) return 'Thấp';
+                                if (value === 9) return 'Cao';
+                                return '';
+                            }
+                        },
+                        grid: { color: brilliantBlues.light }
+                    },
+                    x: {
+                        ticks: { color: brilliantBlues.mediumDark, font: { size: 14 } },
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+
+        const commonDoughnutOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                     labels: {
+                        color: brilliantBlues.dark,
+                        font: {
+                            family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            }
+        };
+
+        new Chart(document.getElementById('ppaFailureChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Lô Giao dịch Bị hủy'],
+                datasets: [{
+                    data: [100],
+                    backgroundColor: [brilliantBlues.red],
+                    borderColor: [brilliantBlues.lightest],
+                    borderWidth: 2
+                }]
+            },
+            options: commonDoughnutOptions
+        });
+
+        new Chart(document.getElementById('optimisticFailureChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Giao dịch Hợp lệ', 'Giao dịch Bị hủy'],
+                datasets: [{
+                    data: [98, 2],
+                    backgroundColor: [brilliantBlues.green, brilliantBlues.red],
+                    borderColor: [brilliantBlues.lightest, brilliantBlues.lightest],
+                    borderWidth: 2
+                }]
+            },
+            options: commonDoughnutOptions
+        });
+    </script>
+    <div style="text-align: center; padding: 3rem 0;">
+        <a href="index.html" style="display: inline-block; background-color: #3498db; color: white; padding: 0.8rem 1.8rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid transparent; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            Quay lại Trang Blog
+        </a>
+    </div>  
+</body>
+</html>
