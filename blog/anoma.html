@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anoma: Infographic Kiến Trúc Lấy Ý Định Làm Trung Tâm</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- 
+    Plan Summary:
+    Narrative Structure:
+    1. Hook: The Web3 Fragmentation Crisis.
+    2. Solution: Anoma - The Intent-Centric OS.
+    3. Process: The Lifecycle of an Intent (HTML/CSS Flowchart).
+    4. Architecture Deep Dive: Visualize ARM, Fractal Scaling, Privacy (Charts & Diagrams).
+    5. Strategic Position: Funding, Partnerships, Competitive Analysis (Charts & Diagrams).
+    6. Future: Roadmap & Risks (Timeline & Chart).
+
+    Visualization Choices (NO SVG, NO MERMAID):
+    - Funding Breakdown: Goal: Compare -> Chart.js Donut Chart. Justification: Shows composition of a whole.
+    - Competitive Landscape: Goal: Compare -> Chart.js Grouped Bar Chart. Justification: Direct comparison of competitors on key metrics.
+    - Risk Analysis: Goal: Compare -> Chart.js Horizontal Bar Chart. Justification: Scannable assessment of challenges.
+    - Lifecycle of an Intent: Goal: Organize -> Structured HTML/CSS Flowchart. Justification: Best way to show a process without prohibited libraries.
+    - Partnership Ecosystem: Goal: Organize -> Structured HTML/CSS Diagram. Justification: Simple, effective relationship map.
+    - Roadmap: Goal: Change -> Structured HTML/CSS Timeline. Justification: Clear chronological representation.
+    - All charts will use Chart.js/Canvas. All diagrams will use structured HTML/CSS with Tailwind. NO SVG or Mermaid JS will be used.
+
+    Color Palette: Vibrant & Energetic (#FF4E50, #FC913A, #F9D423, #EDE574, #E1F5C4)
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #FF4E50, #FC913A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center my-8 md:my-16">
+            <h1 class="text-4xl md:text-6xl font-black gradient-text">ANOMA</h1>
+            <p class="text-xl md:text-2xl font-semibold text-gray-700 mt-2">Hệ Điều Hành Lấy Ý Định Làm Trung Tâm cho Web3</p>
+            <p class="mt-4 max-w-3xl mx-auto text-gray-600">
+                Một phân tích trực quan về kiến trúc đột phá của Anoma, được thiết kế để giải quyết sự phân mảnh và thống nhất bối cảnh đa chuỗi.
+            </p>
+        </header>
+
+        <main>
+            <section id="problem" class="mb-16">
+                <div class="card text-center">
+                    <h2 class="text-3xl font-bold mb-4">Cuộc Khủng Hoảng Phân Mảnh của Web3</h2>
+                    <p class="max-w-4xl mx-auto text-gray-600 mb-8">
+                        Hệ sinh thái Web3 hiện tại là một tập hợp các "hòn đảo" blockchain bị cô lập, tạo ra rào cản lớn cho người dùng và nhà phát triển. Anoma được xây dựng để giải quyết vấn đề này tận gốc.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="p-6 bg-red-50 rounded-lg">
+                            <div class="text-5xl mb-2">🏝️</div>
+                            <h3 class="text-xl font-bold text-red-700">Trạng thái Phân mảnh</h3>
+                            <p class="text-red-600 mt-2">Thanh khoản, dữ liệu và ứng dụng bị mắc kẹt trong các silo, cản trở khả năng kết hợp.</p>
+                        </div>
+                        <div class="p-6 bg-orange-50 rounded-lg">
+                            <div class="text-5xl mb-2">🤯</div>
+                            <h3 class="text-xl font-bold text-orange-700">Trải nghiệm Người dùng Phức tạp</h3>
+                            <p class="text-orange-600 mt-2">Người dùng phải quản lý nhiều ví, điều hướng qua các cầu nối không an toàn và hiểu các cơ chế phức tạp.</p>
+                        </div>
+                        <div class="p-6 bg-yellow-50 rounded-lg">
+                            <div class="text-5xl mb-2">🚧</div>
+                            <h3 class="text-xl font-bold text-yellow-700">Rào cản cho Nhà phát triển</h3>
+                            <p class="text-yellow-600 mt-2">Chi phí và độ phức tạp khổng lồ khi triển khai và duy trì ứng dụng trên nhiều chuỗi.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="solution" class="mb-16">
+                 <div class="card">
+                    <h2 class="text-3xl font-bold text-center mb-8">Sự Thay Đổi Mô Hình: Từ Giao Dịch đến Ý Định</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="border-2 border-red-200 rounded-lg p-6">
+                            <h3 class="text-2xl font-bold text-red-600 mb-4">Mô hình Mệnh lệnh (Truyền thống)</h3>
+                            <p class="text-gray-600 mb-4">Người dùng phải chỉ định <span class="font-bold">CÁCH THỨC</span> thực hiện từng bước. Điều này phức tạp và dễ xảy ra lỗi.</p>
+                            <div class="bg-gray-100 p-4 rounded-md text-sm text-gray-700 font-mono">
+                                <p>// 1. Phê duyệt token USDC cho router</p>
+                                <p>approve(usdc, router, 2000);</p>
+                                <p>// 2. Gọi hàm hoán đổi</p>
+                                <p>swapExactTokensForTokens(</p>
+                                <p>&nbsp;&nbsp;2000, // amountIn</p>
+                                <p>&nbsp;&nbsp;0.99, // amountOutMin</p>
+                                <p>&nbsp;&nbsp;[usdc, weth], // path</p>
+                                <p>&nbsp;&nbsp;userAddress, // to</p>
+                                <p>&nbsp;&nbsp;deadline // deadline</p>
+                                <p>);</p>
+                            </div>
+                        </div>
+                        <div class="border-2 border-green-200 rounded-lg p-6 bg-green-50">
+                            <h3 class="text-2xl font-bold text-green-600 mb-4">Mô hình Tuyên bố (Anoma)</h3>
+                            <p class="text-gray-600 mb-4">Người dùng chỉ cần tuyên bố <span class="font-bold">CÁI GÌ</span> họ muốn. Hệ thống sẽ tìm ra con đường tốt nhất.</p>
+                            <div class="bg-gray-900 text-white p-4 rounded-md text-sm font-mono">
+                                <p class="text-green-300"># Ý định của người dùng</p>
+                                <p>"Tôi muốn có thêm <span class="text-yellow-300">1 ETH</span> và sẵn sàng từ bỏ tối đa <span class="text-yellow-300">2000 USDC</span>."</p>
+                            </div>
+                             <p class="text-green-700 mt-4 font-semibold">✨ Trải nghiệm người dùng kỳ diệu, loại bỏ sự phức tạp.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="lifecycle" class="mb-16">
+                <div class="card">
+                    <h2 class="text-3xl font-bold text-center mb-2">Vòng Đời của một Ý Định</h2>
+                    <p class="text-center text-gray-600 mb-12">Từ mong muốn của người dùng đến khi được giải quyết trên chuỗi, một ý định trải qua một quy trình được điều phối cẩn thận.</p>
+                    <div class="relative w-full overflow-x-auto pb-4">
+                        <div class="flex items-center justify-start md:justify-center space-x-4 md:space-x-8">
+                            <div class="flex-shrink-0 text-center w-40 md:w-48">
+                                <div class="mx-auto h-16 w-16 md:h-20 md:w-20 flex items-center justify-center bg-orange-100 text-orange-500 rounded-full text-3xl">✍️</div>
+                                <h3 class="mt-2 font-bold">1. Tạo Ý Định</h3>
+                                <p class="text-sm text-gray-500">Người dùng ký một thông điệp ngoài chuỗi thể hiện kết quả mong muốn.</p>
+                            </div>
+                            <div class="flex-shrink-0 text-3xl text-gray-300 font-light">→</div>
+                            <div class="flex-shrink-0 text-center w-40 md:w-48">
+                                <div class="mx-auto h-16 w-16 md:h-20 md:w-20 flex items-center justify-center bg-yellow-100 text-yellow-500 rounded-full text-3xl">📡</div>
+                                <h3 class="mt-2 font-bold">2. Tin Đồn Ý Định</h3>
+                                <p class="text-sm text-gray-500">Ý định được phát đến một mạng lưới P2P, tạo thành một "bể ý định" phi tập trung.</p>
+                            </div>
+                             <div class="flex-shrink-0 text-3xl text-gray-300 font-light">→</div>
+                            <div class="flex-shrink-0 text-center w-40 md:w-48">
+                                <div class="mx-auto h-16 w-16 md:h-20 md:w-20 flex items-center justify-center bg-red-100 text-red-500 rounded-full text-3xl">🧩</div>
+                                <h3 class="mt-2 font-bold">3. Giải Quyết Vấn Đề</h3>
+                                <p class="text-sm text-gray-500">Các "Solver" cạnh tranh để tìm các ý định tương thích và tính toán một giải pháp.</p>
+                            </div>
+                             <div class="flex-shrink-0 text-3xl text-gray-300 font-light">→</div>
+                            <div class="flex-shrink-0 text-center w-40 md:w-48">
+                                <div class="mx-auto h-16 w-16 md:h-20 md:w-20 flex items-center justify-center bg-indigo-100 text-indigo-500 rounded-full text-3xl">📦</div>
+                                <h3 class="mt-2 font-bold">4. Hình Thành Giao Dịch</h3>
+                                <p class="text-sm text-gray-500">Solver gói các ý định đã khớp thành một giao dịch "cân bằng" duy nhất.</p>
+                            </div>
+                             <div class="flex-shrink-0 text-3xl text-gray-300 font-light">→</div>
+                            <div class="flex-shrink-0 text-center w-40 md:w-48">
+                                <div class="mx-auto h-16 w-16 md:h-20 md:w-20 flex items-center justify-center bg-green-100 text-green-500 rounded-full text-3xl">✅</div>
+                                <h3 class="mt-2 font-bold">5. Giải Quyết</h3>
+                                <p class="text-sm text-gray-500">Giao dịch được gửi đến một lớp giải quyết (ví dụ: Ethereum) để xác minh và hoàn tất.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="architecture" class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-12">Mổ Xẻ Kiến Trúc Cốt Lõi</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-2">Phân Tích Nguồn Vốn (>60 triệu USD)</h3>
+                        <p class="text-gray-600 mb-4">Anoma được hỗ trợ tài chính mạnh mẽ bởi các quỹ đầu tư hàng đầu, đảm bảo nguồn lực cho R&D dài hạn.</p>
+                        <div class="chart-container h-80 md:h-96">
+                            <canvas id="fundingChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-2xl font-bold mb-2">Hệ Sinh Thái Đối Tác Chiến Lược</h3>
+                        <p class="text-gray-600 mb-4">Anoma tích cực hợp tác với các dự án hàng đầu để xây dựng một tương lai module và có khả năng tương tác.</p>
+                        <div class="space-y-4 mt-6">
+                             <div class="flex items-start space-x-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-gray-900 text-white rounded-lg flex items-center justify-center font-black text-lg">A</div>
+                                <div>
+                                    <h4 class="font-bold">Anoma</h4>
+                                    <p class="text-sm text-gray-500">Lớp phối hợp phổ quát</p>
+                                </div>
+                            </div>
+                            <div class="pl-5 border-l-2 border-gray-200 ml-5 space-y-4">
+                                <div class="flex items-start space-x-4">
+                                    <div class="flex-shrink-0 w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold">DA</div>
+                                    <div>
+                                        <h4 class="font-bold">Celestia</h4>
+                                        <p class="text-sm text-gray-500">Tận dụng lớp sẵn có dữ liệu module để có hiệu quả chi phí.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="flex-shrink-0 w-10 h-10 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center font-bold">SEC</div>
+                                    <div>
+                                        <h4 class="font-bold">EigenLayer</h4>
+                                        <p class="text-sm text-gray-500">Sử dụng restaking để cung cấp bảo mật có thể lập trình và linh hoạt.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="flex-shrink-0 w-10 h-10 bg-teal-100 text-teal-600 rounded-lg flex items-center justify-center font-bold">DEX</div>
+                                    <div>
+                                        <h4 class="font-bold">Osmosis</h4>
+                                        <p class="text-sm text-gray-500">Tích hợp sâu rộng (thông qua Namada) để tiếp cận thanh khoản và người dùng Cosmos.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="competition" class="mb-16">
+                <div class="card">
+                    <h2 class="text-3xl font-bold text-center mb-2">Bối Cảnh Cạnh Tranh trong Lĩnh Vực Ý Định</h2>
+                    <p class="text-center text-gray-600 mb-8">Anoma là dự án tham vọng nhất, nhưng không phải là dự án duy nhất. Đây là cách nó so sánh với các đối thủ khác.</p>
+                    <div class="chart-container h-96 md:h-[500px]">
+                        <canvas id="competitionChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="roadmap" class="mb-16">
+                 <div class="card">
+                    <h2 class="text-3xl font-bold text-center mb-12">Lộ Trình và Các Rủi Ro Chính</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-6 text-center">Lộ Trình Phát Triển</h3>
+                            <div class="relative pl-8">
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-gray-200 rounded"></div>
+                                <div class="mb-8 relative">
+                                    <div class="absolute -left-[38px] top-1 w-6 h-6 bg-yellow-400 rounded-full border-4 border-white"></div>
+                                    <h4 class="font-bold">Q1 2025: Devnet</h4>
+                                    <p class="text-sm text-gray-600">Ra mắt mạng devnet đầu tiên, mở nền tảng cho các nhà xây dựng tiên phong.</p>
+                                </div>
+                                <div class="mb-8 relative">
+                                    <div class="absolute -left-[38px] top-1 w-6 h-6 bg-orange-400 rounded-full border-4 border-white"></div>
+                                    <h4 class="font-bold">Hiện tại: Testnet</h4>
+                                    <p class="text-sm text-gray-600">Mạng testnet có giới hạn quyền truy cập và được game hóa để thu hút cộng đồng.</p>
+                                </div>
+                                <div class="mb-8 relative">
+                                    <div class="absolute -left-[38px] top-1 w-6 h-6 bg-red-400 rounded-full border-4 border-white"></div>
+                                    <h4 class="font-bold">Mainnet Giai đoạn 1</h4>
+                                    <p class="text-sm text-gray-600">Tập trung vào hệ sinh thái Ethereum, triển khai bộ điều hợp giao thức lên ETH và các L2.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="absolute -left-[38px] top-1 w-6 h-6 bg-gray-700 rounded-full border-4 border-white"></div>
+                                    <h4 class="font-bold">Tương lai: Mainnet 2+ & Đồng thuận Gốc</h4>
+                                    <p class="text-sm text-gray-600">Giới thiệu giải quyết riêng tư, Chuỗi Chimera, và token/cơ chế đồng thuận gốc của Anoma.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                             <h3 class="text-2xl font-bold mb-6 text-center">Phân Tích Rủi Ro</h3>
+                             <p class="text-gray-600 mb-4 text-center text-sm">Đánh giá các thách thức chính mà Anoma phải đối mặt trên thang điểm 10.</p>
+                             <div class="chart-container h-80 md:h-96">
+                                <canvas id="riskChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center py-8 border-t border-gray-200">
+            <p class="text-gray-500">Infographic được tạo dựa trên báo cáo nghiên cứu sâu về dự án Anoma.</p>
+            <p class="text-xs text-gray-400 mt-2">Đây là một sản phẩm trực quan hóa dữ liệu và không phải là lời khuyên đầu tư.</p>
+        </footer>
+    </div>
+
+    <script>
+        const wrapLabel = (label, maxWidth = 16) => {
+            if (typeof label !== 'string' || label.length <= maxWidth) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine.length > 0) {
+                lines.push(currentLine);
+            }
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+
+        const vibrantPalette = {
+            red: '#FF4E50',
+            orange: '#FC913A',
+            yellow: '#F9D423',
+            lightGreen: '#EDE574',
+            paleGreen: '#E1F5C4',
+            gray: '#6B7280'
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const fundingCtx = document.getElementById('fundingChart').getContext('2d');
+            new Chart(fundingCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Series C (Tháng 5, 2023)', 'Series B (Tháng 11, 2021)', 'Seed (Tháng 4, 2021)'],
+                    datasets: [{
+                        label: 'Số tiền huy động (USD)',
+                        data: [25000000, 26000000, 6750000],
+                        backgroundColor: [vibrantPalette.red, vibrantPalette.orange, vibrantPalette.yellow],
+                        borderColor: '#ffffff',
+                        borderWidth: 4,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: false,
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback,
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const competitionCtx = document.getElementById('competitionChart').getContext('2d');
+            new Chart(competitionCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Anoma', 'Essential', 'CowSwap', wrapLabel('Flashbots SUAVE')],
+                    datasets: [
+                        {
+                            label: 'Tính Tổng Quát của Ý Định',
+                            data: [10, 8, 3, 7],
+                            backgroundColor: vibrantPalette.orange,
+                            borderColor: vibrantPalette.orange,
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Phạm Vi Kiến Trúc',
+                            data: [10, 5, 2, 8],
+                            backgroundColor: vibrantPalette.red,
+                            borderColor: vibrantPalette.red,
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10,
+                            title: {
+                                display: true,
+                                text: 'Điểm (1=Hẹp, 10=Rộng)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+
+            const riskCtx = document.getElementById('riskChart').getContext('2d');
+            new Chart(riskCtx, {
+                type: 'bar',
+                data: {
+                    labels: [wrapLabel('Độ phức tạp kỹ thuật'), wrapLabel('Tập trung hóa mạng lưới Solver'), wrapLabel('Thách thức về việc áp dụng')],
+                    datasets: [{
+                        label: 'Mức độ rủi ro',
+                        data: [9, 8, 7],
+                        backgroundColor: [vibrantPalette.red, vibrantPalette.orange, vibrantPalette.yellow],
+                        borderColor: [vibrantPalette.red, vibrantPalette.orange, vibrantPalette.yellow],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 10,
+                             title: {
+                                display: true,
+                                text: 'Điểm (1=Thấp, 10=Cao)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+    <div style="text-align: center; padding: 3rem 0;">
+        <a href="index.html" style="display: inline-block; background-color: #3498db; color: white; padding: 0.8rem 1.8rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid transparent; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            Quay lại Trang Blog
+        </a>
+    </div>
+</body>
+</html>
