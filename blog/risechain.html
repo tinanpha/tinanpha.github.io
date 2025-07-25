@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic Phân Tích Dự Án Risechain</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #003459;
+            color: #FFFFFF;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 40vh;
+            width: 100%;
+            max-width: 600px;
+        }
+        .card {
+            background-color: rgba(0, 126, 167, 0.2);
+            border: 1px solid #007EA7;
+        }
+        .highlight-yellow {
+            color: #FFF275;
+        }
+        .bg-highlight-yellow {
+            background-color: #FFF275;
+        }
+        .text-navy {
+            color: #003459;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #00A8E8, #FFF275);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <header class="text-center my-12">
+            <h1 class="text-4xl md:text-6xl font-black gradient-text">RISE CHAIN</h1>
+            <p class="mt-4 text-xl md:text-2xl text-gray-300">Phân Tích Chuyên Sâu về Layer 2 "Gigagas" và Cuộc Đua Tới Tốc Độ Vô Hạn</p>
+        </header>
+
+        <main>
+            <section id="intro" class="my-16">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="card rounded-lg p-6">
+                        <p class="text-6xl font-bold highlight-yellow">>100,000</p>
+                        <p class="mt-2 text-lg">Giao dịch mỗi giây (TPS Mục tiêu)</p>
+                    </div>
+                    <div class="card rounded-lg p-6">
+                        <p class="text-6xl font-bold highlight-yellow">~5-10ms</p>
+                        <p class="mt-2 text-lg">Độ trễ Giao dịch</p>
+                    </div>
+                    <div class="card rounded-lg p-6">
+                        <p class="text-6xl font-bold highlight-yellow">>2 Tỷ</p>
+                        <p class="mt-2 text-lg">Giao dịch trên Testnet</p>
+                    </div>
+                </div>
+                <div class="mt-12 text-center max-w-3xl mx-auto">
+                     <h2 class="text-3xl font-bold mb-4">Vượt Qua Giới Hạn Tuần Tự</h2>
+                     <p class="text-lg text-gray-300">Các giải pháp Layer 2 hiện tại của Ethereum xử lý giao dịch một cách tuần tự, tạo ra một nút thắt cổ chai về hiệu suất. Risechain ra đời với một kiến trúc song song đột phá, được thiết kế để tái định nghĩa khả năng mở rộng của blockchain, mở đường cho kỷ nguyên "Gigagas" và các ứng dụng phi tập trung thời gian thực.</p>
+                </div>
+            </section>
+
+            <section id="performance" class="my-16">
+                <h2 class="text-3xl font-bold text-center mb-12">So Sánh Hiệu Suất: Cuộc Chơi Thay Đổi</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div class="card rounded-lg p-6">
+                        <h3 class="font-bold text-xl mb-4 text-center">So sánh Thông lượng (TPS Tối đa)</h3>
+                        <p class="text-sm text-gray-400 mb-4 text-center">Risechain đặt mục tiêu thông lượng vượt trội so với cả các L2 hiện tại và các L1 hiệu suất cao. Biểu đồ này so sánh TPS tối đa theo lý thuyết hoặc mục tiêu của các nền tảng.</p>
+                        <div class="chart-container">
+                            <canvas id="tpsChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card rounded-lg p-6">
+                        <h3 class="font-bold text-xl mb-4 text-center">Sức mạnh Tính toán: Gas mỗi giây</h3>
+                        <p class="text-sm text-gray-400 mb-4 text-center">Thay vì chỉ đo TPS, Risechain tập trung vào "Gigagas" - một thước đo chính xác hơn về khả năng xử lý các hợp đồng thông minh phức tạp. Mục tiêu 1 Ggas/s là một bước nhảy vọt so với các chuỗi hiện có.</p>
+                        <div class="chart-container">
+                            <canvas id="gasChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="tech-stack" class="my-16">
+                <h2 class="text-3xl font-bold text-center mb-12">Kiến Trúc Cốt Lõi Cho Tốc Độ</h2>
+                <p class="text-lg text-gray-300 text-center max-w-3xl mx-auto mb-12">Sức mạnh của Risechain đến từ việc tích hợp các công nghệ tiên tiến vào một ngăn xếp duy nhất, được xây dựng bằng Rust để đạt hiệu suất tối đa.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card rounded-lg p-6 text-center">
+                        <div class="text-5xl mb-4">⚡</div>
+                        <h3 class="text-xl font-bold mb-2 highlight-yellow">pevm</h3>
+                        <p class="text-gray-300">Máy ảo Ethereum Song song (Parallel EVM) thực thi đồng thời nhiều giao dịch, phá vỡ mô hình đơn luồng truyền thống.</p>
+                    </div>
+                    <div class="card rounded-lg p-6 text-center">
+                        <div class="text-5xl mb-4">🧩</div>
+                        <h3 class="text-xl font-bold mb-2 highlight-yellow">Shreds</h3>
+                        <p class="text-gray-300">Phân chia các khối thành các "mảnh" nhỏ, cho phép xác nhận trước giao dịch trong mili giây, giảm đáng kể độ trễ.</p>
+                    </div>
+                    <div class="card rounded-lg p-6 text-center">
+                        <div class="text-5xl mb-4">🔗</div>
+                        <h3 class="text-xl font-bold mb-2 highlight-yellow">Based Sequencing</h3>
+                        <p class="text-gray-300">Kế hoạch tận dụng bộ xác thực của Ethereum L1 để sắp xếp giao dịch, kế thừa trực tiếp tính bảo mật và phân quyền.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="funding" class="my-16">
+                 <h2 class="text-3xl font-bold text-center mb-12">Hậu Thuẫn Tài Chính và Uy Tín</h2>
+                 <p class="text-lg text-gray-300 text-center max-w-3xl mx-auto mb-12">Dự án đã thu hút sự chú ý từ các nhà đầu tư hàng đầu trong ngành, cung cấp nguồn lực cần thiết để hiện thực hóa tầm nhìn tham vọng.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="card rounded-lg p-6">
+                        <h3 class="font-bold text-xl mb-4 text-center">Tổng vốn huy động đã xác nhận</h3>
+                        <p class="text-7xl font-black text-center gradient-text">$8M</p>
+                        <p class="text-sm text-gray-400 mt-4 text-center">Dựa trên các thông cáo báo chí chính thức. Con số 120 triệu USD được lan truyền nhưng chưa được xác thực và cần được xem xét một cách thận trọng.</p>
+                        <div class="chart-container h-[30vh]">
+                            <canvas id="fundingChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card rounded-lg p-6">
+                        <h3 class="font-bold text-xl mb-4 text-center">Các nhà đầu tư và người ủng hộ đáng chú ý</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center bg-[#003459] p-4 rounded-md">
+                                <span class="text-2xl mr-4">💰</span>
+                                <div>
+                                    <p class="font-bold text-white">Galaxy Ventures</p>
+                                    <p class="text-sm text-gray-400">Quỹ đầu tư thể chế hàng đầu, dẫn dắt vòng chiến lược.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-center bg-[#003459] p-4 rounded-md">
+                                <span class="text-2xl mr-4">💡</span>
+                                <div>
+                                    <p class="font-bold text-white">Vitalik Buterin</p>
+                                    <p class="text-sm text-gray-400">Người sáng lập Ethereum, được ghi nhận là nhà đầu tư thiên thần.</p>
+                                </div>
+                            </li>
+                             <li class="flex items-center bg-[#003459] p-4 rounded-md">
+                                <span class="text-2xl mr-4">🤝</span>
+                                <div>
+                                    <p class="font-bold text-white">Stani Kulechov & Sandeep Nailwal</p>
+                                    <p class="text-sm text-gray-400">Những người sáng lập Aave và Polygon.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="risk" class="my-16">
+                <div class="bg-highlight-yellow text-navy rounded-lg p-8 text-center">
+                    <div class="text-6xl font-black">⚠️</div>
+                    <h2 class="text-3xl md:text-4xl font-black my-4">CẢNH BÁO: RỦI RO BẢO MẬT CỰC KỲ CAO</h2>
+                    <p class="text-lg max-w-3xl mx-auto mb-6">Phát hiện quan trọng nhất của cuộc nghiên cứu là sự thiếu vắng hoàn toàn các báo cáo kiểm toán bảo mật (security audit) được công bố công khai từ các công ty uy tín.</p>
+                    <div class="inline-block bg-[#003459] text-white rounded-lg p-6 shadow-lg">
+                        <p class="text-8xl font-black highlight-yellow">0</p>
+                        <p class="mt-2 text-xl">Báo cáo kiểm toán công khai</p>
+                    </div>
+                    <p class="text-md mt-6 max-w-3xl mx-auto">Đối với một dự án có kiến trúc phức tạp và mới lạ như Risechain, việc thiếu kiểm toán là một điểm yếu chí mạng. Bất kỳ việc triển khai vốn hoặc ứng dụng nào trên mainnet trước khi có nhiều cuộc kiểm toán kỹ lưỡng sẽ là một hành động cực kỳ rủi ro.</p>
+                </div>
+            </section>
+
+            <section id="roadmap" class="my-16">
+                 <h2 class="text-3xl font-bold text-center mb-12">Lộ Trình Phát Triển</h2>
+                 <p class="text-lg text-gray-300 text-center max-w-3xl mx-auto mb-12">Dự án có một lộ trình rõ ràng hướng tới việc ra mắt mainnet và các tính năng trong tương lai, tuy nhiên các mốc thời gian có thể thay đổi.</p>
+                <div class="relative">
+                    <div class="border-l-4 border-dashed border-[#00A8E8] absolute h-full top-0 left-1/2 -ml-0.5"></div>
+                    <div class="space-y-12">
+                        <div class="relative">
+                            <div class="absolute w-8 h-8 bg-[#00A8E8] rounded-full top-0 left-1/2 -ml-4 flex items-center justify-center font-bold">1</div>
+                            <div class="md:ml-[55%] card p-4 rounded-lg">
+                                <h3 class="font-bold text-lg highlight-yellow">Testnet Công Khai</h3>
+                                <p class="text-gray-300">Đang hoạt động, cho phép nhà phát triển và người dùng thử nghiệm mạng lưới.</p>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute w-8 h-8 bg-[#00A8E8] rounded-full top-0 left-1/2 -ml-4 flex items-center justify-center font-bold">2</div>
+                            <div class="md:mr-[55%] text-right card p-4 rounded-lg">
+                                <h3 class="font-bold text-lg highlight-yellow">Ra mắt Mainnet (Dự kiến)</h3>
+                                <p class="text-gray-300">Quý 3, 2025</p>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute w-8 h-8 bg-[#00A8E8] rounded-full top-0 left-1/2 -ml-4 flex items-center justify-center font-bold">3</div>
+                            <div class="md:ml-[55%] card p-4 rounded-lg">
+                                <h3 class="font-bold text-lg highlight-yellow">AI Coprocessor</h3>
+                                <p class="text-gray-300">Giới thiệu mô-đun suy luận học máy trên chuỗi sau khi ra mắt mainnet.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="conclusion" class="my-16">
+                <h2 class="text-3xl font-bold text-center mb-12">Đánh giá cuối cùng: Phân tích SWOT</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card rounded-lg p-6">
+                        <h3 class="font-bold text-xl mb-4 text-green-400">Điểm mạnh (Strengths)</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li>Công nghệ song song đột phá (`pevm`).</li>
+                            <li>Hiệu suất testnet ấn tượng.</li>
+                            <li>Hậu thuẫn mạnh từ các tên tuổi lớn (Vitalik, Galaxy).</li>
+                            <li>Thị trường mục tiêu rõ ràng (DeFi, Game, AI).</li>
+                        </ul>
+                    </div>
+                    <div class="card rounded-lg p-6">
+                        <h3 class="font-bold text-xl mb-4 text-red-400">Điểm yếu (Weaknesses)</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li class="font-bold highlight-yellow">Không có kiểm toán bảo mật công khai.</li>
+                            <li>Thông tin không nhất quán về gọi vốn và đội ngũ.</li>
+                            <li>Hệ sinh thái non trẻ, phụ thuộc vào airdrop.</li>
+                        </ul>
+                    </div>
+                    <div class="card rounded-lg p-6">
+                        <h3 class="font-bold text-xl mb-4 text-blue-400">Cơ hội (Opportunities)</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li>Trở thành L2 hiệu suất cao hàng đầu cho Ethereum.</li>
+                            <li>Cho phép các loại dApp mới không khả thi trước đây.</li>
+                            <li>Chiếm thị phần từ các L2 hiện tại và L1 thay thế.</li>
+                        </ul>
+                    </div>
+                    <div class="card rounded-lg p-6">
+                        <h3 class="font-bold text-xl mb-4 text-orange-400">Thách thức (Threats)</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-300">
+                            <li>Một cuộc tấn công bảo mật có thể gây sụp đổ toàn bộ.</li>
+                            <li>Cạnh tranh gay gắt trong không gian L2.</li>
+                            <li>Rủi ro không thực hiện được lời hứa về hiệu suất.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-16 py-8 border-t border-gray-700">
+            <p class="text-gray-400">Đây là một infographic phân tích dựa trên các nguồn thông tin công khai. Thông tin có thể thay đổi. Luôn tự mình nghiên cứu (DYOR) trước khi đưa ra quyết định đầu tư.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#FFFFFF'
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: '#FFFFFF' },
+                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                },
+                x: {
+                    ticks: { color: '#FFFFFF' },
+                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                }
+            }
+        };
+
+        const tpsCtx = document.getElementById('tpsChart').getContext('2d');
+        new Chart(tpsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Optimism', 'Arbitrum One', 'Solana', 'RISE Chain (Mục tiêu)'],
+                datasets: [{
+                    label: 'TPS Tối đa',
+                    data: [714, 40000, 65000, 100000],
+                    backgroundColor: ['#007EA7', '#007EA7', '#007EA7', '#00A8E8'],
+                    borderColor: '#003459',
+                    borderWidth: 1
+                }]
+            },
+            options: commonChartOptions
+        });
+
+        const gasCtx = document.getElementById('gasChart').getContext('2d');
+        new Chart(gasCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Ethereum', 'Base', 'RISE Chain (Mục tiêu)'],
+                datasets: [{
+                    label: 'Gas/giây (triệu)',
+                    data: [1.25, 60, 1000],
+                    backgroundColor: ['#007EA7', '#007EA7', '#00A8E8'],
+                    borderColor: '#003459',
+                    borderWidth: 1
+                }]
+            },
+            options: { ...commonChartOptions, scales: { ...commonChartOptions.scales, y: { ...commonChartOptions.scales.y, type: 'logarithmic' }}}
+        });
+
+        const fundingCtx = document.getElementById('fundingChart').getContext('2d');
+        new Chart(fundingCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Vòng Hạt giống ($3.2M)', 'Vòng Chiến lược ($4M)'],
+                datasets: [{
+                    data: [3.2, 4.0],
+                    backgroundColor: ['#00A8E8', '#FFF275'],
+                    borderColor: '#003459',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: '#FFFFFF'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    <div style="text-align: center; padding: 3rem 0;">
+        <a href="index.html" style="display: inline-block; background-color: #3498db; color: white; padding: 0.8rem 1.8rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid transparent; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            Quay lại Trang Blog
+        </a>
+    </div>
+</body>
+</html>
