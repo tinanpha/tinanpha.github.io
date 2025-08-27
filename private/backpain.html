@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lộ Trình Chữa Đau Lưng Toàn Diện Theo Phương Pháp McGill</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flowchart-step {
+            position: relative;
+            padding: 1rem;
+            border: 2px solid #94d2bd;
+            border-radius: 0.5rem;
+            background-color: #ffffff;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .flowchart-arrow {
+            position: relative;
+            height: 3rem;
+            width: 2px;
+            background-color: #0a9396;
+            margin: 0.5rem auto;
+        }
+        .flowchart-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 12px solid #0a9396;
+        }
+        .stat-card {
+            background-color: #005f73;
+            color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #ee9b00;
+        }
+        .header-gradient {
+            background: linear-gradient(90deg, #005f73, #0a9396);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <header class="header-gradient text-white p-6 md:p-10 text-center">
+        <h1 class="text-3xl md:text-5xl font-bold mb-2">Chấm Dứt Đau Lưng Không Dùng Thuốc</h1>
+        <p class="text-lg md:text-xl text-gray-200">Khám phá lộ trình phục hồi toàn diện theo phương pháp của Dr. Stuart McGill</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="introduction" class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="stat-card">
+                    <p class="text-xl font-semibold mb-2">Theo Dr. McGill</p>
+                    <div class="stat-number">95%</div>
+                    <p class="text-xl font-semibold mt-2">Bệnh nhân đau lưng không cần phẫu thuật</p>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-[#005f73] mb-4">Thay Đổi Tư Duy, Làm Chủ Cơn Đau</h2>
+                    <p class="mb-4">Hành trình chữa lành bắt đầu bằng việc bạn trở thành chuyên gia về chính cơ thể mình. Thay vì chấp nhận các chẩn đoán mơ hồ, phương pháp McGill trao cho bạn công cụ để hiểu rõ nguyên nhân gốc rễ và loại bỏ chúng khỏi cuộc sống hàng ngày.</p>
+                    <p>Lộ trình này không phải là một giải pháp tạm thời, mà là một sự thay đổi lối sống để xây dựng một cột sống vững chãi và kiên cường.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="myths" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#005f73] mb-8">Phá Vỡ 4 Lầm Tưởng Phổ Biến Về Đau Lưng</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-[#ae2012]">
+                    <h3 class="font-bold text-lg mb-2"><span class="text-2xl mr-2">❌</span>Lầm tưởng: "Chụp MRI là đủ chẩn đoán."</h3>
+                    <p><strong>Sự thật:</strong> Hình ảnh MRI không tương quan chặt chẽ với mức độ đau. Nhiều người không đau nhưng vẫn có "phình đĩa đệm" trên phim. Chẩn đoán phải dựa trên việc xác định các chuyển động gây đau.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-[#ae2012]">
+                    <h3 class="font-bold text-lg mb-2"><span class="text-2xl mr-2">❌</span>Lầm tưởng: "Yoga và Pilates luôn tốt cho lưng."</h3>
+                    <p><strong>Sự thật:</strong> Nhiều động tác gập người và xoắn vặn trong các bộ môn này có thể chính là cơ chế gây tổn thương, làm trầm trọng thêm tình trạng phình đĩa đệm.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-[#ae2012]">
+                    <h3 class="font-bold text-lg mb-2"><span class="text-2xl mr-2">❌</span>Lầm tưởng: "Kéo giãn là giải pháp."</h3>
+                    <p><strong>Sự thật:</strong> Cảm giác dễ chịu khi kéo giãn chỉ là tạm thời. Về mặt cơ học, các động tác như kéo gối vào ngực đang bẻ cong cột sống và làm tăng áp lực lên đĩa đệm.</p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-[#ae2012]">
+                    <h3 class="font-bold text-lg mb-2"><span class="text-2xl mr-2">❌</span>Lầm tưởng: "Nghỉ ngơi tại giường là tốt nhất."</h3>
+                    <p><strong>Sự thật:</strong> Nghỉ ngơi quá nhiều làm suy yếu cơ bắp. Đi bộ đúng kỹ thuật và duy trì vận động không đau mới là chìa khóa để phục hồi và nuôi dưỡng đĩa đệm.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="causes" class="mb-12 bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h2 class="text-3xl font-bold text-center text-[#005f73] mb-2">Hiểu Rõ "Kẻ Thù": 3 Cơ Chế Gây Đau Lưng Hàng Đầu</h2>
+            <p class="text-center text-gray-600 mb-8">Cơn đau của bạn không phải ngẫu nhiên. Nó là kết quả của các lực tác động lặp đi lặp lại lên cột sống.</p>
+            <div class="chart-container">
+                <canvas id="painCausesChart"></canvas>
+            </div>
+             <p class="text-center text-sm text-gray-500 mt-4">Biểu đồ so sánh mức độ phổ biến và nguy hiểm của các cơ chế gây tổn thương cột sống. Lực xoắn vặn, đặc biệt khi kết hợp với uốn cong, là nguy hiểm nhất.</p>
+        </section>
+
+        <section id="process" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#005f73] mb-8">Lộ Trình Phục Hồi 3 Giai Đoạn</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center md:items-start text-center">
+                <div class="w-full md:w-1/3 p-2">
+                    <div class="flowchart-step">
+                        <div class="text-3xl font-bold text-[#0a9396]">1</div>
+                        <h3 class="font-bold text-lg mt-2">Nền Tảng Phục Hồi</h3>
+                        <p class="text-sm">Loại bỏ các chuyển động gây đau ("vệ sinh cột sống") và xây dựng sức bền cơ lõi với "Bộ Ba Lớn".</p>
+                    </div>
+                </div>
+                <div class="w-full md:w-auto flex md:flex-col items-center justify-center">
+                   <div class="flowchart-arrow hidden md:block"></div>
+                   <div class="w-16 h-1 md:hidden bg-[#0a9396]"></div>
+                </div>
+                <div class="w-full md:w-1/3 p-2">
+                    <div class="flowchart-step">
+                        <div class="text-3xl font-bold text-[#ee9b00]">2</div>
+                        <h3 class="font-bold text-lg mt-2">Tái Lập Chức Năng</h3>
+                        <p class="text-sm">Tích hợp chương trình đi bộ trị liệu và các bài tập phục hồi chức năng khớp háng để cải thiện mô hình vận động.</p>
+                    </div>
+                </div>
+                 <div class="w-full md:w-auto flex md:flex-col items-center justify-center">
+                   <div class="flowchart-arrow hidden md:block"></div>
+                    <div class="w-16 h-1 md:hidden bg-[#0a9396]"></div>
+                </div>
+                <div class="w-full md:w-1/3 p-2">
+                    <div class="flowchart-step">
+                        <div class="text-3xl font-bold text-[#bb3e03]">3</div>
+                        <h3 class="font-bold text-lg mt-2">Tăng Cường & Quay Lại</h3>
+                        <p class="text-sm">Tiến bộ một cách an toàn, bổ sung các bài tập đối kháng lực và quay trở lại các hoạt động yêu thích mà không sợ đau.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="big-three" class="mb-12 bg-white rounded-lg shadow-lg p-6 md:p-8">
+            <h2 class="text-3xl font-bold text-center text-[#005f73] mb-2">Xây Dựng "Áo Giáp" Cơ Bắp: Bộ Ba Lớn (The Big Three)</h2>
+            <p class="text-center text-gray-600 mb-8">Ba bài tập này được thiết kế để tăng cường sức bền và sự ổn định cho cơ lõi mà không gây hại cho cột sống.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="border p-4 rounded-lg">
+                    <h3 class="font-bold text-xl text-center text-[#0a9396] mb-2">1. Gập Bụng Cải Biên</h3>
+                    <p class="text-sm mb-4"><strong>Mục đích:</strong> Rèn luyện cơ bụng mà không uốn cong cột sống thắt lưng.</p>
+                    <ul class="list-disc list-inside text-sm space-y-2">
+                        <li>Nằm ngửa, một chân co, một chân duỗi.</li>
+                        <li>Đặt hai bàn tay dưới hõm lưng để giữ đường cong tự nhiên.</li>
+                        <li>Chỉ nhấc đầu và vai lên khỏi sàn vài centimet.</li>
+                        <li>Giữ 8-10 giây, lặp lại theo mô hình tháp giảm dần.</li>
+                    </ul>
+                </div>
+                <div class="border p-4 rounded-lg">
+                    <h3 class="font-bold text-xl text-center text-[#0a9396] mb-2">2. Plank Nghiêng</h3>
+                    <p class="text-sm mb-4"><strong>Mục đích:</strong> Rèn luyện các cơ bên hông, tối quan trọng để ổn định xương chậu khi đi bộ.</p>
+                    <ul class="list-disc list-inside text-sm space-y-2">
+                        <li>Nằm nghiêng, chống người trên khuỷu tay và cạnh bàn chân (hoặc gối).</li>
+                        <li>Nâng hông lên để cơ thể tạo thành một đường thẳng.</li>
+                        <li>Giữ cho thân người cứng như một khối.</li>
+                        <li>Giữ 8-10 giây, lặp lại cho cả hai bên.</li>
+                    </ul>
+                </div>
+                <div class="border p-4 rounded-lg">
+                    <h3 class="font-bold text-xl text-center text-[#0a9396] mb-2">3. Chim-Chó (Bird-Dog)</h3>
+                    <p class="text-sm mb-4"><strong>Mục đích:</strong> Rèn luyện cơ duỗi lưng và cơ mông, cải thiện khả năng phối hợp.</p>
+                    <ul class="list-disc list-inside text-sm space-y-2">
+                        <li>Bắt đầu ở tư thế quỳ bốn chân.</li>
+                        <li>Gồng cứng cơ lõi để giữ lưng thẳng.</li>
+                        <li>Duỗi thẳng đồng thời tay đối diện và chân đối diện.</li>
+                        <li>Giữ 8-10 giây, hạ xuống từ từ và đổi bên.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8">
+                 <h3 class="text-xl font-bold text-center text-[#005f73] mb-4">Nguyên Tắc Tập Luyện: Tháp Giảm Dần</h3>
+                 <div class="chart-container" style="height: 250px; max-height: 300px;">
+                    <canvas id="pyramidChart"></canvas>
+                </div>
+                <p class="text-center text-sm text-gray-500 mt-4">Thay vì giữ lâu, hãy thực hiện nhiều lần giữ ngắn (8-10 giây) theo mô hình tháp giảm dần (ví dụ: 5-3-1 hoặc 6-4-2 lần lặp) để xây dựng sức bền tối ưu mà không gây mỏi cơ.</p>
+            </div>
+        </section>
+
+        <section id="spine-hygiene" class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-[#005f73] mb-8">"Vệ Sinh Cột Sống": Nghệ Thuật Vận Động Không Đau</h2>
+             <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">Thành công nằm ở 23 giờ còn lại trong ngày. Hãy biến những chuyển động này thành thói quen để tạo môi trường cho lưng tự chữa lành.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                    <div class="text-4xl mb-3">🪑</div>
+                    <h3 class="font-bold text-lg mb-2">Ngồi Đúng</h3>
+                    <p class="text-sm">Sử dụng đệm thắt lưng để duy trì đường cong tự nhiên. Đứng dậy sau mỗi 20-30 phút.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                    <div class="text-4xl mb-3">🧍</div>
+                    <h3 class="font-bold text-lg mb-2">Đứng Thẳng</h3>
+                    <p class="text-sm">Giữ tai, vai, hông và mắt cá chân trên một đường thẳng để các cơ lưng được thư giãn.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                    <div class="text-4xl mb-3">🏌️</div>
+                    <h3 class="font-bold text-lg mb-2">Gập Hông (Hip Hinge)</h3>
+                    <p class="text-sm">Thay vì uốn cong cột sống, hãy gập người bằng cách đẩy hông ra sau, giữ lưng thẳng tuyệt đối.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6 text-center">
+                    <div class="text-4xl mb-3">🏋️</div>
+                    <h3 class="font-bold text-lg mb-2">Nâng Vật An Toàn</h3>
+                    <p class="text-sm">Áp dụng kỹ thuật gập hông, giữ vật nặng gần cơ thể và gồng cứng cơ bụng.</p>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="bg-[#005f73] text-white text-center p-6">
+        <p>Đây là tài liệu tóm tắt dựa trên phương pháp của Dr. Stuart McGill. Luôn tham khảo ý kiến chuyên gia y tế trước khi bắt đầu bất kỳ chương trình tập luyện nào.</p>
+    </footer>
+
+    <script>
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const tooltipTitleCallback = function(tooltipItems) {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const painCausesCtx = document.getElementById('painCausesChart').getContext('2d');
+        const painCausesChart = new Chart(painCausesCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    wrapLabel('Uốn cong lặp đi lặp lại (Repeated Flexion)', 16), 
+                    wrapLabel('Tải trọng nén ép (Compression)', 16), 
+                    wrapLabel('Lực xoắn vặn (Twisting/Shear)', 16)
+                ],
+                datasets: [{
+                    label: 'Mức độ nguy hiểm/phổ biến',
+                    data: [75, 60, 95],
+                    backgroundColor: ['#94d2bd', '#e9d8a6', '#ae2012'],
+                    borderColor: ['#0a9396', '#ca6702', '#9b2226'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: { color: '#e0e0e0' }
+                    },
+                    y: {
+                        grid: { display: false }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const pyramidCtx = document.getElementById('pyramidChart').getContext('2d');
+        const pyramidChart = new Chart(pyramidCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Hiệp 1', 'Hiệp 2', 'Hiệp 3'],
+                datasets: [{
+                    label: 'Số lần lặp lại',
+                    data: [6, 4, 2],
+                    backgroundColor: ['#0a9396', '#94d2bd', '#e9d8a6'],
+                    borderRadius: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
