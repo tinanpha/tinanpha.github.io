@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: Nền Tảng Oracle của Chainlink</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #F2F2F2;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #366E8A;
+            line-height: 1;
+        }
+        .flow-card {
+            border-left: 4px solid #7CB5D3;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-[#003F5C] uppercase tracking-wider">Nền Tảng Oracle Chainlink</h1>
+            <p class="text-lg md:text-xl text-[#366E8A] mt-4 max-w-3xl mx-auto">Cầu nối vững chắc giữa Blockchain và dữ liệu từ thế giới thực, mở khóa tiềm năng vô hạn của hợp đồng thông minh.</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section id="problem" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center md:text-left">
+                        <h2 class="text-3xl font-bold text-[#003F5C] mb-4">Vấn Đề Cốt Lõi: "Oracle Problem"</h2>
+                        <p class="text-base text-gray-600 mb-4">
+                            Hãy tưởng tượng Blockchain là một thiên tài bị cô lập trong một căn phòng kín. Nó cực kỳ an toàn và minh bạch, nhưng lại hoàn toàn "mù tịt" về thế giới bên ngoài. Nó không thể tự lấy dữ liệu về giá cả, thời tiết, hay kết quả sự kiện để thực thi các hợp đồng thông minh một cách hữu ích.
+                        </p>
+                        <p class="text-base text-gray-600">
+                            Đây chính là "Vấn đề Oracle" - một rào cản lớn ngăn cản Blockchain tương tác với cuộc sống thực.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-center space-x-4">
+                        <div class="text-center p-6 bg-[#C1E7FF] rounded-lg shadow-inner">
+                            <span class="text-6xl">⛓️</span>
+                            <p class="font-bold text-[#003F5C] mt-2">BLOCKCHAIN</p>
+                            <p class="text-sm text-[#366E8A]">An toàn & Bị cô lập</p>
+                        </div>
+                        <div class="text-5xl font-thin text-gray-400">...❓...</div>
+                        <div class="text-center p-6 bg-[#C1E7FF] rounded-lg shadow-inner">
+                            <span class="text-6xl">🌍</span>
+                            <p class="font-bold text-[#003F5C] mt-2">THẾ GIỚI THỰC</p>
+                            <p class="text-sm text-[#366E8A]">Dữ liệu động</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="solution-flow" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#003F5C] text-center mb-8">Chainlink: Giải Pháp Phi Tập Trung</h2>
+                <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">
+                    Chainlink không dựa vào một nguồn tin duy nhất. Thay vào đó, nó tạo ra một mạng lưới các "node" (nút) độc lập để thu thập và xác thực dữ liệu, đảm bảo tính chính xác, an toàn và sẵn sàng.
+                </p>
+                <div class="flex flex-col md:flex-row md:space-x-4 items-stretch justify-center">
+                    <div class="flex-1 flex flex-col items-center text-center">
+                        <div class="w-full p-4 bg-gray-50 rounded-lg shadow-sm flow-card mb-4">
+                            <p class="font-bold text-lg text-[#003F5C]">1. Yêu Cầu Dữ Liệu</p>
+                            <p class="text-sm text-gray-600">Hợp đồng thông minh gửi yêu cầu dữ liệu (ví dụ: giá ETH/USD).</p>
+                        </div>
+                        <div class="flow-arrow transform md:rotate-90">↓</div>
+                    </div>
+                    <div class="flex-1 flex flex-col items-center text-center">
+                        <div class="w-full p-4 bg-gray-50 rounded-lg shadow-sm flow-card mb-4">
+                            <p class="font-bold text-lg text-[#003F5C]">2. Thu Thập Thông Tin</p>
+                            <p class="text-sm text-gray-600">Các node Chainlink lấy dữ liệu từ nhiều nguồn API uy tín.</p>
+                        </div>
+                        <div class="flow-arrow transform md:rotate-90">↓</div>
+                    </div>
+                    <div class="flex-1 flex flex-col items-center text-center">
+                        <div class="w-full p-4 bg-gray-50 rounded-lg shadow-sm flow-card mb-4">
+                            <p class="font-bold text-lg text-[#003F5C]">3. Tổng Hợp & Xác Thực</p>
+                            <p class="text-sm text-gray-600">Các node so sánh, loại bỏ sai lệch và đồng thuận một câu trả lời duy nhất.</p>
+                        </div>
+                        <div class="flow-arrow transform md:rotate-90">↓</div>
+                    </div>
+                    <div class="flex-1 flex flex-col items-center text-center">
+                         <div class="w-full p-4 bg-gray-50 rounded-lg shadow-sm flow-card">
+                            <p class="font-bold text-lg text-[#003F5C]">4. Gửi Lại Kết Quả</p>
+                            <p class="text-sm text-gray-600">Kết quả cuối cùng được gửi lại hợp đồng thông minh một cách an toàn.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="services">
+                <h2 class="text-3xl font-bold text-[#003F5C] text-center mb-8">Hệ Sinh Thái Dịch Vụ Của Chainlink</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                        <h3 class="text-xl font-bold text-[#003F5C] mb-2">📊 Data Feeds</h3>
+                        <p class="text-gray-600 text-sm flex-grow">Cung cấp nguồn dữ liệu giá cả tài chính an toàn và cập nhật liên tục, là xương sống của hàng trăm ứng dụng DeFi.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                        <h3 class="text-xl font-bold text-[#003F5C] mb-2">🎲 Verifiable Random Function (VRF)</h3>
+                        <p class="text-gray-600 text-sm flex-grow">Tạo ra sự ngẫu nhiên công bằng và có thể kiểm chứng, cực kỳ quan trọng cho GameFi, NFT và các ứng dụng cần yếu tố may rủi.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                        <h3 class="text-xl font-bold text-[#003F5C] mb-2">🤖 Keepers</h3>
+                        <p class="text-gray-600 text-sm flex-grow">Tự động hóa việc thực thi hợp đồng thông minh dựa trên các điều kiện được xác định trước, giúp các ứng dụng hoạt động hiệu quả.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                        <h3 class="text-xl font-bold text-[#003F5C] mb-2">🛡️ Proof of Reserve (PoR)</h3>
+                        <p class="text-gray-600 text-sm flex-grow">Xác minh tài sản dự trữ trong thế giới thực một cách minh bạch, tăng cường niềm tin cho các tài sản được mã hóa như stablecoin.</p>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                        <h3 class="text-xl font-bold text-[#003F5C] mb-2">🌐 CCIP</h3>
+                        <p class="text-gray-600 text-sm flex-grow">Giao thức tương tác xuyên chuỗi, cho phép các blockchain khác nhau "giao tiếp" và chuyển tài sản, mở ra một internet của các blockchain.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center justify-center text-center">
+                         <p class="text-5xl font-black text-[#7CB5D3]">5+</p>
+                         <p class="text-lg font-bold text-[#003F5C] mt-2">Dịch Vụ Cốt Lõi</p>
+                         <p class="text-sm text-gray-600">Và đang không ngừng mở rộng.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="charts" class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-[#003F5C] mb-4 text-center">Tầm Quan Trọng Tương Đối Của Các Dịch Vụ</h3>
+                        <p class="text-center text-gray-600 mb-6 text-sm max-w-md mx-auto">
+                           Biểu đồ này minh họa tầm quan trọng và mức độ ứng dụng của các dịch vụ cốt lõi trong hệ sinh thái Chainlink. Data Feeds hiện là nền tảng cho phần lớn các hoạt động, trong khi các dịch vụ mới hơn như CCIP đang phát triển nhanh chóng.
+                        </p>
+                        <div class="chart-container">
+                            <canvas id="servicesBarChart"></canvas>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-[#003F5C] mb-4 text-center">Phân Bổ Nền Tảng Chainlink</h3>
+                         <p class="text-center text-gray-600 mb-6 text-sm max-w-md mx-auto">
+                           Nền tảng Chainlink có thể được chia thành hai mảng chính: cung cấp dữ liệu an toàn và cung cấp các dịch vụ tính toán off-chain. Cả hai mảng này cùng nhau tạo nên một bộ công cụ toàn diện cho các nhà phát triển Web3.
+                        </p>
+                        <div class="chart-container">
+                            <canvas id="platformDonutChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 pt-8 border-t border-gray-300">
+            <p class="text-sm text-gray-500">Chainlink không chỉ là một dự án, mà là một cơ sở hạ tầng thiết yếu cho tương lai của Web3.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        function wrapLabel(label, maxWidth) {
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).length > maxWidth && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + word : word;
+                }
+            });
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const chartColors = {
+            primary: '#003F5C',
+            secondary: '#366E8A',
+            accent: '#7CB5D3',
+            light: '#C1E7FF',
+            background: '#F2F2F2'
+        };
+
+        const servicesBarCtx = document.getElementById('servicesBarChart').getContext('2d');
+        const servicesBarChart = new Chart(servicesBarCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Data Feeds', 'VRF', 'Keepers', 'Proof of Reserve', 'CCIP'].map(label => wrapLabel(label, 16)),
+                datasets: [{
+                    label: 'Tầm Quan Trọng',
+                    data: [95, 75, 60, 50, 85],
+                    backgroundColor: [
+                        chartColors.primary,
+                        chartColors.secondary,
+                        chartColors.accent,
+                        chartColors.light,
+                        chartColors.secondary,
+                    ],
+                    borderColor: 'rgba(255, 255, 255, 0)',
+                    borderWidth: 1,
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: {
+                            display: false,
+                            drawBorder: false,
+                        },
+                        ticks: {
+                            display: false
+                        }
+                    },
+                    y: {
+                         grid: {
+                            display: false,
+                            drawBorder: false,
+                        },
+                        ticks: {
+                            color: chartColors.primary,
+                            font: {
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const platformDonutCtx = document.getElementById('platformDonutChart').getContext('2d');
+        const platformDonutChart = new Chart(platformDonutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Cung Cấp Dữ Liệu An Toàn', 'Dịch Vụ Tính Toán Off-chain'],
+                datasets: [{
+                    label: 'Phân Bổ Nền Tảng',
+                    data: [65, 35],
+                    backgroundColor: [
+                        chartColors.primary,
+                        chartColors.accent,
+                    ],
+                    borderColor: chartColors.background,
+                    borderWidth: 4,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '60%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: chartColors.secondary,
+                            font: {
+                                size: 14
+                            },
+                            padding: 20
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    <div style="text-align: center; padding: 3rem 0;">
+        <a href="index.html" style="display: inline-block; background-color: #3498db; color: white; padding: 0.8rem 1.8rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid transparent; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            Quay lại Trang Blog
+        </a>
+    </div>
+</body>
+</html>
