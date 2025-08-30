@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mitosis: Giao thức Thanh khoản Tương tác</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#CAF0F8]">
+
+    <header class="bg-[#004AAD] text-white text-center p-8">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-2">Mitosis</h1>
+        <p class="text-xl md:text-2xl font-light text-[#90E0EF]">Giao thức Thanh khoản Tương tác cho các Blockchain Mô-đun</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="problem" class="mb-12">
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 text-center">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-4">Thách thức: Một Thế giới Mô-đun Phân mảnh</h2>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-8">Sự tăng trưởng bùng nổ của các blockchain mô-đun, Layer-2 và rollup đã tạo ra một hệ sinh thái mạnh mẽ nhưng bị chia cắt. Mỗi chuỗi mới, dù đổi mới, lại trở thành một hòn đảo tài sản và người dùng bị cô lập. "Sự phân mảnh thanh khoản" này cản trở hiệu quả vốn và tạo ra trải nghiệm người dùng rời rạc, ngăn cản tương lai mô-đun đạt được tiềm năng tối đa của nó.</p>
+                <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8">
+                    <div class="flex flex-col items-center">
+                        <div class="bg-[#90E0EF] rounded-full w-24 h-24 flex items-center justify-center text-4xl shadow-md">⛓️</div>
+                        <p class="mt-2 font-bold text-[#0079C2]">Arbitrum</p>
+                    </div>
+                    <div class="text-3xl text-[#0079C2] font-bold">...</div>
+                    <div class="flex flex-col items-center">
+                        <div class="bg-[#90E0EF] rounded-full w-24 h-24 flex items-center justify-center text-4xl shadow-md">💧</div>
+                        <p class="mt-2 font-bold text-[#0079C2]">Optimism</p>
+                    </div>
+                    <div class="text-3xl text-[#0079C2] font-bold">...</div>
+                     <div class="flex flex-col items-center">
+                        <div class="bg-[#90E0EF] rounded-full w-24 h-24 flex items-center justify-center text-4xl shadow-md">⚡</div>
+                        <p class="mt-2 font-bold text-[#0079C2]">Manta</p>
+                    </div>
+                </div>
+                <p class="text-md text-gray-600 mt-6 italic">Mỗi chuỗi hoạt động như một kho thanh khoản riêng, không thể chia sẻ tài nguyên một cách hiệu quả.</p>
+            </div>
+        </section>
+
+        <section id="solution" class="mb-12">
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#004AAD] mb-4 text-center">Giải pháp: Cầu nối Thanh khoản Mitosis</h2>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-8 text-center">Mitosis giải quyết trực tiếp sự phân mảnh bằng cách tạo ra một giao thức thanh khoản liên chuỗi, phổ quát. Nó cho phép người dùng gửi Liquid Staking Tokens (LSTs) từ một chuỗi nguồn (như Ethereum) và nhận các token phái sinh mới, mang lại lợi nhuận (mi-Tokens) trên bất kỳ chuỗi đích nào được hỗ trợ. Quá trình này hợp nhất thanh khoản, cho phép tài sản lưu chuyển tự do trên toàn bộ hệ sinh thái mô-đun.</p>
+                <div class="flex flex-col md:flex-row items-center justify-around gap-4 text-center p-4">
+                    <div class="flex-1 p-4 bg-gray-50 rounded-lg">
+                        <p class="text-5xl mb-2">1.</p>
+                        <h3 class="text-xl font-bold text-[#0079C2] mb-2">Gửi LSTs</h3>
+                        <p class="text-gray-600">Người dùng gửi các tài sản như stETH hoặc weETH từ một chuỗi nguồn.</p>
+                    </div>
+                    <div class="text-4xl text-[#0096C7] font-bold transform rotate-90 md:rotate-0">→</div>
+                    <div class="flex-1 p-6 bg-[#0096C7] text-white rounded-lg shadow-lg">
+                         <p class="text-5xl mb-2">2.</p>
+                        <h3 class="text-xl font-bold mb-2">Giao thức Mitosis</h3>
+                        <p>Mitosis tái thế chấp tài sản và sử dụng Hyperlane để quản lý tin nhắn liên chuỗi một cách an toàn.</p>
+                    </div>
+                    <div class="text-4xl text-[#0096C7] font-bold transform rotate-90 md:rotate-0">→</div>
+                    <div class="flex-1 p-4 bg-gray-50 rounded-lg">
+                         <p class="text-5xl mb-2">3.</p>
+                        <h3 class="text-xl font-bold text-[#0079C2] mb-2">Sử dụng mi-Tokens</h3>
+                        <p class="text-gray-600">Người dùng nhận mi-Tokens trên các chuỗi đích để sử dụng trong DeFi cục bộ.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 flex flex-col justify-center items-center text-center">
+                <h3 class="text-2xl font-bold text-[#004AAD] mb-2">Tổng giá trị bị khóa (TVL)</h3>
+                <p class="text-lg text-gray-700 mb-4">Đại diện cho tổng giá trị tài sản được bảo mật bởi giao thức Mitosis trên tất cả các chuỗi.</p>
+                <p class="text-6xl font-extrabold text-[#0079C2]">150,7 triệu đô la</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 flex flex-col justify-center items-center text-center">
+                <h3 class="text-2xl font-bold text-[#004AAD] mb-2">Chuỗi Đích Hoạt động</h3>
+                <p class="text-lg text-gray-700 mb-4">Số lượng blockchain mô-đun hiện đang được tích hợp với mạng lưới thanh khoản của Mitosis.</p>
+                <p class="text-6xl font-extrabold text-[#0079C2]">8</p>
+            </div>
+        </div>
+
+        <section id="data" class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h3 class="text-2xl font-bold text-[#004AAD] mb-2">Phân bổ Thanh khoản</h3>
+                <p class="text-gray-700 mb-6">Biểu đồ này minh họa cách thanh khoản do Mitosis cung cấp được phân bổ trên các chuỗi đích khác nhau. Nó nêu bật những hệ sinh thái nào đang tích cực nhất trong việc sử dụng tài sản liên chuỗi cho các ứng dụng DeFi của họ, cho thấy sự chấp nhận ban đầu mạnh mẽ trên các chuỗi như Manta và Mode.</p>
+                <div class="chart-container">
+                    <canvas id="liquidityDistributionChart"></canvas>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h3 class="text-2xl font-bold text-[#004AAD] mb-2">Đối tác Hệ sinh thái</h3>
+                <p class="text-gray-700 mb-6">Mitosis hợp tác với một mạng lưới các blockchain mô-đun ngày càng phát triển. Hình ảnh hóa này đại diện cho các đối tác chính, trong đó kích thước của bong bóng tương ứng với hoạt động tương đối của người dùng trong hệ sinh thái của chuỗi đó. Điều này thể hiện sự rộng lớn của mạng lưới Mitosis.</p>
+                 <div class="chart-container">
+                    <canvas id="ecosystemBubbleChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="tokenomics" class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h3 class="text-2xl font-bold text-[#004AAD] mb-2">Phân bổ Token MITO</h3>
+                <p class="text-gray-700 mb-6">Token MITO là trung tâm của việc quản trị và tích lũy giá trị của giao thức. Việc phân bổ được thiết kế để thúc đẩy một hệ sinh thái sôi động, do cộng đồng điều khiển, với phần lớn nhất được phân bổ cho các ưu đãi cộng đồng để khuyến khích sự tham gia và tăng trưởng dài hạn.</p>
+                <div class="chart-container">
+                    <canvas id="tokenomicsDonutChart"></canvas>
+                </div>
+            </div>
+             <div class="bg-white rounded-lg shadow-xl p-6 md:p-8">
+                <h3 class="text-2xl font-bold text-[#004AAD] mb-2">Nền tảng Kỹ thuật</h3>
+                <p class="text-gray-700 mb-6">Bảo mật và chức năng của giao thức được xây dựng trên các công nghệ mô-đun, tiên tiến. Các thành phần cốt lõi này đảm bảo giao tiếp liên chuỗi đáng tin cậy và bảo mật mạnh mẽ cho tất cả tài sản của người dùng.</p>
+                <div class="space-y-6">
+                    <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-[#0079C2]">
+                        <h4 class="font-bold text-lg text-[#004AAD]">Hyperlane</h4>
+                        <p class="text-gray-600">Cung cấp lớp tương tác không cần cấp phép, hoạt động như một bus nhắn tin phổ quát kết nối các blockchain khác nhau và cho phép Mitosis giao tiếp liền mạch và an toàn giữa chúng.</p>
+                    </div>
+                    <div class="p-4 bg-blue-50 rounded-lg border-l-4 border-[#00B4D8]">
+                        <h4 class="font-bold text-lg text-[#004AAD]">Tái thế chấp lỏng (LRTs)</h4>
+                        <p class="text-gray-600">Bằng cách xây dựng trên LRTs, Mitosis tận dụng bảo mật cơ bản của Ethereum đã được tái thế chấp. Điều này cung cấp lợi suất gốc cho thanh khoản liên chuỗi và neo giữ bảo mật của giao thức vào blockchain đáng tin cậy nhất.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#004AAD] text-white text-center p-6 mt-8">
+        <p>Infographic này cung cấp một cái nhìn tổng quan về giao thức Mitosis.</p>
+        <p class="text-sm text-[#90E0EF]">Dữ liệu mang tính minh họa và cho mục đích trình diễn. Truy cập mitosis.org để biết thông tin chính thức.</p>
+    </footer>
+
+    <script>
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const chartColors = ['#0079C2', '#0096C7', '#00B4D8', '#90E0EF', '#CAF0F8'];
+
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        color: '#333',
+                        font: {
+                            family: "'Inter', sans-serif",
+                            size: 14,
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    bodyFont: {
+                        family: "'Inter', sans-serif",
+                    },
+                    titleFont: {
+                         family: "'Inter', sans-serif",
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#555',
+                        font: { family: "'Inter', sans-serif" }
+                    },
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#555',
+                        font: { family: "'Inter', sans-serif" }
+                    },
+                    grid: {
+                        color: '#e0e0e0'
+                    }
+                }
+            }
+        };
+        
+        const liquidityDistributionCtx = document.getElementById('liquidityDistributionChart').getContext('2d');
+        const liquidityDistributionLabels = ['Manta', 'Mode', 'Arbitrum', 'Optimism', 'Polygon'];
+        new Chart(liquidityDistributionCtx, {
+            type: 'bar',
+            data: {
+                labels: liquidityDistributionLabels.map(wrapLabel),
+                datasets: [{
+                    label: 'Thanh khoản (triệu USD)',
+                    data: [55, 42, 25, 18, 10.7],
+                    backgroundColor: chartColors[0],
+                    borderColor: chartColors[0],
+                    borderWidth: 1,
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                ...commonChartOptions,
+                indexAxis: 'y'
+            }
+        });
+
+        const tokenomicsDonutCtx = document.getElementById('tokenomicsDonutChart').getContext('2d');
+        const tokenomicsLabels = ['Phần thưởng Cộng đồng', 'Quỹ Hệ sinh thái', 'Đội ngũ & Cố vấn', 'Nhà đầu tư', 'Bán công khai'];
+        new Chart(tokenomicsDonutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: tokenomicsLabels.map(wrapLabel),
+                datasets: [{
+                    label: 'Phân bổ Token',
+                    data: [45, 20, 15, 15, 5],
+                    backgroundColor: chartColors,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                         labels: {
+                            color: '#333',
+                            font: {
+                                family: "'Inter', sans-serif"
+                            }
+                        }
+                    },
+                    tooltip: {
+                         callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+        
+        const ecosystemBubbleCtx = document.getElementById('ecosystemBubbleChart').getContext('2d');
+        new Chart(ecosystemBubbleCtx, {
+            type: 'bubble',
+            data: {
+                datasets: [
+                    { label: 'Mode', data: [{ x: 10, y: 20, r: 25 }], backgroundColor: chartColors[0] },
+                    { label: 'Manta', data: [{ x: 15, y: 12, r: 30 }], backgroundColor: chartColors[1] },
+                    { label: 'Arbitrum', data: [{ x: 22, y: 25, r: 22 }], backgroundColor: chartColors[2] },
+                    { label: 'Polygon', data: [{ x: 8, y: 8, r: 18 }], backgroundColor: chartColors[3] },
+                    { label: 'Optimism', data: [{ x: 30, y: 15, r: 20 }], backgroundColor: chartColors[0] },
+                ]
+            },
+            options: {
+                ...commonChartOptions,
+                scales: {
+                    x: {
+                        display: false
+                    },
+                    y: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+    </script>
+    <div style="text-align: center; padding: 3rem 0;">
+        <a href="index.html" style="display: inline-block; background-color: #3498db; color: white; padding: 0.8rem 1.8rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid transparent; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            Quay lại Trang Blog
+        </a>
+    </div>
+</body>
+</html>
