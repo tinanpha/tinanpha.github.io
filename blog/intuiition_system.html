@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intuition Systems: Chuyển Đổi Ngành Bán Lẻ & F&B Bằng Sức Mạnh AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+        }
+        .text-main { color: #003F5C; }
+        .text-accent { color: #366E8A; }
+        .bg-main { background-color: #003F5C; }
+        .bg-accent { background-color: #366E8A; }
+        .bg-light-accent { background-color: #A5D8E4; }
+        .border-accent { border-color: #366E8A; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 1rem;
+        }
+        .flow-step:not(:last-child)::after {
+            content: '→';
+            font-size: 2rem;
+            color: #6B9DB3;
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        @media (max-width: 767px) {
+            .flow-step:not(:last-child)::after {
+                content: '↓';
+                right: 50%;
+                top: 100%;
+                transform: translateX(50%) translateY(-50%);
+            }
+        }
+        .hub {
+            width: 120px;
+            height: 120px;
+        }
+        .spoke {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body class="text-gray-700">
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-main mb-2">Tăng Cường Sức Mạnh Cho Ngành Bán Lẻ & F&B với A.I.</h1>
+            <p class="text-lg md:text-xl text-accent">Phân Tích Sâu Về Hệ Sinh Thái Của Intuition Systems</p>
+        </header>
+
+        <main>
+            <section id="challenge" class="mb-16">
+                <h2 class="text-3xl font-bold text-main text-center mb-8">Thách Thức Kinh Doanh Hiện Đại</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <div class="text-5xl mb-4">⏱️</div>
+                        <h3 class="text-xl font-bold text-main mb-2">Lãng Phí Thời Gian</h3>
+                        <p class="text-accent">Chủ doanh nghiệp tốn vô số giờ cho các công việc thủ công như kiểm kê, lên lịch và báo cáo hàng ngày, làm sao lãng việc tăng trưởng chiến lược.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <div class="text-5xl mb-4">💸</div>
+                        <h3 class="text-xl font-bold text-main mb-2">Thất Thoát Lợi Nhuận</h3>
+                        <p class="text-accent">Tổn thất từ việc quản lý hàng tồn kho kém, hư hỏng và gian lận nội bộ có thể âm thầm làm xói mòn lợi nhuận và cản trở sự bền vững của doanh nghiệp.</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+                        <div class="text-5xl mb-4">📉</div>
+                        <h3 class="text-xl font-bold text-main mb-2">Quá Tải Dữ Liệu</h3>
+                        <p class="text-accent">Một lượng lớn dữ liệu bán hàng được tạo ra hàng ngày, nhưng nếu không có công cụ phù hợp, việc trích xuất thông tin chi tiết để tăng doanh số là gần như không thể.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="solution" class="mb-16 bg-main text-white rounded-lg shadow-xl p-8 md:p-12 text-center">
+                <h2 class="text-3xl font-bold mb-4">Giải Pháp: Trợ Lý A.I. Của Intuition</h2>
+                <p class="text-xl text-light-accent mb-6 max-w-4xl mx-auto">Intuition Systems giới thiệu một trợ lý hỗ trợ bởi AI giúp tự động hóa và tối ưu hóa mọi khía cạnh trong hoạt động kinh doanh của bạn.</p>
+                <div class="bg-white text-main rounded-lg p-6 max-w-md mx-auto">
+                    <p class="text-lg text-accent">Giảm Thời Gian & Chi Phí Tới</p>
+                    <p class="text-8xl font-black">50%</p>
+                    <p class="text-lg text-accent">bằng cách tự động hóa quản lý và ngăn chặn tổn thất.</p>
+                </div>
+            </section>
+            
+            <section id="how-it-works" class="mb-16">
+                <h2 class="text-3xl font-bold text-main text-center mb-8">Cách A.I. Thúc Đẩy Hiệu Quả</h2>
+                 <div class="bg-white rounded-lg shadow-lg p-8">
+                    <p class="text-center text-accent mb-8">Hệ thống tuân theo một chu trình ba bước mạnh mẽ để biến dữ liệu vận hành thô thành các quyết định kinh doanh sinh lời, tạo ra một vòng lặp cải tiến liên tục.</p>
+                    <div class="flex flex-col md:flex-row justify-around items-center">
+                        <div class="flow-step">
+                            <div class="bg-light-accent rounded-full w-24 h-24 flex items-center justify-center text-4xl mb-4">📊</div>
+                            <h3 class="text-xl font-bold text-main">1. Thu Thập Dữ Liệu</h3>
+                            <p class="text-accent max-w-xs">Hệ thống thu thập dữ liệu thời gian thực từ mọi giao dịch, biến động hàng tồn kho và hành động của nhân viên trên tất cả các cửa hàng của bạn.</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="bg-light-accent rounded-full w-24 h-24 flex items-center justify-center text-4xl mb-4">🤖</div>
+                            <h3 class="text-xl font-bold text-main">2. Phân Tích Bằng A.I.</h3>
+                            <p class="text-accent max-w-xs">Trợ lý A.I. xử lý dữ liệu này, xác định xu hướng bán hàng, phát hiện các bất thường và dự báo nhu cầu trong tương lai với độ chính xác cao.</p>
+                        </div>
+                        <div class="flow-step">
+                           <div class="bg-light-accent rounded-full w-24 h-24 flex items-center justify-center text-4xl mb-4">💡</div>
+                            <h3 class="text-xl font-bold text-main">3. Thông Tin Hữu Ích</h3>
+                            <p class="text-accent max-w-xs">Nhận báo cáo tự động, cảnh báo gian lận và các đề xuất thông minh cho các chương trình khuyến mãi hoặc đặt hàng lại ngay trên bảng điều khiển của bạn.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features" class="mb-16">
+                 <h2 class="text-3xl font-bold text-main text-center mb-8">Một Trung Tâm Điều Khiển Hợp Nhất</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-2xl font-bold text-main mb-4 text-center">Chuyển Đổi Vận Hành</h3>
+                        <p class="text-center text-accent mb-4">Các mô-đun tích hợp của nền tảng mang lại sự cải thiện đáng kể so với các phương pháp thủ công. Biểu đồ này minh họa tác động điển hình lên các chỉ số kinh doanh chính sau khi áp dụng.</p>
+                        <div class="chart-container">
+                            <canvas id="impactChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-2xl font-bold text-main mb-4 text-center">Tổng Quan Kinh Doanh 360°</h3>
+                        <p class="text-center text-accent mb-4">Intuition cung cấp một cái nhìn toàn diện về doanh nghiệp của bạn, bao gồm tất cả các chức năng quan trọng. A.I. đảm bảo mỗi lĩnh vực được tối ưu hóa để đạt hiệu suất cao nhất.</p>
+                        <div class="chart-container">
+                            <canvas id="featuresRadarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="ecosystem" class="mb-16">
+                <h2 class="text-3xl font-bold text-main text-center mb-8">Hệ Sinh Thái Phần Cứng & Phần Mềm Toàn Diện</h2>
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <p class="text-center text-accent mb-10 max-w-3xl mx-auto">Tất cả các thành phần được thiết kế để hoạt động hài hòa một cách hoàn hảo. Dữ liệu lưu chuyển liền mạch từ phần cứng giao tiếp với khách hàng đến bộ não A.I. trung tâm, tạo ra một hệ thống duy nhất, mạnh mẽ.</p>
+                    <div class="relative flex items-center justify-center">
+                        <div class="absolute w-full h-px bg-gray-200 hidden md:block"></div>
+                        <div class="absolute h-full w-px bg-gray-200 hidden md:block"></div>
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 items-center justify-items-center w-full">
+                            <div class="flex flex-col items-center text-center p-2">
+                                <div class="spoke bg-light-accent rounded-full flex items-center justify-center text-3xl mb-2">🍽️</div>
+                                <h4 class="font-bold text-main">Intuition F&B</h4>
+                            </div>
+                             <div class="flex flex-col items-center text-center p-2">
+                                <div class="spoke bg-light-accent rounded-full flex items-center justify-center text-3xl mb-2">🛍️</div>
+                                <h4 class="font-bold text-main">Intuition Retail</h4>
+                            </div>
+                            <div class="hub bg-accent rounded-full flex items-center justify-center text-white text-center p-4 shadow-2xl z-10 order-first md:order-none col-span-2 md:col-span-1">
+                                <span class="font-bold text-lg">Trợ Lý A.I.</span>
+                            </div>
+                            <div class="flex flex-col items-center text-center p-2">
+                                <div class="spoke bg-light-accent rounded-full flex items-center justify-center text-3xl mb-2">📱</div>
+                                <h4 class="font-bold text-main">Intuition Kiosk</h4>
+                            </div>
+                             <div class="flex flex-col items-center text-center p-2">
+                                <div class="spoke bg-light-accent rounded-full flex items-center justify-center text-3xl mb-2">📠</div>
+                                <h4 class="font-bold text-main">Phần Cứng POS</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="impact" class="mb-16">
+                <h2 class="text-3xl font-bold text-main text-center mb-8">Thành Công & Tin Cậy Đã Được Chứng Minh</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-main text-white rounded-lg shadow-lg p-8 text-center">
+                        <p class="text-6xl font-extrabold">3.000+</p>
+                        <p class="text-xl text-light-accent">Khách Hàng Hài Lòng</p>
+                    </div>
+                    <div class="bg-main text-white rounded-lg shadow-lg p-8 text-center">
+                        <p class="text-6xl font-extrabold">10+</p>
+                        <p class="text-xl text-light-accent">Năm Kinh Nghiệm</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-lg p-6 md:p-8 text-center">
+                         <h3 class="text-2xl font-bold text-main mb-4">Lĩnh Vực Trọng Tâm</h3>
+                         <div class="chart-container h-48 md:h-64">
+                            <canvas id="customerDonutChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-12 py-6 border-t border-gray-300">
+            <p class="text-accent">Chuyển đổi doanh nghiệp của bạn với sức mạnh của A.I. ngay hôm nay.</p>
+            <p class="text-main font-bold">Intuition.Systems</p>
+        </footer>
+    </div>
+
+    <script>
+        const wrapLabel = (label, maxLength = 16) => {
+            if (typeof label !== 'string' || label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).length > maxLength && currentLine.length > 0) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = currentLine ? currentLine + ' ' + word : word;
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine);
+            }
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const palette = {
+            main: '#003F5C',
+            accent1: '#366E8A',
+            accent2: '#6B9DB3',
+            light: '#A5D8E4',
+            white: '#FFFFFF'
+        };
+
+        const defaultChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                },
+                legend: {
+                    labels: {
+                        color: palette.accent1,
+                        font: {
+                            family: "'Inter', sans-serif"
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: { color: palette.accent1 },
+                    grid: { color: '#e0e0e0' }
+                },
+                x: {
+                    ticks: { color: palette.accent1 },
+                    grid: { display: false }
+                }
+            }
+        };
+
+        const impactChartCtx = document.getElementById('impactChart').getContext('2d');
+        const impactChartLabels = ['Thời gian quản lý', 'Sai sót tồn kho', 'Tiềm năng tăng trưởng doanh thu', 'Tốc độ báo cáo'].map(label => wrapLabel(label));
+        new Chart(impactChartCtx, {
+            type: 'bar',
+            data: {
+                labels: impactChartLabels,
+                datasets: [{
+                    label: 'Trước Intuition (Thủ công)',
+                    data: [100, 80, 40, 20],
+                    backgroundColor: palette.accent2,
+                    borderColor: palette.accent2,
+                    borderWidth: 1
+                }, {
+                    label: 'Sau Intuition (A.I.)',
+                    data: [20, 10, 85, 95],
+                    backgroundColor: palette.main,
+                    borderColor: palette.main,
+                    borderWidth: 1
+                }]
+            },
+            options: { ...defaultChartOptions }
+        });
+
+        const featuresRadarCtx = document.getElementById('featuresRadarChart').getContext('2d');
+        new Chart(featuresRadarCtx, {
+            type: 'radar',
+            data: {
+                labels: ['Tồn kho', 'Quản lý nhân sự', 'CRM & Khách hàng thân thiết', 'Phân tích bán hàng', 'Báo cáo tài chính', 'Đồng bộ đa cửa hàng'].map(l => wrapLabel(l)),
+                datasets: [{
+                    label: 'Điểm Năng Lực Hệ Thống',
+                    data: [95, 85, 90, 98, 92, 97],
+                    fill: true,
+                    backgroundColor: 'rgba(54, 110, 138, 0.2)',
+                    borderColor: palette.accent1,
+                    pointBackgroundColor: palette.accent1,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: palette.accent1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    },
+                     legend: {
+                        position: 'top',
+                     }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: '#e0e0e0' },
+                        grid: { color: '#e0e0e0' },
+                        pointLabels: {
+                            color: palette.main,
+                            font: {
+                                size: 12,
+                                family: "'Inter', sans-serif"
+                            }
+                        },
+                        ticks: {
+                            backdropColor: 'rgba(255, 255, 255, 0.75)',
+                            color: palette.accent1,
+                        }
+                    }
+                }
+            }
+        });
+
+        const customerDonutCtx = document.getElementById('customerDonutChart').getContext('2d');
+        new Chart(customerDonutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['F&B (Nhà hàng, Quán cà phê)', 'Bán lẻ (Cửa hàng, Siêu thị)'],
+                datasets: [{
+                    label: 'Tệp Khách Hàng',
+                    data: [65, 35],
+                    backgroundColor: [palette.main, palette.accent2],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                 plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    },
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: palette.accent1,
+                            font: {
+                                family: "'Inter', sans-serif"
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
