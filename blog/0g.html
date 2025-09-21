@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phân Tích Sâu Dự Án 0g (ZeroGravity)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .swot-grid > div {
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #7a5195;
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 20px 40px;
+            box-sizing: border-box;
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 30px;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 30px;
+        }
+        .timeline-content {
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .timeline-dot {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff764a;
+            border: 4px solid #7a5195;
+            top: 25px;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+    </style>
+</head>
+<body class="bg-[#003f5c] text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white">Phân Tích Sâu Dự Án 0G</h1>
+            <p class="text-xl md:text-2xl text-[#ffa600] mt-2">ZeroGravity: Tái định nghĩa Lớp Sẵn Sàng Dữ Liệu cho Kỷ nguyên AI</p>
+        </header>
+
+        <main class="space-y-12">
+            
+            <section id="overview" class="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#7a5195] mb-4 border-b-4 border-[#ffa600] pb-2">1. Phân Tích Cơ Bản</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-[#003f5c] mb-3">Sứ Mệnh & Tầm Nhìn</h3>
+                        <p class="text-lg mb-4">0G (ZeroGravity) ra đời để giải quyết vấn đề cốt lõi về sự sẵn sàng của dữ liệu (Data Availability - DA) và chi phí lưu trữ cho các ứng dụng trí tuệ nhân tạo (AI) on-chain và các giải pháp Layer 2 yêu cầu thông lượng cực lớn.</p>
+                        <p class="text-lg font-semibold text-[#ef5675]">Tầm nhìn dài hạn: Trở thành lớp cơ sở hạ tầng dữ liệu nhanh nhất, hiệu quả nhất và có khả năng lập trình vô hạn cho Web3, đặc biệt là thúc đẩy sự bùng nổ của AI phi tập trung.</p>
+                    </div>
+                    <div class="text-center bg-[#f0f2f5] p-8 rounded-xl">
+                        <p class="text-2xl font-medium text-gray-600">Đã huy động thành công</p>
+                        <p class="text-7xl font-extrabold text-[#7a5195] my-2">$35M</p>
+                        <p class="text-2xl font-medium text-gray-600">trong vòng Pre-Seed</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="technology" class="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+                 <h2 class="text-3xl font-bold text-[#7a5195] mb-6 border-b-4 border-[#ffa600] pb-2">2. Công Nghệ & Kiến Trúc Đột Phá</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                    <div class="lg:col-span-3">
+                        <h3 class="text-2xl font-semibold text-[#003f5c] mb-3">Kiến Trúc Modular Tối Ưu</h3>
+                        <p class="mb-6 text-lg">0G áp dụng kiến trúc modular tiên tiến, tách biệt các chức năng cốt lõi để đạt được hiệu suất và khả năng mở rộng vượt trội. Mô hình này bao gồm hai thành phần chính hoạt động song song:</p>
+                        <div class="space-y-6">
+                           <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-[#374c80]">
+                                <h4 class="text-xl font-bold text-[#374c80]">1. Lớp Sẵn Sàng Dữ Liệu (Data Availability Layer)</h4>
+                                <p class="mt-2">Được tối ưu hóa cho việc đăng tải và xác thực dữ liệu với tốc độ cực cao. Đảm bảo dữ liệu luôn sẵn có và toàn vẹn cho các blockchain khác truy xuất.</p>
+                           </div>
+                           <div class="bg-purple-50 p-6 rounded-lg border-l-4 border-[#7a5195]">
+                                <h4 class="text-xl font-bold text-[#7a5195]">2. Lớp Lưu Trữ (General-Purpose Storage Layer)</h4>
+                                <p class="mt-2">Một lớp lưu trữ phi tập trung, hiệu quả về chi phí, dùng để lưu trữ vĩnh viễn dữ liệu lịch sử từ các chuỗi khối. Các node có thể tùy chọn tham gia lưu trữ.</p>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2">
+                        <h3 class="text-2xl font-semibold text-[#003f5c] mb-3">Điểm nhấn công nghệ</h3>
+                         <ul class="space-y-4 text-lg">
+                            <li class="flex items-start"><span class="text-[#ff764a] font-bold text-2xl mr-3">⚡️</span> <strong>Thông lượng siêu lớn:</strong> Đạt tới 50 GB/giây, vượt xa các giải pháp DA hiện tại.</li>
+                            <li class="flex items-start"><span class="text-[#ff764a] font-bold text-2xl mr-3">💰</span> <strong>Chi phí cực thấp:</strong> Giảm chi phí lưu trữ và DA gấp 100-1000 lần so với đối thủ.</li>
+                            <li class="flex items-start"><span class="text-[#ff764a] font-bold text-2xl mr-3">🤖</span> <strong>Lập trình được:</strong> Cho phép xử lý và tính toán dữ liệu ngay trên lớp DA, mở đường cho AI on-chain phức tạp.</li>
+                             <li class="flex items-start"><span class="text-[#ff764a] font-bold text-2xl mr-3">🌐</span> <strong>Phi tập trung:</strong> Sử dụng cơ chế đồng thuận Proof-of-Stake (PoS) kết hợp các kỹ thuật bảo mật tiên tiến.</li>
+                        </ul>
+                    </div>
+                </div>
+                 <div class="mt-10">
+                    <h3 class="text-2xl font-semibold text-[#003f5c] mb-4 text-center">So Sánh Hiệu Suất Với Các Đối Thủ</h3>
+                    <div class="chart-container">
+                        <canvas id="competitorChart"></canvas>
+                    </div>
+                     <p class="text-center mt-4 text-gray-600">Biểu đồ so sánh chi phí ước tính trên mỗi Megabyte (MB) dữ liệu. 0G đặt mục tiêu giảm chi phí một cách đáng kể.</p>
+                </div>
+            </section>
+            
+            <section id="team_backers" class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-[#7a5195] mb-6 border-b-4 border-[#ffa600] pb-2">3. Đội Ngũ Phát Triển</h2>
+                    <div class="space-y-5">
+                        <div>
+                            <h3 class="text-xl font-bold text-[#003f5c]">Michael Heinrich - CEO & Co-Founder</h3>
+                            <p class="text-gray-600">🎓 Stanford | 💼 Cựu CEO của Garten (đạt doanh thu $100M+). Có kinh nghiệm dày dạn trong việc xây dựng và mở rộng các công ty công nghệ thành công.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-[#003f5c]">Ming Wu - CTO & Co-Founder</h3>
+                            <p class="text-gray-600">🎓 Tiến sĩ Caltech | 💼 Cựu kỹ sư phần mềm tại Google. Chuyên gia hàng đầu về hệ thống phân tán và cơ sở hạ tầng quy mô lớn.</p>
+                        </div>
+                         <p class="pt-4 text-lg">Đội ngũ bao gồm hơn 20 thành viên là các chuyên gia, nhà nghiên cứu và kỹ sư hàng đầu từ các trường đại học danh tiếng (Harvard, Stanford, CMU) và các gã khổng lồ công nghệ.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-[#7a5195] mb-6 border-b-4 border-[#ffa600] pb-2">4. Nhà Đầu Tư & Đối Tác</h2>
+                    <p class="mb-6 text-lg">Dự án được hậu thuẫn bởi một dàn nhà đầu tư mạo hiểm và các đối tác chiến lược hàng đầu trong ngành công nghiệp blockchain.</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 text-center">
+                        <div class="bg-gray-100 p-3 rounded-lg"><span class="font-semibold">Bain Capital Crypto</span></div>
+                        <div class="bg-gray-100 p-3 rounded-lg"><span class="font-semibold">Hack VC</span></div>
+                        <div class="bg-gray-100 p-3 rounded-lg"><span class="font-semibold">Animoca Brands</span></div>
+                        <div class="bg-gray-100 p-3 rounded-lg"><span class="font-semibold">Delphi Digital</span></div>
+                        <div class="bg-gray-100 p-3 rounded-lg"><span class="font-semibold">OKX Ventures</span></div>
+                        <div class="bg-gray-100 p-3 rounded-lg"><span class="font-semibold">Polygon Ventures</span></div>
+                         <div class="bg-gray-100 p-3 rounded-lg"><span class="font-semibold">GSR</span></div>
+                         <div class="bg-gray-100 p-3 rounded-lg"><span class="font-semibold">LongHash</span></div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="tokenomics" class="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+                 <h2 class="text-3xl font-bold text-[#7a5195] mb-6 border-b-4 border-[#ffa600] pb-2">5. Tokenomics ($0G)</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                         <h3 class="text-2xl font-semibold text-[#003f5c] mb-3">Tiện Ích Của Token</h3>
+                         <ul class="space-y-3 text-lg">
+                            <li><strong class="text-[#ef5675]">Phí Gas:</strong> Chi trả cho các giao dịch đăng tải và truy xuất dữ liệu trên mạng lưới.</li>
+                            <li><strong class="text-[#ef5675]">Staking:</strong> Tham gia vào cơ chế đồng thuận PoS để bảo mật mạng lưới và nhận phần thưởng.</li>
+                            <li><strong class="text-[#ef5675]">Quản Trị:</strong> Bỏ phiếu cho các đề xuất thay đổi và phát triển của giao thức.</li>
+                             <li><strong class="text-[#ef5675]">Thanh Toán:</strong> Sử dụng để thanh toán cho các dịch vụ lưu trữ và tính toán dữ liệu trong hệ sinh thái.</li>
+                         </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold text-[#003f5c] mb-3 text-center">Phân Bổ Token (Dự kiến)</h3>
+                        <div class="chart-container" style="max-height: 400px;">
+                            <canvas id="tokenomicsChart"></canvas>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="mt-8 bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-2xl font-semibold text-[#003f5c] mb-3">Lịch Trình Phát Hành & Mô Hình Kinh Tế</h3>
+                     <p>Thông tin chi tiết về lịch trình trả token (vesting) và tỷ lệ lạm phát vẫn chưa được công bố chính thức. Tuy nhiên, mô hình kinh tế được kỳ vọng sẽ bền vững, cân bằng giữa việc khuyến khích người tham gia sớm và kiểm soát lạm phát để duy trì giá trị lâu dài cho token $0G.</p>
+                 </div>
+            </section>
+            
+             <section id="roadmap">
+                <h2 class="text-3xl font-bold text-white text-center mb-10">6. Lộ Trình Phát Triển</h2>
+                <div class="relative wrap overflow-hidden p-10 h-full">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3 class="text-xl font-bold text-[#374c80]">Q2 2024: Khởi chạy Testnet Giai đoạn 1 - Newton</h3>
+                                <p>Ra mắt mạng thử nghiệm đầu tiên, cho phép các nhà phát triển và người dùng trải nghiệm các tính năng cơ bản của lớp DA. Thu hút hàng ngàn người tham gia.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3 class="text-xl font-bold text-[#374c80]">Q3 2024: Testnet Giai đoạn 2 - Galileo</h3>
+                                <p>Giới thiệu các tính năng nâng cao, bao gồm khả năng lập trình và hợp đồng thông minh. Mở rộng chương trình khuyến khích cho các validator và nhà xây dựng dApp.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3 class="text-xl font-bold text-[#374c80]">Q4 2024: Chuẩn bị Mainnet</h3>
+                                <p>Kiểm tra bảo mật (audit) toàn diện, tối ưu hóa hiệu suất mạng lưới và hoàn thiện các tài liệu kỹ thuật. Công bố chi tiết về Token Generation Event (TGE).</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3 class="text-xl font-bold text-[#374c80]">Q1 2025: Ra mắt Mainnet</h3>
+                                <p>Chính thức khởi chạy mạng chính 0G. Triển khai các chương trình grant để thúc đẩy sự phát triển của hệ sinh thái và thu hút các dự án đầu tiên.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="swot" class="bg-white rounded-2xl shadow-2xl p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-[#7a5195] mb-6 border-b-4 border-[#ffa600] pb-2">7. Tổng Kết & Đánh Giá Rủi Ro</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 swot-grid">
+                    <div class="bg-green-100 border-l-4 border-green-500">
+                        <h3 class="text-2xl font-bold text-green-800 mb-2">Điểm Mạnh (Strengths)</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Công nghệ vượt trội, giải quyết vấn đề lớn của thị trường.</li>
+                            <li>Đội ngũ sáng lập giàu kinh nghiệm và uy tín.</li>
+                            <li>Hậu thuẫn bởi các quỹ đầu tư hàng đầu.</li>
+                            <li>Chi phí và tốc độ được quảng bá là tốt nhất thị trường.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-100 border-l-4 border-red-500">
+                        <h3 class="text-2xl font-bold text-red-800 mb-2">Điểm Yếu (Weaknesses)</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Dự án còn mới, chưa có sản phẩm mainnet chính thức.</li>
+                            <li>Hệ sinh thái đang trong giai đoạn sơ khai.</li>
+                            <li>Tokenomics chi tiết chưa được công bố rõ ràng.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-100 border-l-4 border-blue-500">
+                        <h3 class="text-2xl font-bold text-blue-800 mb-2">Cơ Hội (Opportunities)</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Thị trường AI và Layer 2 đang bùng nổ, nhu cầu về DA tăng cao.</li>
+                            <li>Có tiềm năng trở thành lớp cơ sở hạ tầng thiết yếu cho Web3.</li>
+                            <li>Thu hút các dự án lớn nhờ hiệu suất và chi phí tối ưu.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-yellow-100 border-l-4 border-yellow-500">
+                        <h3 class="text-2xl font-bold text-yellow-800 mb-2">Thách Thức (Threats)</h3>
+                         <ul class="list-disc list-inside space-y-2">
+                            <li>Cạnh tranh khốc liệt từ các đối thủ lớn như Celestia, Avail, EigenDA.</li>
+                             <li>Rủi ro về công nghệ và bảo mật khi triển khai mainnet.</li>
+                            <li>Cần thời gian để xây dựng hiệu ứng mạng lưới và cộng đồng.</li>
+                        </ul>
+                    </div>
+                </div>
+                 <div class="mt-8 bg-red-50 p-6 rounded-lg border border-red-200">
+                    <h3 class="text-2xl font-semibold text-red-700 mb-3">Nhận định cuối cùng</h3>
+                     <p class="text-lg">0G là một dự án cực kỳ tham vọng với nền tảng công nghệ vững chắc và đội ngũ chất lượng, nhắm thẳng vào một trong những thị trường ngách tiềm năng nhất của Web3 là AI và Data Availability. Mặc dù vẫn còn ở giai đoạn đầu và đối mặt với nhiều thách thức, 0G có tiềm năng rất lớn để trở thành một thế lực dẫn đầu trong mảng cơ sở hạ tầng blockchain. Nhà đầu tư cần theo dõi chặt chẽ tiến độ ra mắt mainnet và khả năng xây dựng hệ sinh thái của dự án.</p>
+                    <p class="mt-3 text-sm text-gray-600">Lưu ý: Báo cáo này chỉ mang tính chất thông tin và phân tích, không phải là lời khuyên đầu tư.</p>
+                 </div>
+            </section>
+        </main>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const wrapLabel = (label) => {
+        if (typeof label !== 'string' || label.length <= 16) {
+            return label;
+        }
+        const words = label.split(' ');
+        const lines = [];
+        let currentLine = '';
+        words.forEach(word => {
+            if ((currentLine + ' ' + word).trim().length > 16) {
+                lines.push(currentLine.trim());
+                currentLine = word;
+            } else {
+                currentLine = (currentLine + ' ' + word).trim();
+            }
+        });
+        if (currentLine) {
+            lines.push(currentLine.trim());
+        }
+        return lines;
+    };
+
+    const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+          return label.join(' ');
+        } else {
+          return label;
+        }
+    };
+    
+    const chartColors = {
+        blue: '#374c80',
+        purple: '#7a5195',
+        pink: '#ef5675',
+        orange: '#ff764a',
+        yellow: '#ffa600',
+        darkBlue: '#003f5c'
+    };
+
+    const tokenomicsCtx = document.getElementById('tokenomicsChart')?.getContext('2d');
+    if (tokenomicsCtx) {
+        new Chart(tokenomicsCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Cộng Đồng & Hệ Sinh Thái', 'Nhà Đầu Tư', 'Đội Ngũ Phát Triển', 'Quỹ Dự Trữ', 'Airdrop & Public'],
+                datasets: [{
+                    label: 'Phân Bổ Token',
+                    data: [40, 20, 15, 15, 10],
+                    backgroundColor: [chartColors.blue, chartColors.purple, chartColors.pink, chartColors.orange, chartColors.yellow],
+                    borderColor: '#ffffff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                         labels: {
+                            color: '#333',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    const competitorCtx = document.getElementById('competitorChart')?.getContext('2d');
+    if (competitorCtx) {
+        const rawLabels = ['0G (Mục tiêu)', 'Celestia', 'EigenDA', 'Avail', 'Ethereum (Calldata)'];
+        new Chart(competitorCtx, {
+            type: 'bar',
+            data: {
+                labels: rawLabels.map(wrapLabel),
+                datasets: [{
+                    label: 'Chi phí ước tính ($/MB)',
+                    data: [0.05, 3, 4.5, 2.5, 90],
+                    backgroundColor: [chartColors.orange, chartColors.blue, chartColors.purple, chartColors.pink, chartColors.darkBlue],
+                    borderColor: '#ffffff',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Chi phí ($/MB)',
+                            color: '#333',
+                             font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        },
+                        ticks: {
+                           color: '#333'
+                        }
+                    },
+                    y: {
+                       ticks: {
+                           color: '#333'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+});
+</script>
+    <div style="text-align: center; padding: 3rem 0;">
+        <a href="index.html" style="display: inline-block; background-color: #3498db; color: white; padding: 0.8rem 1.8rem; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid transparent; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            Quay lại Trang Blog
+        </a>
+    </div>
+</body>
+</html>
