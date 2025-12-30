@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - ESC Base | Cộng đồng Cryptocurrency tiên phong</title>
+    <title>Blog - Escbase | Cộng đồng Cryptocurrency tiên phong</title>
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary-color: #2ecc71;
@@ -22,20 +24,20 @@
             --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             --hover-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Be Vietnam Pro', sans-serif;
         }
-        
+
         body {
             background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
         }
-        
+
         header {
             background: url('../page.jpg') center center/cover no-repeat;
             color: white;
@@ -44,7 +46,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
             position: relative;
         }
-        
+
         header::before {
             content: '';
             position: absolute;
@@ -55,12 +57,12 @@
             background-color: rgba(0, 0, 0, 0.7);
             z-index: 1;
         }
-        
+
         .header-content {
             position: relative;
             z-index: 2;
         }
-        
+
         .logo {
             display: flex;
             flex-direction: column;
@@ -68,35 +70,40 @@
             justify-content: center;
             margin-bottom: 1rem;
         }
-        
+
         .logo img {
             max-width: 120px;
             margin-bottom: 0.8rem;
             filter: drop-shadow(0 0 10px rgba(46, 204, 113, 0.5));
         }
-        
+
         .logo-text {
             font-size: 2.2rem;
             font-weight: bold;
             text-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
         }
-        
+
         .tagline {
             font-size: 1.2rem;
             opacity: 0.9;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 1rem;
         }
-        
-        h1, h2, h3, h4, h5, h6 {
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             color: var(--primary-color);
             margin-bottom: 1rem;
         }
-        
+
         h1 {
             font-size: 2rem;
             text-align: center;
@@ -104,7 +111,7 @@
             position: relative;
             padding-bottom: 15px;
         }
-        
+
         h1::after {
             content: '';
             position: absolute;
@@ -115,13 +122,13 @@
             height: 4px;
             background: linear-gradient(to right, var(--primary-color), var(--accent-color));
         }
-        
+
         .blog-list {
             list-style-type: none;
             padding: 0;
             margin: 2rem 0;
         }
-        
+
         .blog-item {
             background: var(--card-background);
             border-radius: 10px;
@@ -130,13 +137,13 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             border-left: 5px solid var(--primary-color);
         }
-        
+
         .blog-item:hover {
             transform: translateY(-5px);
             box-shadow: var(--hover-shadow);
             border-color: var(--accent-color);
         }
-        
+
         .blog-link {
             display: block;
             padding: 1.5rem;
@@ -146,11 +153,11 @@
             font-weight: 500;
             transition: color 0.3s ease;
         }
-        
+
         .blog-link:hover {
             color: var(--primary-color);
         }
-        
+
         .btn {
             display: inline-block;
             background: rgba(0, 0, 0, 0.6);
@@ -162,19 +169,19 @@
             transition: all 0.3s ease;
             border: 2px solid var(--primary-color);
         }
-        
+
         .btn:hover {
             background-color: var(--primary-color);
             color: black;
             box-shadow: 0 0 15px rgba(46, 204, 113, 0.6);
         }
-        
+
         .home-link {
             display: flex;
             justify-content: center;
             margin-top: 2rem;
         }
-        
+
         footer {
             background-color: #0a0a0a;
             color: var(--muted-text);
@@ -183,57 +190,58 @@
             margin-top: 4rem;
             border-top: 1px solid var(--border-color);
         }
-        
+
         @media (max-width: 768px) {
             .blog-link {
                 font-size: 1.1rem;
             }
-            
+
             .logo-text {
                 font-size: 1.8rem;
             }
-            
+
             .logo img {
                 max-width: 100px;
             }
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="header-content">
             <div class="logo">
-                <img src="../esclogo.png" alt="ESC Base Logo">
-                <div class="logo-text">ESC Base</div>
+                <img src="../esclogo.png" alt="Escbase Logo">
+                <div class="logo-text">Escbase</div>
             </div>
             <div class="tagline">Blog Cryptocurrency</div>
         </div>
     </header>
-    
+
     <div class="container">
         <h1>Danh Sách Bài Viết</h1>
-        
+
         <ul id="blog-posts-list" class="blog-list">
             <!-- Danh sách bài viết sẽ được thêm vào đây bằng JavaScript -->
             <li class="blog-item">
                 <span class="blog-link">Đang tải danh sách bài viết...</span>
             </li>
         </ul>
-        
+
         <div class="home-link">
             <a href="../index.html" class="btn">Về Trang Chủ</a>
         </div>
     </div>
-    
+
     <footer>
-        <p>&copy; 2025 ESC Base. Tất cả quyền được bảo lưu.</p>
+        <p>&copy; 2025 Escbase. Tất cả quyền được bảo lưu.</p>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Danh sách các tệp HTML trong thư mục blog (không bao gồm index.html)
             // Chúng ta sẽ sử dụng JavaScript để tạo danh sách này từ tệp hiện có
-            
+
             // Danh sách tệp blog mặc định mà chúng ta biết là tồn tại
             const knownBlogFiles = [
                 { file: 'enso_finance.html', title: 'Tổng quan Dự án Enso Finance' },
@@ -241,92 +249,92 @@
                 { file: 'smart_account.html', title: 'Cuộc Cách Mạng Tài Khoản Thông Minh' },
                 { file: 'data_availability.html', title: 'Tính Sẵn Có Dữ Liệu Trong Web3' },
                 { file: 'eth_pectra.html', title: 'Nâng cấp Pectra của ETH' },
-                { file: 'bnb_hardfork_maxwell.html', title: 'BNB Chain - Hardfork Maxwell'},
-                { file: 'story_protocol.html', title: 'Phân Tích Chuyên Sâu Story Protocol'},
-                { file: 'sonic.html', title: 'Phân tích sâu Dự Án Sonic'},
-                { file: 'boundless.html', title: 'Phân tích sâu dự án Boundless'},
-                { file: 'pharos_network.html', title: 'Phân tích sâu dự án Pharos Network'},
-                { file: 'sei_ai_agent.html', title: 'Sei - Xây dựng nền tảng cho Nền kinh tế Agent AI'},
-                { file: 'trailblazer.html', title: 'Cập Nhật Chương Trình Taiko Trailblazers'},
-                { file: 'hypernative.html', title: 'Hypernative - Lá Chắn Chủ Động cho Web3'},
-                { file: 'hypernative_report.html', title: 'Báo cáo Chuyên Sâu Hypernative'},
-                { file: 'zama.html', title: 'Zama.ai: Tương lai của Internet Bảo mật'},
-                { file: 'aztec_infographic.html', title: 'Aztec - Infographic'},
-                { file: 'aztec_phan_tich.html', title: 'Phân tích Chuyên Sâu Aztec Network'},
-                { file: 'aztec_bao_cao.html', title: 'Báo Cáo Chuyên Sâu Aztec Network'},
-                { file: 'quantumroot.html', title: 'QuantumRoot - Lá Chắn Lượng Tử cho Bitcoin'},
-                { file: 'quantumroot_2.html', title: 'Khám Phá QuantumRoot'},
-                { file: 'base_rollup_summit_2025.html', title: 'Tóm tắt 10 điểm chính từ Hội nghị thượng đỉnh Based Rollup Cannes 2025'},
-                { file: 'canton_network.html', title: 'Phân Tích Sâu Dự Án Canton Network'},
-                { file: 'recall_network.html', title: 'Phân Tích Sâu Dự Án Recall Network'},
-                { file: 'post_tx.html', title: 'Cuộc Cách Mạng Hậu Giao Dịch'},
-                { file: 'citrea.html', title: 'Tổng Quan Dự Án Citrea'},
-                { file: 'clementin.html', title: 'Clementine - Cầu nối Bitcoin Hiệu quả về Tài sản thế chấp, Giảm thiểu Tin cậy và Có thể Mở rộng'},
-                { file: 'bnbchain_update_2025_2026.html', title: 'Cập Nhật BNB Chain 2025 - 2026'},
-                { file: 'anoma.html', title: 'Tổng Quan Dự Án Anoma'},
-                { file: 'ppa.html', title: 'Các Khẳng Định Tiên Quyết Có Thể Chứng Minh (PPA)'},
-                { file: 'risechain.html', title: 'Tổng Quan Dự Án Risechain'},
-                { file: 'base_rollup_ethereum.html', title: 'Cuộn lên Cơ sở & Tương lai Ethereum'},
-                { file: 'vitalik2025.html', title: 'Vitalik Buterin & Tầm nhìn Ethereum 2025'},
-                { file: 'aztec.html', title: 'Tổng Quan Aztec Network'},
-                { file: 'bnb_upgrade_july2025.html', title: 'Nâng cấp & Tầm nhìn Chuỗi BNB 2025'},
-                { file: 'chainlink_reserve.html', title: 'Chainlink Reserve: Củng Cố Tương Lai Bền Vững'},
-                { file: 'arc_network.html', title: 'Infographic: Arc - Blockchain Doanh Nghiệp của Circle'},
-                { file: 'blob.html', title: 'Chia Sẻ Blob và Tương Lai của Rollup Cơ Sở'},
-                { file: 'dappbay5.html', title: 'Sự Kiện BNB Day - Chia Sẻ Giải Thưởng $480,000'},
-                { file: 'link_oracle.html', title: 'Infographic: Nền Tảng Oracle của Chainlink'},
-                { file: 'bitlayer.html', title: 'Bitlayer: Phân Tích Chuyên Sâu Infographic'},
-                { file: 'usdai.html', title: 'Phân Tích Chuyên Sâu Dự Án USD.AI'},
-                { file: 'bio_protocol.html', title: 'BIO Protocol: Infographic về Tương Lai của Khoa Học Phi Tập Trung'},
-                { file: 'symbioticfi.html', title: 'Infographic Phân Tích Sâu Symbiotic.fi'},
-                { file: 'kaitoai.html', title: 'Kaito.ai: An AI-Powered InfoFi Ecosystem'},
-                { file: 'morph.html', title: 'Infographic Phân tích Chuyên sâu Morph L2<'},
-                { file: 'rgb.html', title: 'Giao thức RGB: Phân tích sâu về Hợp đồng thông minh trên Bitcoin'},
-                { file: 'mitosis.html', title: 'Mitosis: Giao thức Thanh khoản Tương tác'},
-                { file: 'hyperliquid.html', title: 'Cuộc Cách Mạng Hypercert: Tài Trợ Cho Tác Động, Không Phải Lời Hứa'},
-                { file: 'intuiition_system.html', title: 'Intuition Systems: Chuyển Đổi Ngành Bán Lẻ & F&B Bằng Sức Mạnh AI'},
-                { file: 'poisedonai.html', title: 'PSDN.ai: Nền tảng Ứng dụng AI-Native'},
-                { file: 'eth.html', title: 'Sự Tiến Hóa của Ethereum: Phân Tích Sâu về Tiềm Năng Tương Lai'},
-                { file: 'btc.html', title: 'Bitcoin: Phân Tích Chuyên Sâu'},
-                { file: 'bch.html', title: 'Bitcoin Cash (BCH): Phân Tích Chuyên Sâu'},
-                { file: 'ltc.html', title: 'Litecoin: Infographic về Tiềm năng Tăng trưởng'},
-                { file: 'etc.html', title: 'Đào sâu Ethereum Classic (ETC): Một Infographic'},
-                { file: 'dot.html', title: 'Phân Tích Sâu Về Polkadot (DOT): Thách Thức & Tiềm Năng Tương Lai'},
-                { file: 'alloyx.html', title: 'AlloyX: Kiến tạo một loại tài sản mới'},
-                { file: 'ada.html', title: 'Cardano: Phân Tích Chuyên Sâu & Tiềm Năng Tăng Trưởng'},
-                { file: 'blockchain.html', title: 'Toàn Cảnh Hệ Sinh Thái Blockchain: So Sánh Chuyên Sâu'},
-                { file: 'lineavstaiko.html', title: 'Phân Tích Sâu Layer 2: Linea vs. Taiko'},
-                { file: 'sei.html', title: 'So sánh Sei vs. Sui & Aptos: Phân tích Blockchain Lớp 1'},
-                { file: 'celestia.html', title: 'Celestia: Phân Tích Chuyên Sâu & Tiềm Năng Tăng Trưởng'},
-                { file: 'tbzs6.html', title: 'Trailblazers Season 6: The Arena và The Undercity'},
-                { file: '0g.html', title: 'Phân Tích Sâu Dự Án 0g (ZeroGravity)'},
-                { file: 'stablexyz.html', title: 'Phân Tích Sâu Dự Án StableXYZ'}
+                { file: 'bnb_hardfork_maxwell.html', title: 'BNB Chain - Hardfork Maxwell' },
+                { file: 'story_protocol.html', title: 'Phân Tích Chuyên Sâu Story Protocol' },
+                { file: 'sonic.html', title: 'Phân tích sâu Dự Án Sonic' },
+                { file: 'boundless.html', title: 'Phân tích sâu dự án Boundless' },
+                { file: 'pharos_network.html', title: 'Phân tích sâu dự án Pharos Network' },
+                { file: 'sei_ai_agent.html', title: 'Sei - Xây dựng nền tảng cho Nền kinh tế Agent AI' },
+                { file: 'trailblazer.html', title: 'Cập Nhật Chương Trình Taiko Trailblazers' },
+                { file: 'hypernative.html', title: 'Hypernative - Lá Chắn Chủ Động cho Web3' },
+                { file: 'hypernative_report.html', title: 'Báo cáo Chuyên Sâu Hypernative' },
+                { file: 'zama.html', title: 'Zama.ai: Tương lai của Internet Bảo mật' },
+                { file: 'aztec_infographic.html', title: 'Aztec - Infographic' },
+                { file: 'aztec_phan_tich.html', title: 'Phân tích Chuyên Sâu Aztec Network' },
+                { file: 'aztec_bao_cao.html', title: 'Báo Cáo Chuyên Sâu Aztec Network' },
+                { file: 'quantumroot.html', title: 'QuantumRoot - Lá Chắn Lượng Tử cho Bitcoin' },
+                { file: 'quantumroot_2.html', title: 'Khám Phá QuantumRoot' },
+                { file: 'base_rollup_summit_2025.html', title: 'Tóm tắt 10 điểm chính từ Hội nghị thượng đỉnh Based Rollup Cannes 2025' },
+                { file: 'canton_network.html', title: 'Phân Tích Sâu Dự Án Canton Network' },
+                { file: 'recall_network.html', title: 'Phân Tích Sâu Dự Án Recall Network' },
+                { file: 'post_tx.html', title: 'Cuộc Cách Mạng Hậu Giao Dịch' },
+                { file: 'citrea.html', title: 'Tổng Quan Dự Án Citrea' },
+                { file: 'clementin.html', title: 'Clementine - Cầu nối Bitcoin Hiệu quả về Tài sản thế chấp, Giảm thiểu Tin cậy và Có thể Mở rộng' },
+                { file: 'bnbchain_update_2025_2026.html', title: 'Cập Nhật BNB Chain 2025 - 2026' },
+                { file: 'anoma.html', title: 'Tổng Quan Dự Án Anoma' },
+                { file: 'ppa.html', title: 'Các Khẳng Định Tiên Quyết Có Thể Chứng Minh (PPA)' },
+                { file: 'risechain.html', title: 'Tổng Quan Dự Án Risechain' },
+                { file: 'base_rollup_ethereum.html', title: 'Cuộn lên Cơ sở & Tương lai Ethereum' },
+                { file: 'vitalik2025.html', title: 'Vitalik Buterin & Tầm nhìn Ethereum 2025' },
+                { file: 'aztec.html', title: 'Tổng Quan Aztec Network' },
+                { file: 'bnb_upgrade_july2025.html', title: 'Nâng cấp & Tầm nhìn Chuỗi BNB 2025' },
+                { file: 'chainlink_reserve.html', title: 'Chainlink Reserve: Củng Cố Tương Lai Bền Vững' },
+                { file: 'arc_network.html', title: 'Infographic: Arc - Blockchain Doanh Nghiệp của Circle' },
+                { file: 'blob.html', title: 'Chia Sẻ Blob và Tương Lai của Rollup Cơ Sở' },
+                { file: 'dappbay5.html', title: 'Sự Kiện BNB Day - Chia Sẻ Giải Thưởng $480,000' },
+                { file: 'link_oracle.html', title: 'Infographic: Nền Tảng Oracle của Chainlink' },
+                { file: 'bitlayer.html', title: 'Bitlayer: Phân Tích Chuyên Sâu Infographic' },
+                { file: 'usdai.html', title: 'Phân Tích Chuyên Sâu Dự Án USD.AI' },
+                { file: 'bio_protocol.html', title: 'BIO Protocol: Infographic về Tương Lai của Khoa Học Phi Tập Trung' },
+                { file: 'symbioticfi.html', title: 'Infographic Phân Tích Sâu Symbiotic.fi' },
+                { file: 'kaitoai.html', title: 'Kaito.ai: An AI-Powered InfoFi Ecosystem' },
+                { file: 'morph.html', title: 'Infographic Phân tích Chuyên sâu Morph L2<' },
+                { file: 'rgb.html', title: 'Giao thức RGB: Phân tích sâu về Hợp đồng thông minh trên Bitcoin' },
+                { file: 'mitosis.html', title: 'Mitosis: Giao thức Thanh khoản Tương tác' },
+                { file: 'hyperliquid.html', title: 'Cuộc Cách Mạng Hypercert: Tài Trợ Cho Tác Động, Không Phải Lời Hứa' },
+                { file: 'intuiition_system.html', title: 'Intuition Systems: Chuyển Đổi Ngành Bán Lẻ & F&B Bằng Sức Mạnh AI' },
+                { file: 'poisedonai.html', title: 'PSDN.ai: Nền tảng Ứng dụng AI-Native' },
+                { file: 'eth.html', title: 'Sự Tiến Hóa của Ethereum: Phân Tích Sâu về Tiềm Năng Tương Lai' },
+                { file: 'btc.html', title: 'Bitcoin: Phân Tích Chuyên Sâu' },
+                { file: 'bch.html', title: 'Bitcoin Cash (BCH): Phân Tích Chuyên Sâu' },
+                { file: 'ltc.html', title: 'Litecoin: Infographic về Tiềm năng Tăng trưởng' },
+                { file: 'etc.html', title: 'Đào sâu Ethereum Classic (ETC): Một Infographic' },
+                { file: 'dot.html', title: 'Phân Tích Sâu Về Polkadot (DOT): Thách Thức & Tiềm Năng Tương Lai' },
+                { file: 'alloyx.html', title: 'AlloyX: Kiến tạo một loại tài sản mới' },
+                { file: 'ada.html', title: 'Cardano: Phân Tích Chuyên Sâu & Tiềm Năng Tăng Trưởng' },
+                { file: 'blockchain.html', title: 'Toàn Cảnh Hệ Sinh Thái Blockchain: So Sánh Chuyên Sâu' },
+                { file: 'lineavstaiko.html', title: 'Phân Tích Sâu Layer 2: Linea vs. Taiko' },
+                { file: 'sei.html', title: 'So sánh Sei vs. Sui & Aptos: Phân tích Blockchain Lớp 1' },
+                { file: 'celestia.html', title: 'Celestia: Phân Tích Chuyên Sâu & Tiềm Năng Tăng Trưởng' },
+                { file: 'tbzs6.html', title: 'Trailblazers Season 6: The Arena và The Undercity' },
+                { file: '0g.html', title: 'Phân Tích Sâu Dự Án 0g (ZeroGravity)' },
+                { file: 'stablexyz.html', title: 'Phân Tích Sâu Dự Án StableXYZ' }
             ];
-            
+
             const blogList = document.getElementById('blog-posts-list');
             // Xóa thông báo "Đang tải..."
             blogList.innerHTML = '';
-            
+
             // Tạo danh sách bài viết
             knownBlogFiles.forEach(blog => {
                 // Bỏ qua file index.html
                 if (blog.file === 'index.html') return;
-                
+
                 const listItem = document.createElement('li');
                 listItem.className = 'blog-item';
-                
+
                 const link = document.createElement('a');
                 link.href = blog.file;
                 link.className = 'blog-link';
                 link.textContent = blog.title || formatFileName(blog.file);
-                
+
                 listItem.appendChild(link);
                 blogList.appendChild(listItem);
             });
-            
+
             // Ngoài ra, hãy thử quét thư mục để tìm các tệp HTML mới
             fetchDirectoryContents();
-            
+
             // Hàm để định dạng tên tệp thành tiêu đề dễ đọc
             function formatFileName(fileName) {
                 // Loại bỏ phần mở rộng .html
@@ -337,19 +345,19 @@
                 title = title.split(' ').map(word => {
                     return word.charAt(0).toUpperCase() + word.slice(1);
                 }).join(' ');
-                
+
                 return title;
             }
-            
+
             // Hàm để quét thư mục và tìm các tệp HTML mới
             function fetchDirectoryContents() {
                 // Trong môi trường thực, chúng ta có thể sử dụng một API hoặc endpoint để lấy danh sách tệp
                 // Nhưng vì giới hạn của trình duyệt, chúng ta sẽ phải sử dụng một phương pháp khác
                 // Ví dụ: tạo một tệp JSON chứa danh sách tệp và cập nhật nó khi có tệp mới
-                
+
                 // Đây chỉ là một giải pháp tạm thời
                 // Trong thực tế, bạn sẽ cần một máy chủ hoặc công cụ khác để quét thư mục
-                
+
                 // Giả sử chúng ta có một API endpoint trả về danh sách tệp HTML
                 // fetch('/api/blog-files')
                 //     .then(response => response.json())
@@ -379,4 +387,5 @@
         });
     </script>
 </body>
+
 </html>
