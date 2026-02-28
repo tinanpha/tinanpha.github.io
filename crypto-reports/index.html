@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Daily Reports - Escbase</title>
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #f7931a;
+            --secondary-color: #e67e22;
+            --background-color: #0a0a0a;
+            --card-background: #1a1a1a;
+            --text-color: #e0e0e0;
+            --accent-color: #f7931a;
+            --muted-text: #888;
+            --border-color: #333;
+            --card-shadow: 0 4px 20px rgba(247, 147, 26, 0.1);
+            --hover-shadow: 0 8px 30px rgba(247, 147, 26, 0.2);
+            --success-color: #2ecc71;
+            --danger-color: #e74c3c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Be Vietnam Pro', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .nav-logo img {
+            height: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--muted-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            padding: 4rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(247,147,26,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--muted-text);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: var(--card-background);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        /* Latest Report Section */
+        .latest-report {
+            background: var(--card-background);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .latest-report::before {
+            content: 'MỚI NHẤT';
+            position: absolute;
+            top: 1.5rem;
+            right: -2rem;
+            background: var(--primary-color);
+            color: #000;
+            padding: 0.3rem 3rem;
+            font-size: 0.75rem;
+            font-weight: 800;
+            transform: rotate(45deg);
+        }
+
+        .latest-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .latest-header h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .date-badge {
+            background: rgba(247, 147, 26, 0.2);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .report-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .infographic-preview {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .infographic-preview img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .report-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .report-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .report-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .meta-tag {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .meta-tag i {
+            color: var(--primary-color);
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background: #e67e22;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(247, 147, 26, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Archive Section */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-header h2 i {
+            color: var(--primary-color);
+        }
+
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .archive-card {
+            background: var(--card-background);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .archive-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .archive-date {
+            color: var(--primary-color);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .archive-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .archive-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        /* Features */
+        .features-section {
+            background: linear-gradient(135deg, rgba(247,147,26,0.05) 0%, transparent 100%);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(247, 147, 26, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .feature-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item p {
+            color: var(--muted-text);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #050505;
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--muted-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--card-background);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid var(--border-color);
+        }
+
+        .social-btn:hover {
+            background: var(--primary-color);
+            color: #000;
+            border-color: var(--primary-color);
+        }
+
+        .footer-copyright {
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .stats-container {
+                gap: 2rem;
+            }
+
+            .report-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .latest-report::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <img src="../esclogo.png" alt="Escbase">
+                Escbase
+            </a>
+            <div class="nav-links">
+                <a href="../index.html">Trang chủ</a>
+                <a href="../blog/index.html">Blog</a>
+                <a href="index.html" style="color: var(--primary-color);">Crypto Reports</a>
+                <a href="../read/index.html">Reading</a>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1><i class="fab fa-bitcoin"></i> Crypto Daily Reports</h1>
+            <p>Báo cáo phân tích thị trường cryptocurrency hàng ngày. Cập nhật tin tức, giá cả, và xu hướng từ các nguồn uy tín.</p>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-value">Daily</div>
+                <div class="stat-label">Cập nhật</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">24/7</div>
+                <div class="stat-label">Theo dõi thị trường</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Miễn phí</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Latest Report -->
+        <div class="latest-report">
+            <div class="latest-header">
+                <h2><i class="fas fa-star"></i> Báo Cáo Mới Nhất</h2>
+                <span class="date-badge">28/02/2026</span>
+            </div>
+            
+            <div class="report-grid">
+                <div class="infographic-preview">
+                    <img src="crypto_28_02_infographic.png" alt="Crypto Report Infographic 28/02/2026">
+                </div>
+                
+                <div class="report-info">
+                    <h3 class="report-title">Báo Cáo Thị Trường Crypto Ngày 28/02/2026</h3>
+                    
+                    <div class="report-meta">
+                        <span class="meta-tag"><i class="fas fa-file-pdf"></i> PDF Report</span>
+                        <span class="meta-tag"><i class="fas fa-image"></i> Infographic</span>
+                        <span class="meta-tag"><i class="fas fa-clock"></i> 5 phút đọc</span>
+                    </div>
+                    
+                    <p style="color: var(--muted-text);">
+                        Phân tích toàn diện thị trường cryptocurrency ngày 28/02/2026. 
+                        Bao gồm: tin tức nổi bật, biến động giá BTC/ETH, 
+                        các sự kiện đáng chú ý và dự báo xu hướng.
+                    </p>
+                    
+                    <div class="action-buttons">
+                        <a href="crypto_report_2026-02-28.pdf" target="_blank" class="btn btn-primary">
+                            <i class="fas fa-download"></i> Tải PDF
+                        </a>
+                        <a href="crypto_28_02_infographic.png" target="_blank" class="btn btn-secondary">
+                            <i class="fas fa-expand"></i> Xem Infographic
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Archive -->
+        <div class="section-header">
+            <h2><i class="fas fa-archive"></i> Báo Cáo Trước Đây</h2>
+        </div>
+
+        <div class="archive-grid">
+            <div class="archive-card">
+                <div class="archive-date">27/02/2026</div>
+                <h3 class="archive-title">Báo Cáo Crypto 27/02: AI Thâu Tóm Đào Bitcoin - ZachXBT Vạch Trần Nội Gián</h3>
+                <div class="archive-actions">
+                    <a href="crypto_report_2026-02-27.pdf" target="_blank" class="btn btn-secondary btn-small">
+                        <i class="fas fa-download"></i> PDF
+                    </a>
+                </div>
+            </div>
+
+            <div class="archive-card">
+                <div class="archive-date">26/02/2026</div>
+                <h3 class="archive-title">Báo Cáo Crypto 26/02: Thị Trường Phục Hồi - Các Altcoin Bứt Phá</h3>
+                <div class="archive-actions">
+                    <a href="crypto_report_2026-02-26.pdf" target="_blank" class="btn btn-secondary btn-small">
+                        <i class="fas fa-download"></i> PDF
+                    </a>
+                </div>
+            </div>
+
+            <div class="archive-card">
+                <div class="archive-date">25/02/2026</div>
+                <h3 class="archive-title">Báo Cáo Crypto 25/02: ETF Inflow Tăng Mạnh - Bitcoin Hướng Đến $100K</h3>
+                <div class="archive-actions">
+                    <a href="crypto_report_2026-02-25.pdf" target="_blank" class="btn btn-secondary btn-small">
+                        <i class="fas fa-download"></i> PDF
+                    </a>
+                </div>
+            </div>
+
+            <div class="archive-card">
+                <div class="archive-date">24/02/2026</div>
+                <h3 class="archive-title">Báo Cáo Crypto 24/02: Ethereum Upgrade - Gas Fee Giảm 50%</h3>
+                <div class="archive-actions">
+                    <a href="crypto_report_2026-02-24.pdf" target="_blank" class="btn btn-secondary btn-small">
+                        <i class="fas fa-download"></i> PDF
+                    </a>
+                </div>
+            </div>
+
+            <div class="archive-card">
+                <div class="archive-date">23/02/2026</div>
+                <h3 class="archive-title">Báo Cáo Crypto 23/02: DeFi Summer 2.0 - TVL Tăng Vọt</h3>
+                <div class="archive-actions">
+                    <a href="crypto_report_2026-02-23.pdf" target="_blank" class="btn btn-secondary btn-small">
+                        <i class="fas fa-download"></i> PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="features-section">
+            <h2 style="text-align: center; margin-bottom: 0.5rem;">Tại Sao Chọn Báo Cáo Của Chúng Tôi?</h2>
+            <p style="text-align: center; color: var(--muted-text);">Dữ liệu chính xác, phân tích chuyên sâu, hoàn toàn miễn phí</p>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Cập Nhật Real-time</h3>
+                    <p>Dữ liệu được cập nhật liên tục từ nhiều nguồn uy tín</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Phân Tích Chuyên Sâu</h3>
+                    <p>Phân tích kỹ thuật và cơ bản bởi đội ngũ chuyên gia</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3>Tin Tức Tổng Hợp</h3>
+                    <p>Tổng hợp tin tức quan trọng nhất trong ngày</p>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Hoàn Toàn Miễn Phí</h3>
+                    <p>Không phí ẩn, không subscription, chia sẻ vì cộng đồng</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="../index.html">Trang chủ</a>
+                <a href="../blog/index.html">Blog</a>
+                <a href="index.html">Crypto Reports</a>
+                <a href="../privacy.html">Privacy</a>
+                <a href="../tos.html">Terms</a>
+            </div>
+            
+            <div class="footer-social">
+                <a href="https://discord.gg/SMhy8RjDCf" target="_blank" class="social-btn" title="Discord">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="https://www.youtube.com/@ESCBase" target="_blank" class="social-btn" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.facebook.com/escbasexyz" target="_blank" class="social-btn" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </div>
+            
+            <p class="footer-copyright">&copy; 2026 Escbase. Tất cả quyền được bảo lưu.</p>
+        </div>
+    </footer>
+</body>
+</html>
