@@ -12,24 +12,18 @@
     <style>
         :root {
             --bg-primary: #0a0a0a;
-            --bg-secondary: #111111;
-            --bg-sidebar: #0d0d0d;
-            --bg-card: #161616;
-            --bg-hover: #1c1c1c;
+            --bg-sidebar: #080808;
+            --bg-card: #111111;
+            --bg-hover: #1a1a1a;
             --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --text-muted: #666666;
+            --text-secondary: #888888;
+            --text-muted: #555555;
             --accent: #f7931a;
-            --border: #2a2a2a;
-            --success: #22c55e;
+            --border: #1a1a1a;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-primary);
@@ -38,31 +32,27 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Layout */
-        .layout {
-            display: flex;
-            min-height: 100vh;
-        }
+        .layout { display: flex; min-height: 100vh; }
 
         /* Sidebar */
         .sidebar {
-            width: 260px;
+            width: 240px;
             background: var(--bg-sidebar);
             border-right: 1px solid var(--border);
             position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
+            top: 0; left: 0; bottom: 0;
             overflow-y: auto;
             z-index: 100;
-        }
-
-        .sidebar-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--border);
+            padding: 2rem 0;
         }
 
         .sidebar-logo {
+            padding: 0 1.5rem 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar-logo a {
             display: flex;
             align-items: center;
             gap: 0.75rem;
@@ -71,69 +61,201 @@
         }
 
         .sidebar-logo img {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             border-radius: 10px;
         }
 
         .sidebar-logo span {
             font-size: 1.25rem;
-            font-weight: 600;
-        }
-
-        .sidebar-nav {
-            padding: 1rem 0;
+            font-weight: 700;
         }
 
         .nav-section {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
         }
 
         .nav-section-title {
-            padding: 0 1.25rem;
-            font-size: 0.7rem;
-            font-weight: 600;
+            font-size: 0.65rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
             color: var(--text-muted);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            padding: 0 0.5rem;
         }
 
         .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 1.25rem;
+            display: block;
+            padding: 0.5rem 0.75rem;
             color: var(--text-secondary);
             text-decoration: none;
             font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            border-right: 3px solid transparent;
+            border-radius: 6px;
+            transition: all 0.15s ease;
+            margin-bottom: 0.25rem;
         }
 
-        .nav-item:hover {
-            background: var(--bg-hover);
-            color: var(--text-primary);
-        }
-
-        .nav-item.active {
-            background: rgba(247, 147, 26, 0.1);
+        .nav-item:hover, .nav-item.active {
+            background: rgba(247, 147, 26, 0.15);
             color: var(--accent);
-            border-right-color: var(--accent);
         }
 
-        .nav-item i {
-            width: 20px;
-            text-align: center;
-        }
-
-        /* Main Content */
+        /* Main */
         .main {
             flex: 1;
-            margin-left: 260px;
+            margin-left: 240px;
+            padding: 2rem 3rem;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .video-grid { grid-template-columns: 1fr; }
+            .main { margin-left: 0; padding: 5rem 1.5rem 2rem; }
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+            .sidebar.open { transform: translateX(0); }
+        }
+
+        .video-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .video-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 1.25rem;
+        }
+
+        .video-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .video-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: var(--accent);
+            color: #000;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Featured Video */
+        .featured-video {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .featured-video .video-wrapper {
+            padding-bottom: 56.25%;
+        }
+
+        .featured-info {
+            padding: 1.5rem;
+        }
+
+        .featured-info h2 {
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .featured-info p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Subscribe CTA */
+        .subscribe-box {
+            background: linear-gradient(135deg, rgba(255,0,0,0.1) 0%, var(--bg-card) 100%);
+            border: 1px solid rgba(255,0,0,0.2);
+            border-radius: 16px;
             padding: 2rem;
-            max-width: 900px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .subscribe-box h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .subscribe-box p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .btn-youtube {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            background: #ff0000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-youtube:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,0,0,0.3);
         }
 
         /* Mobile Header */
@@ -143,16 +265,8 @@
             background: var(--bg-sidebar);
             border-bottom: 1px solid var(--border);
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 99;
-        }
-
-        .mobile-header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
         }
 
         .menu-toggle {
@@ -163,226 +277,8 @@
             cursor: pointer;
         }
 
-        /* Content Sections */
-        .content-section {
-            display: none;
-        }
-
-        .content-section.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .page-header {
-            margin-bottom: 2rem;
-        }
-
-        .page-header h1 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .page-header p {
-            color: var(--text-secondary);
-        }
-
-        /* Video Player */
-        .video-player-container {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 2rem;
-        }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            background: #000;
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .video-info {
-            padding: 1.5rem;
-        }
-
-        .video-info h2 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .video-info p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        .video-meta {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 1rem;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            background: var(--accent);
-            color: #000;
-            padding: 0.25rem 0.6rem;
-            border-radius: 6px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        /* Video Grid */
-        .video-grid {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .video-grid-2 {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
         @media (max-width: 768px) {
-            .video-grid-2 {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Cards */
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.25rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .card:hover {
-            background: var(--bg-hover);
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            background: rgba(247, 147, 26, 0.1);
-            border: 1px solid rgba(247, 147, 26, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-size: 1rem;
-        }
-
-        .card-title {
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        .card-desc {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
-
-        .card-meta {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-top: 0.75rem;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-
-            .sidebar.open {
-                transform: translateX(0);
-            }
-
-            .main {
-                margin-left: 0;
-                padding: 5rem 1rem 2rem;
-            }
-
-            .mobile-header {
-                display: block;
-            }
-        }
-
-        /* Subscribe Section */
-        .subscribe-section {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, rgba(247, 147, 26, 0.1) 0%, var(--bg-card) 100%);
-            border: 1px solid rgba(247, 147, 26, 0.3);
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .subscribe-section h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .subscribe-section p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: #ff0000;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+            .mobile-header { display: flex; justify-content: space-between; align-items: center; }
         }
     </style>
 </head>
@@ -390,363 +286,151 @@
     <div class="layout">
         <!-- Mobile Header -->
         <div class="mobile-header">
-            <div class="mobile-header-content">
-                <a href="index.html" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: inherit;">
-                    <img src="esclogo.png" alt="Escbase" style="width: 32px; height: 32px; border-radius: 8px;">
-                    <span style="font-weight: 600;">Escbase</span>
-                </a>
-                <button class="menu-toggle" onclick="toggleSidebar()">
-                    <i class="fas fa-bars"></i>
-                </button>
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <img src="esclogo.png" alt="Escbase" style="width: 32px; height: 32px; border-radius: 8px;">
+                <span style="font-weight: 700;">Escbase</span>
             </div>
+            <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
 
         <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <a href="index.html" class="sidebar-logo">
+            <div class="sidebar-logo">
+                <a href="index.html">
                     <img src="esclogo.png" alt="Escbase">
                     <span>Escbase</span>
                 </a>
             </div>
 
-            <nav class="sidebar-nav">
-                <!-- Main Nav -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Menu</div>
-                    <a href="index.html" class="nav-item">
-                        <i class="fas fa-home"></i>
-                        <span>Home</span>
-                    </a>
-                    <a href="videos.html" class="nav-item active">
-                        <i class="fab fa-youtube"></i>
-                        <span>Videos</span>
-                    </a>
-                    <a href="crypto-reports/index.html" class="nav-item">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Reports</span>
-                    </a>
-                    <a href="blog/index.html" class="nav-item">
-                        <i class="fas fa-blog"></i>
-                        <span>Blog</span>
-                    </a>
-                    <a href="read/index.html" class="nav-item">
-                        <i class="fas fa-book-open"></i>
-                        <span>Reading</span>
-                    </a>
-                </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Menu</div>
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="posts.html" class="nav-item">Posts</a>
+                <a href="videos.html" class="nav-item active">Videos</a>
+                <a href="index.html#reports" class="nav-item">Reports</a>
+            </div>
 
-                <!-- Video Categories -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Playlists</div>
-                    <div class="nav-item active" onclick="showSection('daily')">
-                        <i class="fas fa-play-circle"></i>
-                        <span>Daily Reports</span>
-                    </div>
-                    <div class="nav-item" onclick="showSection('fullhd')">
-                        <i class="fas fa-video"></i>
-                        <span>Full HD</span>
-                    </div>
-                    <div class="nav-item" onclick="showSection('ai')">
-                        <i class="fas fa-robot"></i>
-                        <span>AI Edition</span>
-                    </div>
-                    <div class="nav-item" onclick="showSection('audio')">
-                        <i class="fas fa-headphones"></i>
-                        <span>Audio</span>
-                    </div>
-                </div>
-
-                <!-- Archive -->
-                <div class="nav-section">
-                    <div class="nav-section-title">Archive</div>
-                    <div class="nav-item" onclick="showSection('march2026')">
-                        <i class="far fa-calendar"></i>
-                        <span>March 2026</span>
-                    </div>
-                    <div class="nav-item" onclick="showSection('feb2026')">
-                        <i class="far fa-calendar"></i>
-                        <span>February 2026</span>
-                    </div>
-                </div>
-            </nav>
+            <div class="nav-section">
+                <div class="nav-section-title">Connect</div>
+                <a href="https://www.youtube.com/@ESCBase" target="_blank" class="nav-item"><i class="fab fa-youtube" style="color: #ff0000; margin-right: 0.5rem;"></i> YouTube</a>
+                <a href="https://discord.gg/SMhy8RjDCf" target="_blank" class="nav-item"><i class="fab fa-discord" style="color: #5865F2; margin-right: 0.5rem;"></i> Discord</a>
+            </div>
         </aside>
 
-        <!-- Main Content -->
+        <!-- Main -->
         <main class="main">
-            <!-- Daily Reports Section -->
-            <div id="daily" class="content-section active">
-                <div class="page-header">
-                    <h1>Daily Crypto Reports</h1>
-                    <p>Báo cáo thị trường cryptocurrency hàng ngày</p>
-                </div>
+            <div class="page-header">
+                <h1><i class="fab fa-youtube" style="color: #ff0000;"></i> Videos</h1>
+                <p>Báo cáo thị trường crypto hàng ngày trên YouTube</p>
+            </div>
 
-                <!-- Featured Video -->
-                <div class="video-player-container">
+            <!-- Featured Latest Video -->
+            <div class="featured-video">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=ESCBase&rel=0" 
+                            title="Latest Videos from ESCBase" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="featured-info">
+                    <span class="badge"><i class="fas fa-play"></i> Latest</span>
+                    <h2 style="margin-top: 0.75rem;">Video Mới Nhất Từ ESCBase</h2>
+                    <p>Đăng ký kênh để nhận thông báo báo cáo crypto mỗi ngày. Tất cả videos đều có bản Full HD, AI Edition và Audio Podcast.</p>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                        <span style="font-size: 0.85rem; color: var(--text-muted);"><i class="fas fa-video"></i> Daily Reports</span>
+                        <span style="font-size: 0.85rem; color: var(--text-muted);"><i class="fas fa-film"></i> Full HD</span>
+                        <span style="font-size: 0.85rem; color: var(--text-muted);"><i class="fas fa-robot"></i> AI Edition</span>
+                        <span style="font-size: 0.85rem; color: var(--text-muted);"><i class="fas fa-headphones"></i> Audio</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Grid - Manual Featured Videos -->
+            <div class="video-grid">
+                <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe id="mainPlayer" src="https://www.youtube.com/embed/W0lMLR0UG4w" 
-                                title="Latest Daily Report" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        <iframe src="https://www.youtube.com/embed/W0lMLR0UG4w?rel=0" 
+                                title="Crypto Report 02/03/2026" 
                                 allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-info">
-                        <h2 id="videoTitle">Crypto Report 02/03/2026 - MicroStrategy Buying Spree</h2>
-                        <p id="videoDesc">Bitcoin test $66K | MicroStrategy mua thêm 15,000 BTC | ETF inflow dương | Phân tích kỹ thuật.</p>
+                        <div class="video-title">Crypto Report 02/03/2026 - MicroStrategy Buying Spree</div>
                         <div class="video-meta">
-                            <span class="badge">Latest</span>
                             <span><i class="far fa-calendar"></i> 02/03/2026</span>
-                            <span><i class="far fa-clock"></i> 10 min</span>
+                            <span><i class="far fa-clock"></i> 10:24</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Video List -->
-                <div class="video-grid video-grid-2">
-                    <div class="card" onclick="playVideo('W0lMLR0UG4w', 'Crypto Report 02/03/2026', 'Bitcoin test $66K | MicroStrategy mua thêm 15,000 BTC')">
-                        <div class="card-header">
-                            <div class="card-icon"><i class="fas fa-play"></i></div>
-                            <div class="card-title">02/03/2026 - MicroStrategy Buy</div>
-                        </div>
-                        <div class="card-desc">BTC test $66K, MicroStrategy thêm 15K BTC</div>
-                        <div class="card-meta">
-                            <span><i class="far fa-calendar"></i> 02/03/2026</span>
-                            <span style="color: var(--accent);">▶ Play</span>
-                        </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/nufFwx0UNQE?rel=0" 
+                                title="Crypto Report 28/02/2026" 
+                                allowfullscreen>
+                        </iframe>
                     </div>
-
-                    <div class="card" onclick="playVideo('nufFwx0UNQE', 'Crypto Report 28/02/2026', 'AI Thâu Tóm Đào Bitcoin - ZachXBT expose')">
-                        <div class="card-header">
-                            <div class="card-icon"><i class="fas fa-play"></i></div>
-                            <div class="card-title">28/02/2026 - AI Mining</div>
-                        </div>
-                        <div class="card-desc">OpenAI $110B, ZachXBT vạch trần nội gián</div>
-                        <div class="card-meta">
+                    <div class="video-info">
+                        <div class="video-title">Crypto Report 28/02/2026 - AI Mining & ZachXBT</div>
+                        <div class="video-meta">
                             <span><i class="far fa-calendar"></i> 28/02/2026</span>
-                            <span style="color: var(--accent);">▶ Play</span>
+                            <span><i class="far fa-clock"></i> 9:45</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="card" onclick="playVideo('tcWWaFB2CtE', 'Crypto Report 27/02/2026', 'Thị Trường Phục Hồi - Altcoin bứt phá')">
-                        <div class="card-header">
-                            <div class="card-icon"><i class="fas fa-play"></i></div>
-                            <div class="card-title">27/02/2026 - Market Recovery</div>
-                        </div>
-                        <div class="card-desc">Phục hồi sau điều chỉnh, altcoin tăng mạnh</div>
-                        <div class="card-meta">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/tcWWaFB2CtE?rel=0" 
+                                title="Crypto Report 27/02/2026" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">Crypto Report 27/02/2026 - Market Recovery</div>
+                        <div class="video-meta">
                             <span><i class="far fa-calendar"></i> 27/02/2026</span>
-                            <span style="color: var(--accent);">▶ Play</span>
+                            <span><i class="far fa-clock"></i> 11:12</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="card" onclick="playVideo('Ki9AMbGoZBE', 'Crypto Report 26/02/2026', 'ETF Inflow Tăng Mạnh')">
-                        <div class="card-header">
-                            <div class="card-icon"><i class="fas fa-play"></i></div>
-                            <div class="card-title">26/02/2026 - ETF Surge</div>
-                        </div>
-                        <div class="card-desc">Dòng vốn ETF kỷ lục, Bitcoin hướng $100K</div>
-                        <div class="card-meta">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/Ki9AMbGoZBE?rel=0" 
+                                title="Crypto Report 26/02/2026" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-title">Crypto Report 26/02/2026 - ETF Surge</div>
+                        <div class="video-meta">
                             <span><i class="far fa-calendar"></i> 26/02/2026</span>
-                            <span style="color: var(--accent);">▶ Play</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="subscribe-section">
-                    <h3><i class="fab fa-youtube" style="color: #ff0000;"></i> Subscribe to ESCBase</h3>
-                    <p>Nhận thông báo video mới mỗi ngày</p>
-                    <a href="https://www.youtube.com/@ESCBase?sub_confirmation=1" target="_blank" class="btn">
-                        <i class="fab fa-youtube"></i> Subscribe Now
-                    </a>
-                </div>
-            </div>
-
-            <!-- Full HD Section -->
-            <div id="fullhd" class="content-section">
-                <div class="page-header">
-                    <h1>Full HD Edition</h1>
-                    <p>Phiên bản đầy đủ với infographic 4K và audio chất lượng cao</p>
-                </div>
-
-                <div class="video-player-container">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/nufFwx0UNQE" 
-                                title="Full HD Edition" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-info">
-                        <h2>Full HD Edition - 02/03/2026</h2>
-                        <p>Infographic 4K, audio lossless, phân tích chi tiết thị trường.</p>
-                        <div class="video-meta">
-                            <span class="badge">4K</span>
-                            <span><i class="fas fa-video"></i> 3840x2160</span>
-                            <span><i class="far fa-clock"></i> 15 min</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="video-grid video-grid-2">
-                    <div class="card" onclick="location.href='https://youtube.com/@ESCBase/videos'">
-                        <div class="card-header">
-                            <div class="card-icon"><i class="fas fa-video"></i></div>
-                            <div class="card-title">02/03/2026 Full HD</div>
-                        </div>
-                        <div class="card-desc">4K infographic, audio chất lượng cao</div>
-                    </div>
-                    <div class="card" onclick="location.href='https://youtube.com/@ESCBase/videos'">
-                        <div class="card-header">
-                            <div class="card-icon"><i class="fas fa-video"></i></div>
-                            <div class="card-title">28/02/2026 Full HD</div>
-                        </div>
-                        <div class="card-desc">4K infographic, audio chất lượng cao</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- AI Edition Section -->
-            <div id="ai" class="content-section">
-                <div class="page-header">
-                    <h1>AI Narrative Edition</h1>
-                    <p>Báo cáo tóm tắt với AI narrative và hình ảnh sinh động</p>
-                </div>
-
-                <div class="video-player-container">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/tcWWaFB2CtE" 
-                                title="AI Edition" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-info">
-                        <h2>AI Edition - NotebookLM</h2>
-                        <p>AI-generated content, auto-infographic, tóm tắt nhanh trong 5 phút.</p>
-                        <div class="video-meta">
-                            <span class="badge">AI Powered</span>
-                            <span><i class="fas fa-robot"></i> NotebookLM</span>
-                            <span><i class="far fa-clock"></i> 5 min</span>
+                            <span><i class="far fa-clock"></i> 10:08</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Audio Edition Section -->
-            <div id="audio" class="content-section">
-                <div class="page-header">
-                    <h1>Audio Edition</h1>
-                    <p>Phiên bản podcast, phù hợp khi đang di chuyển</p>
-                </div>
-
-                <div class="video-player-container">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/Ki9AMbGoZBE" 
-                                title="Audio Edition" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-info">
-                        <h2>Audio Podcast Edition</h2>
-                        <p>Nghe báo cáo crypto trên đường đi làm, tập gym, hoặc lái xe.</p>
-                        <div class="video-meta">
-                            <span class="badge">Podcast</span>
-                            <span><i class="fas fa-headphones"></i> Audio Only</span>
-                            <span><i class="far fa-clock"></i> 8 min</span>
-                        </div>
-                    </div>
-                </div>
+            <!-- Subscribe -->
+            <div class="subscribe-box">
+                <h3><i class="fab fa-youtube" style="color: #ff0000;"></i> Subscribe to ESCBase</h3>
+                <p>Nhận thông báo video mới mỗi ngày. Đừng bỏ lỡ bất kỳ báo cáo thị trường nào!</p>
+                <a href="https://www.youtube.com/@ESCBase?sub_confirmation=1" target="_blank" class="btn-youtube">
+                    <i class="fab fa-youtube"></i> Subscribe Now
+                </a>
             </div>
 
-            <!-- March 2026 Archive -->
-            <div id="march2026" class="content-section">
-                <div class="page-header">
-                    <h1>March 2026</h1>
-                    <p>Archive video tháng 3/2026</p>
-                </div>
-
-                <div class="video-grid video-grid-2">
-                    <div class="card" onclick="playVideo('W0lMLR0UG4w', '02/03/2026', 'BTC Test $66K')">
-                        <div class="card-header">
-                            <div class="card-icon"><i class="fas fa-play"></i></div>
-                            <div class="card-title">02/03/2026 - BTC $66K</div>
-                        </div>
-                        <div class="card-desc">MicroStrategy mua thêm 15,000 BTC</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- February 2026 Archive -->
-            <div id="feb2026" class="content-section">
-                <div class="page-header">
-                    <h1>February 2026</h1>
-                    <p>Archive video tháng 2/2026</p>
-                </div>
-
-                <div class="video-grid video-grid-2">
-                    <div class="card" onclick="playVideo('nufFwx0UNQE', '28/02/2026', 'AI Mining')">
-                        <div class="card-header">
-                            <div class="card-icon"><i class="fas fa-play"></i></div>
-                            <div class="card-title">28/02/2026 - AI Mining</div>
-                        </div>
-                        <div class="card-desc">OpenAI, ZachXBT expose</div>
-                    </div>
-                    <div class="card" onclick="playVideo('tcWWaFB2CtE', '27/02/2026', 'Market Recovery')">
-                        <div class="card-header">
-                            <div class="card-icon"><i class="fas fa-play"></i></div>
-                            <div class="card-title">27/02/2026 - Recovery</div>
-                        </div>
-                        <div class="card-desc">Altcoin bứt phá</div>
-                    </div>
-                    <div class="card" onclick="playVideo('Ki9AMbGoZBE', '26/02/2026', 'ETF Surge')">
-                        <div class="card-header">
-                            <div class="card-icon"><i class="fas fa-play"></i></div>
-                            <div class="card-title">26/02/2026 - ETF</div>
-                        </div>
-                        <div class="card-desc">Dòng vốn kỷ lục</div>
-                    </div>
-                </div>
+            <!-- YouTube Channel Link -->
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://www.youtube.com/@ESCBase/videos" target="_blank" style="color: var(--text-secondary); text-decoration: none; font-size: 0.95rem;">
+                    Xem tất cả videos trên YouTube <i class="fas fa-external-link-alt" style="margin-left: 0.25rem;"></i>
+                </a>
             </div>
         </main>
     </div>
-
-    <script>
-        // Toggle Sidebar on Mobile
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('open');
-        }
-
-        // Show Section
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Show selected section
-            document.getElementById(sectionId).classList.add('active');
-            
-            // Update nav active state
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            event.target.closest('.nav-item').classList.add('active');
-            
-            // Close sidebar on mobile
-            document.getElementById('sidebar').classList.remove('open');
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
-
-        // Play Video
-        function playVideo(videoId, title, desc) {
-            document.getElementById('mainPlayer').src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
-            document.getElementById('videoTitle').textContent = title;
-            document.getElementById('videoDesc').textContent = desc;
-            window.scrollTo(0, 0);
-        }
-    </script>
 </body>
 </html>
