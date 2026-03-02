@@ -7,399 +7,401 @@
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #f7931a;
-            --secondary-color: #e67e22;
-            --background-color: #0a0a0a;
-            --card-background: #141414;
-            --text-color: #e0e0e0;
-            --muted-text: #888;
-            --border-color: #2a2a2a;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --bg-hover: #1c1c1c;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --accent: #f7931a;
+            --accent-hover: #ffaa33;
+            --border: #2a2a2a;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Be Vietnam Pro', sans-serif;
         }
 
         body {
-            background-color: var(--background-color);
-            color: var(--text-color);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header */
+        header {
+            padding: 3rem 0 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .header-text h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .header-text p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
         /* Navigation */
-        nav {
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 1rem 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1.4rem;
-        }
-
-        .nav-logo img {
-            height: 36px;
+        .nav-section {
+            margin-bottom: 2rem;
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
-            list-style: none;
+            gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
-        .nav-links a {
-            color: var(--muted-text);
+        .nav-link {
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-            position: relative;
+            font-size: 0.875rem;
+            transition: all 0.2s;
         }
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--primary-color);
+        .nav-link:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: width 0.3s;
+        .nav-link.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #000;
         }
 
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
+        /* Section */
+        .section {
+            margin-bottom: 2.5rem;
         }
 
-        /* Hero */
-        .hero {
-            padding: 8rem 1.5rem 4rem;
-            text-align: center;
-            background: 
-                radial-gradient(ellipse at top, rgba(247, 147, 26, 0.15) 0%, transparent 50%),
-                var(--background-color);
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
+        .section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
             margin-bottom: 1rem;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #ffd700 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            color: var(--muted-text);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Content */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem 4rem;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .section-header h2 {
-            font-size: 1.3rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .section-header h2 i {
-            color: var(--primary-color);
-        }
-
-        .post-count {
-            color: var(--muted-text);
-            font-size: 0.9rem;
-        }
-
-        /* Category Tabs */
-        .category-tabs {
+        /* Filter tabs */
+        .filter-tabs {
             display: flex;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
             flex-wrap: wrap;
         }
 
-        .category-tab {
-            padding: 0.6rem 1.2rem;
-            background: var(--card-background);
-            border: 1px solid var(--border-color);
-            border-radius: 25px;
-            color: var(--muted-text);
-            font-size: 0.9rem;
+        .filter-tab {
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
         }
 
-        .category-tab:hover,
-        .category-tab.active {
-            background: var(--primary-color);
-            border-color: var(--primary-color);
+        .filter-tab:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .filter-tab.active {
+            background: var(--accent);
+            border-color: var(--accent);
             color: #000;
         }
 
-        /* Articles Grid */
-        .articles-grid {
+        /* Bento Grid */
+        .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
         }
 
-        .article-card {
-            background: var(--card-background);
-            border-radius: 12px;
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
             padding: 1.5rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s;
-            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            background: var(--bg-hover);
+            border-color: #3a3a3a;
+            transform: translateY(-2px);
+        }
+
+        .card-link {
+            display: block;
             text-decoration: none;
             color: inherit;
-            display: block;
         }
 
-        .article-card:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(247, 147, 26, 0.1);
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
         }
 
-        .article-card.hidden {
-            display: none;
-        }
-
-        .article-icon {
-            width: 50px;
-            height: 50px;
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
             background: rgba(247, 147, 26, 0.1);
-            border-radius: 12px;
+            border: 1px solid rgba(247, 147, 26, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .article-category {
-            display: inline-block;
-            background: rgba(247, 147, 26, 0.1);
-            color: var(--primary-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .article-card h3 {
+            color: var(--accent);
             font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
         }
 
-        .article-card:hover h3 {
-            color: var(--primary-color);
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
         }
 
-        .article-meta {
+        .card-desc {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .card-meta {
             display: flex;
             align-items: center;
             gap: 1rem;
-            font-size: 0.85rem;
-            color: var(--muted-text);
             margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Category tag */
+        .category-tag {
+            display: inline-block;
+            background: rgba(247, 147, 26, 0.1);
+            color: var(--accent);
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Count badge */
+        .count-badge {
+            font-size: 0.875rem;
+            color: var(--text-muted);
         }
 
         /* Footer */
         footer {
-            background: #050505;
-            border-top: 1px solid var(--border-color);
-            padding: 2rem 1.5rem;
-            text-align: center;
-            color: var(--muted-text);
+            padding: 3rem 0 4rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
 
-            .hero h1 {
-                font-size: 1.8rem;
-            }
+        .footer-left {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
 
-            .articles-grid {
-                grid-template-columns: 1fr;
-            }
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
 
-            .category-tabs {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                flex-wrap: nowrap;
-                padding-bottom: 0.5rem;
-            }
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hidden */
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="../index.html" class="nav-logo">
-                <img src="../esclogo.png" alt="Escbase">
-                Escbase
-            </a>
-            <ul class="nav-links">
-                <li><a href="../index.html">Trang chủ</a></li>
-                <li><a href="../crypto-reports/index.html">Crypto Reports</a></li>
-                <li><a href="../blog/index.html">Blog</a></li>
-                <li><a href="index.html" class="active">Reading</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero -->
-    <section class="hero">
-        <h1>Reading <span>Now</span></h1>
-        <p>Bài viết về trading, đầu tư, công nghệ và nhiều chủ đề thú vị khác.</p>
-    </section>
-
-    <!-- Content -->
     <div class="container">
-        <!-- Category Tabs -->
-        <div class="category-tabs">
-            <div class="category-tab active" data-category="all">Tất cả</div>
-            <div class="category-tab" data-category="trading">Trading</div>
-            <div class="category-tab" data-category="strategy">Chiến lược</div>
-            <div class="category-tab" data-category="tech">Công nghệ</div>
-            <div class="category-tab" data-category="other">Khác</div>
+        <!-- Header -->
+        <header>
+            <a href="../index.html" class="header-content" style="text-decoration: none; color: inherit;">
+                <img src="../esclogo.png" alt="Escbase" class="logo">
+                <div class="header-text">
+                    <h1>Escbase</h1>
+                    <p>Reading Collection</p>
+                </div>
+            </a>
+        </header>
+
+        <!-- Navigation -->
+        <div class="nav-section">
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../crypto-reports/index.html" class="nav-link">Reports</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="index.html" class="nav-link active">Reading</a>
+            </div>
         </div>
 
-        <div class="section-header">
-            <h2><i class="fas fa-book-open"></i> Danh Sách Bài Viết</h2>
-            <span class="post-count" id="postCount">Đang tải...</span>
+        <!-- Filter -->
+        <div class="filter-tabs">
+            <div class="filter-tab active" data-category="all">All</div>
+            <div class="filter-tab" data-category="trading">Trading</div>
+            <div class="filter-tab" data-category="strategy">Strategy</div>
+            <div class="filter-tab" data-category="tech">Tech</div>
+            <div class="filter-tab" data-category="other">Other</div>
         </div>
 
-        <div class="articles-grid" id="articlesGrid">
-            <!-- Articles will be loaded here -->
+        <!-- Articles -->
+        <div class="section">
+            <div class="section-title">
+                <i class="fas fa-book-open"></i>
+                Articles <span class="count-badge" id="articleCount">13 articles</span>
+            </div>
+            <div class="bento-grid" id="articlesGrid">
+                <!-- Articles will be loaded by JS -->
+            </div>
         </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-left">
+                    © 2026 Escbase
+                </div>
+                <div class="footer-links">
+                    <a href="https://www.youtube.com/@ESCBase" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://discord.gg/SMhy8RjDCf" target="_blank"><i class="fab fa-discord"></i></a>
+                    <a href="https://www.facebook.com/escbasexyz" target="_blank"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Escbase. Reading Collection.</p>
-    </footer>
-
     <script>
-        // Articles data
         const articles = [
-            { file: 'footprint.html', title: 'Giải mã Biểu đồ Footprint', category: 'trading', icon: 'fa-chart-bar' },
-            { file: 'foot_print_chart2.html', title: 'Footprint Chart - Nâng cao', category: 'trading', icon: 'fa-chart-area' },
-            { file: 'order_flow.html', title: '5 Mẫu hình Order Flow quan trọng', category: 'trading', icon: 'fa-stream' },
-            { file: 'future_grid.html', title: 'Hướng Dẫn Sử Dụng Binance Futures Grid', category: 'strategy', icon: 'fa-robot' },
-            { file: 'futu_grid.html', title: 'Công cụ mô phỏng Future Grid', category: 'strategy', icon: 'fa-calculator' },
-            { file: 'barbell.html', title: 'Chiến lược Đầu tư Crypto: Balanced Barbell', category: 'strategy', icon: 'fa-balance-scale' },
-            { file: 'barbell_strategy.html', title: 'Chiến lược Tạ đòn: Infographic', category: 'strategy', icon: 'fa-dumbbell' },
-            { file: 'vinfast.html', title: 'Toàn Cảnh Xe Điện VinFast', category: 'tech', icon: 'fa-car' },
-            { file: 'an_toan_xe_dien.html', title: 'An Toàn Xe Điện', category: 'tech', icon: 'fa-shield-alt' },
-            { file: 'so_sanh_xe.html', title: 'Cuộc Đua Công Nghệ Ô Tô Tại Việt Nam', category: 'tech', icon: 'fa-tachometer-alt' },
-            { file: 'med_house.html', title: 'Tủ Thuốc Gia Đình Thông Minh', category: 'other', icon: 'fa-medkit' },
-            { file: 'oppenheimer.html', title: 'Khoa học trong phim Oppenheimer', category: 'other', icon: 'fa-film' },
-            { file: 'freelancer.html', title: 'Lộ Trình Kiếm Tiền Cho Freelancer', category: 'other', icon: 'fa-laptop-code' }
+            { file: 'footprint.html', title: 'Giải mã Biểu đồ Footprint', category: 'trading', icon: 'fa-chart-bar', desc: 'Hiểu sâu về footprint chart và cách đọc dữ liệu order flow.' },
+            { file: 'foot_print_chart2.html', title: 'Footprint Chart - Nâng cao', category: 'trading', icon: 'fa-chart-area', desc: 'Kỹ thuật phân tích footprint nâng cao cho trader.' },
+            { file: 'order_flow.html', title: '5 Mẫu hình Order Flow', category: 'trading', icon: 'fa-stream', desc: 'Các mẫu hình order flow quan trọng cần biết.' },
+            { file: 'future_grid.html', title: 'Binance Futures Grid', category: 'strategy', icon: 'fa-robot', desc: 'Hướng dẫn sử dụng bot grid trading trên Binance.' },
+            { file: 'futu_grid.html', title: 'Future Grid Simulator', category: 'strategy', icon: 'fa-calculator', desc: 'Công cụ mô phỏng chiến lược grid trading.' },
+            { file: 'barbell.html', title: 'Balanced Barbell Strategy', category: 'strategy', icon: 'fa-balance-scale', desc: 'Chiến lược đầu tư crypto cân bằng rủi ro.' },
+            { file: 'barbell_strategy.html', title: 'Barbell Infographic', category: 'strategy', icon: 'fa-dumbbell', desc: 'Biểu đồ trực quan về chiến lược tạ đòn.' },
+            { file: 'vinfast.html', title: 'VinFast Overview', category: 'tech', icon: 'fa-car', desc: 'Toàn cảnh xe điện VinFast và tham vọng toàn cầu.' },
+            { file: 'an_toan_xe_dien.html', title: 'EV Safety', category: 'tech', icon: 'fa-shield-alt', desc: 'Phân tích an toàn của xe điện so với xe xăng.' },
+            { file: 'so_sanh_xe.html', title: 'Vietnam EV Market', category: 'tech', icon: 'fa-tachometer-alt', desc: 'Cuộc đua công nghệ ô tô tại Việt Nam.' },
+            { file: 'med_house.html', title: 'Smart Medicine Cabinet', category: 'other', icon: 'fa-medkit', desc: 'Tủ thuốc gia đình thông minh với AI.' },
+            { file: 'oppenheimer.html', title: 'Oppenheimer Science', category: 'other', icon: 'fa-film', desc: 'Khoa học và lịch sử trong phim Oppenheimer.' },
+            { file: 'freelancer.html', title: 'Freelancer Roadmap', category: 'other', icon: 'fa-laptop-code', desc: 'Lộ trình kiếm tiền cho freelancer hiệu quả.' }
         ];
 
         const categoryNames = {
             'trading': 'Trading',
-            'strategy': 'Chiến lược',
-            'tech': 'Công nghệ',
-            'other': 'Khác'
+            'strategy': 'Strategy',
+            'tech': 'Tech',
+            'other': 'Other'
         };
 
-        // Render articles
         function renderArticles(category = 'all') {
             const grid = document.getElementById('articlesGrid');
-            const count = document.getElementById('postCount');
+            const count = document.getElementById('articleCount');
 
             const filtered = category === 'all' 
                 ? articles 
                 : articles.filter(a => a.category === category);
 
-            count.textContent = `${filtered.length} bài viết`;
+            count.textContent = `${filtered.length} articles`;
 
             grid.innerHTML = filtered.map(article => `
-                <a href="${article.file}" class="article-card">
-                    <div class="article-icon">
-                        <i class="fas ${article.icon}"></i>
-                    </div>
-                    <span class="article-category">${categoryNames[article.category]}</span>
-                    <h3>${article.title}</h3>
-                    <div class="article-meta">
-                        <span><i class="fas fa-clock"></i> 10 phút đọc</span>
-                        <span><i class="fas fa-arrow-right"></i> Đọc ngay</span>
+                <a href="${article.file}" class="card-link">
+                    <div class="card">
+                        <span class="category-tag">${categoryNames[article.category]}</span>
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas ${article.icon}"></i></div>
+                            <div class="card-title">${article.title}</div>
+                        </div>
+                        <div class="card-desc">${article.desc}</div>
+                        <div class="card-meta">
+                            <span><i class="fas fa-clock"></i> 10 min read</span>
+                            <span><i class="fas fa-arrow-right"></i> Read</span>
+                        </div>
                     </div>
                 </a>
             `).join('');
         }
 
-        // Tab switching
-        document.querySelectorAll('.category-tab').forEach(tab => {
+        // Filter tabs
+        document.querySelectorAll('.filter-tab').forEach(tab => {
             tab.addEventListener('click', () => {
-                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
                 tab.classList.add('active');
                 renderArticles(tab.dataset.category);
             });

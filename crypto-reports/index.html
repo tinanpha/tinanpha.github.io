@@ -7,178 +7,356 @@
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #f7931a;
-            --secondary-color: #e67e22;
-            --background-color: #0a0a0a;
-            --card-background: #141414;
-            --text-color: #e0e0e0;
-            --muted-text: #888;
-            --border-color: #2a2a2a;
-            --success-color: #2ecc71;
-            --danger-color: #e74c3c;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --bg-hover: #1c1c1c;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --accent: #f7931a;
+            --accent-hover: #ffaa33;
+            --border: #2a2a2a;
+            --success: #22c55e;
+            --danger: #ef4444;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Be Vietnam Pro', sans-serif;
         }
 
         body {
-            background-color: var(--background-color);
-            color: var(--text-color);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Navigation */
-        nav {
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 1rem 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .nav-container {
-            max-width: 1200px;
+        .container {
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1.4rem;
+        header {
+            padding: 3rem 0 2rem;
         }
 
-        .nav-logo img {
-            height: 36px;
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .header-text h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .header-text p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .nav-section {
+            margin-bottom: 2rem;
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
-            list-style: none;
+            gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
-        .nav-links a {
-            color: var(--muted-text);
+        .nav-link {
+            padding: 0.5rem 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s;
-            position: relative;
+            font-size: 0.875rem;
+            transition: all 0.2s;
         }
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--primary-color);
+        .nav-link:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: width 0.3s;
+        .nav-link.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #000;
         }
 
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
+        .section {
+            margin-bottom: 2.5rem;
         }
 
-        /* Hero */
-        .hero {
-            padding: 8rem 1.5rem 4rem;
-            text-align: center;
-            background: 
-                radial-gradient(ellipse at top, rgba(247, 147, 26, 0.15) 0%, transparent 50%),
-                var(--background-color);
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #ffd700 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            color: var(--muted-text);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Tab Navigation */
-        .tab-nav {
-            background: var(--card-background);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 70px;
-            z-index: 100;
-        }
-
-        .tab-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            padding: 0 1.5rem;
-        }
-
-        .tab-btn {
-            padding: 1rem 1.5rem;
-            background: none;
-            border: none;
-            color: var(--muted-text);
-            font-size: 0.95rem;
+        .section-title {
+            font-size: 0.75rem;
             font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            border-bottom: 3px solid transparent;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .tab-btn:hover,
-        .tab-btn.active {
-            color: var(--primary-color);
-            border-bottom-color: var(--primary-color);
+        .bento-grid {
+            display: grid;
+            gap: 1rem;
         }
 
-        /* Tab Content */
+        .bento-grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .bento-grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 768px) {
+            .bento-grid-2,
+            .bento-grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            background: var(--bg-hover);
+            border-color: #3a3a3a;
+            transform: translateY(-2px);
+        }
+
+        .card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(247, 147, 26, 0.1);
+            border: 1px solid rgba(247, 147, 26, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .card-desc {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .card-featured {
+            background: linear-gradient(135deg, rgba(247, 147, 26, 0.1) 0%, var(--bg-card) 100%);
+            border-color: rgba(247, 147, 26, 0.3);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: var(--accent);
+            color: #000;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            background: var(--bg-secondary);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .link-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+        }
+
+        .link-row:hover {
+            color: var(--accent);
+        }
+
+        .link-row:last-child {
+            border-bottom: none;
+        }
+
+        .link-content {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .link-arrow {
+            color: var(--text-muted);
+            transition: transform 0.2s;
+        }
+
+        .link-row:hover .link-arrow {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 0.4rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.6rem 1.2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #000;
+        }
+
         .tab-content {
             display: none;
-            padding: 3rem 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
+        }
+
+        .tab-content.active {
+            display: block;
             animation: fadeIn 0.3s ease;
         }
 
@@ -187,836 +365,408 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Overview Tab */
-        .report-hero {
-            background: linear-gradient(135deg, rgba(247, 147, 26, 0.1) 0%, transparent 100%);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .report-hero::before {
-            content: 'LATEST';
-            position: absolute;
-            top: 1.5rem;
-            right: -3rem;
-            background: var(--primary-color);
-            color: #000;
-            padding: 0.3rem 4rem;
-            font-size: 0.7rem;
-            font-weight: 800;
-            transform: rotate(45deg);
-            letter-spacing: 2px;
-        }
-
-        .report-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .report-header h2 {
-            font-size: 1.5rem;
-        }
-
-        .date-badge {
-            background: rgba(247, 147, 26, 0.2);
-            color: var(--primary-color);
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .market-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .market-card {
-            background: var(--card-background);
-            padding: 1.25rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s;
-        }
-
-        .market-card:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-3px);
-        }
-
-        .market-card .label {
-            font-size: 0.8rem;
-            color: var(--muted-text);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
-        }
-
-        .market-card .value {
-            font-size: 1.6rem;
-            font-weight: 700;
-        }
-
-        .market-card .change {
-            font-size: 0.95rem;
-            margin-top: 0.25rem;
-            font-weight: 600;
-        }
-
-        .change.up { color: var(--success-color); }
-        .change.down { color: var(--danger-color); }
-
-        /* Content Section */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .content-card {
-            background: var(--card-background);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid var(--border-color);
-        }
-
-        .content-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .content-card h3 i {
-            color: var(--primary-color);
-        }
-
-        .coin-list {
-            list-style: none;
-        }
-
-        .coin-list li {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .coin-list li:last-child {
-            border-bottom: none;
-        }
-
-        .coin-info {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .coin-icon {
-            width: 32px;
-            height: 32px;
-            background: rgba(247, 147, 26, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            color: var(--primary-color);
-        }
-
-        .coin-name {
-            font-weight: 600;
-        }
-
-        .coin-symbol {
-            font-size: 0.85rem;
-            color: var(--muted-text);
-        }
-
-        .coin-price-info {
-            text-align: right;
-        }
-
-        .coin-price-info .price {
-            font-weight: 600;
-        }
-
-        .coin-price-info .change {
-            font-size: 0.85rem;
-        }
-
-        .news-list {
-            list-style: none;
-        }
-
-        .news-list li {
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .news-list li:last-child {
-            border-bottom: none;
-        }
-
-        .news-tag {
-            display: inline-block;
-            background: rgba(247, 147, 26, 0.1);
-            color: var(--primary-color);
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .news-title {
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        /* Video Tab */
-        .video-hero {
-            background: var(--card-background);
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 2rem;
-            border: 1px solid var(--border-color);
-        }
-
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .video-info {
-            padding: 1.5rem;
-        }
-
-        .video-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .video-info p {
-            color: var(--muted-text);
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .video-card {
-            background: var(--card-background);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s;
-        }
-
-        .video-card:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-5px);
-        }
-
-        .video-thumb {
-            position: relative;
-            padding-bottom: 56.25%;
-            background: #000;
-        }
-
-        .video-thumb iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .video-details {
-            padding: 1rem;
-        }
-
-        .video-details h4 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .video-details p {
-            font-size: 0.85rem;
-            color: var(--muted-text);
-        }
-
-        /* PDF Archive Tab */
-        .archive-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .archive-header h2 {
-            font-size: 1.5rem;
-        }
-
-        .filter-btn {
-            background: var(--card-background);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-
-        .filter-btn:hover {
-            border-color: var(--primary-color);
-        }
-
-        .pdf-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .pdf-card {
-            background: var(--card-background);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s;
-        }
-
-        .pdf-card:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-3px);
-        }
-
-        .pdf-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(247, 147, 26, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .pdf-card h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-        }
-
-        .pdf-card .date {
-            color: var(--muted-text);
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-
-        .pdf-actions {
-            display: flex;
-            gap: 0.75rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.25rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: #000;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(247, 147, 26, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .btn-small {
-            padding: 0.5rem 1rem;
-            font-size: 0.85rem;
-        }
-
-        /* Infographic */
-        .infographic-section {
+        footer {
+            padding: 3rem 0 4rem;
+            border-top: 1px solid var(--border);
             margin-top: 2rem;
         }
 
-        .infographic-container {
-            background: var(--card-background);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
-        .infographic-container img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .footer-left {
+            color: var(--text-muted);
+            font-size: 0.875rem;
         }
 
-        /* Footer */
-        footer {
-            background: #050505;
-            border-top: 1px solid var(--border-color);
-            padding: 2rem 1.5rem;
-            text-align: center;
-            color: var(--muted-text);
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
 
-            .hero {
-                padding-top: 6rem;
-            }
+        .footer-links a:hover {
+            color: var(--accent);
+        }
 
-            .hero h1 {
-                font-size: 1.8rem;
-            }
+        .change-up { color: var(--success); }
+        .change-down { color: var(--danger); }
 
-            .tab-container {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .tab-btn {
-                white-space: nowrap;
-            }
-
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .report-hero::before {
-                display: none;
-            }
-
-            .market-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .archive-header {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: flex-start;
-            }
+        .date-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="../index.html" class="nav-logo">
-                <img src="../esclogo.png" alt="Escbase">
-                Escbase
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <a href="../index.html" class="header-content" style="text-decoration: none; color: inherit;">
+                <img src="../esclogo.png" alt="Escbase" class="logo">
+                <div class="header-text">
+                    <h1>Escbase</h1>
+                    <p>Crypto Daily Reports & Analysis</p>
+                </div>
             </a>
-            <ul class="nav-links">
-                <li><a href="../index.html">Trang chủ</a></li>
-                <li><a href="index.html" class="active">Crypto Reports</a></li>
-                <li><a href="../blog/index.html">Blog</a></li>
-                <li><a href="../read/index.html">Reading</a></li>
-            </ul>
+        </header>
+
+        <!-- Navigation -->
+        <div class="nav-section">
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="index.html" class="nav-link active">Reports</a>
+                <a href="../blog/index.html" class="nav-link">Blog</a>
+                <a href="../read/index.html" class="nav-link">Reading</a>
+            </div>
         </div>
-    </nav>
 
-    <!-- Hero -->
-    <section class="hero">
-        <h1>Crypto <span>Daily Reports</span></h1>
-        <p>Báo cáo thị trường cryptocurrency hàng ngày với phân tích chuyên sâu, video và infographic đầy đủ.</p>
-    </section>
-
-    <!-- Tab Navigation -->
-    <div class="tab-nav">
-        <div class="tab-container">
+        <!-- Tab Buttons -->
+        <div class="tab-buttons">
             <button class="tab-btn active" data-tab="overview">
-                <i class="fas fa-chart-line"></i> Tổng Quan
+                <i class="fas fa-chart-line"></i> Overview
             </button>
             <button class="tab-btn" data-tab="videos">
-                <i class="fab fa-youtube"></i> Video
+                <i class="fab fa-youtube"></i> Videos
             </button>
             <button class="tab-btn" data-tab="archive">
-                <i class="fas fa-archive"></i> Báo Cáo PDF
-            </button>
-        </div>
-    </div>
-
-    <!-- Overview Tab -->
-    <div id="overview" class="tab-content active">
-        <div class="report-hero">
-            <div class="report-header">
-                <h2><i class="fas fa-file-alt" style="color: var(--primary-color);"></i> Báo Cáo Ngày 28/02/2026</h2>
-                <span class="date-badge">MỚI NHẤT</span>
-            </div>
-
-            <div class="market-grid">
-                <div class="market-card">
-                    <div class="label">Total Market Cap</div>
-                    <div class="value">$2.3T</div>
-                    <div class="change"><i class="fas fa-minus"></i> Đi ngang</div>
-                </div>
-                <div class="market-card">
-                    <div class="label">Bitcoin (BTC)</div>
-                    <div class="value">$65,888</div>
-                    <div class="change down"><i class="fas fa-arrow-down"></i> -2.32%</div>
-                </div>
-                <div class="market-card">
-                    <div class="label">Ethereum (ETH)</div>
-                    <div class="value">$1,931</div>
-                    <div class="change down"><i class="fas fa-arrow-down"></i> -4.73%</div>
-                </div>
-                <div class="market-card">
-                    <div class="label">24h Liquidations</div>
-                    <div class="value">$91.85M</div>
-                    <div class="change">Thanh lý</div>
-                </div>
-                <div class="market-card">
-                    <div class="label">BTC Dominance</div>
-                    <div class="value">57.33%</div>
-                    <div class="change up"><i class="fas fa-arrow-up"></i> Tăng</div>
-                </div>
-                <div class="market-card">
-                    <div class="label">Fear & Greed</div>
-                    <div class="value">52</div>
-                    <div class="change" style="color: var(--primary-color);">Neutral</div>
-                </div>
-            </div>
-
-            <p style="color: var(--muted-text); margin-bottom: 1.5rem;">
-                <i class="fas fa-info-circle" style="color: var(--primary-color);"></i>
-                Thị trường điều chỉnh giảm nhẹ sau nhiều ngày biến động mạnh. Dòng tiền tổ chức quay trở lại thị trường thông qua các quỹ ETF, tạo tín hiệu tích cực cho xu hướng trung hạn.
-            </p>
-
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                <a href="crypto_report_2026-02-28.pdf" target="_blank" class="btn btn-primary">
-                    <i class="fas fa-download"></i> Tải PDF Đầy Đủ
-                </a>
-                <a href="#videos" class="btn btn-secondary" onclick="switchTab('videos')">
-                    <i class="fab fa-youtube"></i> Xem Video
-                </a>
-            </div>
-        </div>
-
-        <div class="content-grid">
-            <div class="content-card">
-                <h3><i class="fas fa-coins"></i> Top Cryptocurrency</h3>
-                <ul class="coin-list">
-                    <li>
-                        <div class="coin-info">
-                            <div class="coin-icon"><i class="fab fa-bitcoin"></i></div>
-                            <div>
-                                <div class="coin-name">Bitcoin</div>
-                                <div class="coin-symbol">BTC</div>
-                            </div>
-                        </div>
-                        <div class="coin-price-info">
-                            <div class="price">$65,888.91</div>
-                            <div class="change down">-2.32%</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="coin-info">
-                            <div class="coin-icon" style="color: #627eea;"><i class="fab fa-ethereum"></i></div>
-                            <div>
-                                <div class="coin-name">Ethereum</div>
-                                <div class="coin-symbol">ETH</div>
-                            </div>
-                        </div>
-                        <div class="coin-price-info">
-                            <div class="price">$1,931.00</div>
-                            <div class="change down">-4.73%</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="coin-info">
-                            <div class="coin-icon"><i class="fas fa-coins"></i></div>
-                            <div>
-                                <div class="coin-name">BNB</div>
-                                <div class="coin-symbol">BNB</div>
-                            </div>
-                        </div>
-                        <div class="coin-price-info">
-                            <div class="price">$613.97</div>
-                            <div class="change down">-1.91%</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="coin-info">
-                            <div class="coin-icon"><i class="fas fa-coins"></i></div>
-                            <div>
-                                <div class="coin-name">XRP</div>
-                                <div class="coin-symbol">XRP</div>
-                            </div>
-                        </div>
-                        <div class="coin-price-info">
-                            <div class="price">$1.36</div>
-                            <div class="change down">-3.29%</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="coin-info">
-                            <div class="coin-icon"><i class="fas fa-coins"></i></div>
-                            <div>
-                                <div class="coin-name">Solana</div>
-                                <div class="coin-symbol">SOL</div>
-                            </div>
-                        </div>
-                        <div class="coin-price-info">
-                            <div class="price">$81.95</div>
-                            <div class="change down">-4.61%</div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="content-card">
-                <h3><i class="fas fa-newspaper"></i> Tin Nóng Hôm Nay</h3>
-                <ul class="news-list">
-                    <li>
-                        <span class="news-tag">TIN NÓNG</span>
-                        <div class="news-title">OpenAI định giá $110B trong vòng gọi vốn mới</div>
-                    </li>
-                    <li>
-                        <span class="news-tag">CHÍNH TRỊ</span>
-                        <div class="news-title">Trump công kích Anthoric về vấn đề AI regulation</div>
-                    </li>
-                    <li>
-                        <span class="news-tag">ETF</span>
-                        <div class="news-title">Dòng vốn ETF Bitcoin tiếp tục dương ngày thứ 5 liên tiếp</div>
-                    </li>
-                    <li>
-                        <span class="news-tag">TECHNICAL</span>
-                        <div class="news-title">BTC test lại vùng support $64K-$65K sau khi bị reject tại $68K</div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="infographic-section">
-            <h3 style="margin-bottom: 1rem;"><i class="fas fa-image" style="color: var(--primary-color);"></i> Infographic</h3>
-            <div class="infographic-container">
-                <img src="crypto_28_02_infographic.png" alt="Crypto Report Infographic 28/02/2026">
-            </div>
-        </div>
-    </div>
-
-    <!-- Videos Tab -->
-    <div id="videos" class="tab-content">
-        <div class="video-hero">
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/1XgF6jC8sZI" 
-                        title="Crypto Report 28/02/2026 Full HD" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                </iframe>
-            </div>
-            <div class="video-info">
-                <h3>Báo Cáo Crypto 28/02/2026 - Full HD</h3>
-                <p>Thị trường điều chỉnh nhẹ | OpenAI $110B | Trump vs Anthropic | Phân tích kỹ thuật BTC/ETH</p>
-            </div>
-        </div>
-
-        <h3 style="margin-bottom: 1.5rem;"><i class="fas fa-history" style="color: var(--primary-color);"></i> Video Trước Đây</h3>
-        <div class="video-grid">
-            <div class="video-card">
-                <div class="video-thumb">
-                    <iframe src="https://www.youtube.com/embed/videoseries?list=UUyoutube_channel_placeholder" 
-                            title="Crypto Report 27/02/2026">
-                    </iframe>
-                </div>
-                <div class="video-details">
-                    <h4>27/02/2026 - AI Thâu Tóm Đào Bitcoin</h4>
-                    <p>ZachXBT vạch trần nội gián</p>
-                </div>
-            </div>
-            <div class="video-card">
-                <div class="video-thumb">
-                    <iframe src="https://www.youtube.com/embed/videoseries?list=UUyoutube_channel_placeholder" 
-                            title="Crypto Report 26/02/2026">
-                    </iframe>
-                </div>
-                <div class="video-details">
-                    <h4>26/02/2026 - Thị Trường Phục Hồi</h4>
-                    <p>Các altcoin bứt phá mạnh</p>
-                </div>
-            </div>
-            <div class="video-card">
-                <div class="video-thumb">
-                    <iframe src="https://www.youtube.com/embed/videoseries?list=UUyoutube_channel_placeholder" 
-                            title="Crypto Report 25/02/2026">
-                    </iframe>
-                </div>
-                <div class="video-details">
-                    <h4>25/02/2026 - ETF Inflow Tăng Mạnh</h4>
-                    <p>Bitcoin hướng đến $100K</p>
-                </div>
-            </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 2rem;">
-            <a href="https://www.youtube.com/@ESCBase" target="_blank" class="btn btn-secondary">
-                <i class="fab fa-youtube"></i> Xem Kênh YouTube
-            </a>
-        </div>
-    </div>
-
-    <!-- Archive Tab -->
-    <div id="archive" class="tab-content">
-        <div class="archive-header">
-            <h2><i class="fas fa-folder-open" style="color: var(--primary-color);"></i> Archive Báo Cáo PDF</h2>
-            <button class="filter-btn">
-                <i class="fas fa-filter"></i> Lọc theo tháng
+                <i class="fas fa-archive"></i> Archive
             </button>
         </div>
 
-        <div class="pdf-grid">
-            <div class="pdf-card">
-                <div class="pdf-icon"><i class="fas fa-file-pdf"></i></div>
-                <h3>Báo Cáo Crypto 28/02/2026</h3>
-                <p class="date">28 Tháng 2, 2026</p>
-                <div class="pdf-actions">
-                    <a href="crypto_report_2026-02-28.pdf" target="_blank" class="btn btn-primary btn-small">
-                        <i class="fas fa-download"></i> Tải xuống
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <!-- Latest Report -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-file-alt"></i>
+                    Latest Report - 02/03/2026
+                </div>
+                <a href="crypto_report_2026-03-02.pdf" target="_blank" class="card-link">
+                    <div class="card card-featured">
+                        <div class="card-header">
+                            <div class="card-icon"><i class="fas fa-newspaper"></i></div>
+                            <div>
+                                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+                                    <span class="badge">Today</span>
+                                </div>
+                                <div class="card-title">BTC Test $66K - MicroStrategy Mua Thêm 15,000 BTC</div>
+                            </div>
+                        </div>
+                        <div class="card-desc">
+                            Bitcoin tiếp tục đà phục hồi và test mốc $66,000. MicroStrategy công bố mua thêm 15,000 BTC với giá trung bình $65,500. Dòng tiền ETF Bitcoin duy trì ổn định với inflow dương liên tiếp.
+                        </div>
+                        <div class="tags">
+                            <span class="tag"><i class="fas fa-rocket"></i> BTC $66K</span>
+                            <span class="tag"><i class="fas fa-building"></i> MicroStrategy</span>
+                            <span class="tag"><i class="fas fa-chart-line"></i> ETF Inflow</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Market Stats -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-chart-pie"></i>
+                    Market Overview
+                </div>
+                <div class="card">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value">$2.35T</div>
+                            <div class="stat-label">Market Cap</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">$85M</div>
+                            <div class="stat-label">Liquidations</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">57.8%</div>
+                            <div class="stat-label">BTC Dominance</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">$52B</div>
+                            <div class="stat-label">24h Volume</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Coins -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-coins"></i>
+                    Top Cryptocurrency
+                </div>
+                <div class="card">
+                    <div class="link-row">
+                        <div class="link-content">
+                            <i class="fab fa-bitcoin" style="color: #f7931a;"></i>
+                            <div>
+                                <div style="font-weight: 500;">Bitcoin</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">BTC</div>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-weight: 600;">$65,983</div>
+                            <div class="change-up" style="font-size: 0.8rem;">+0.14%</div>
+                        </div>
+                    </div>
+                    <div class="link-row">
+                        <div class="link-content">
+                            <i class="fab fa-ethereum" style="color: #627eea;"></i>
+                            <div>
+                                <div style="font-weight: 500;">Ethereum</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">ETH</div>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-weight: 600;">$1,939</div>
+                            <div class="change-up" style="font-size: 0.8rem;">+0.41%</div>
+                        </div>
+                    </div>
+                    <div class="link-row">
+                        <div class="link-content">
+                            <i class="fas fa-coins" style="color: #00ffa3;"></i>
+                            <div>
+                                <div style="font-weight: 500;">Solana</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">SOL</div>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-weight: 600;">$142.35</div>
+                            <div class="change-up" style="font-size: 0.8rem;">+2.15%</div>
+                        </div>
+                    </div>
+                    <div class="link-row">
+                        <div class="link-content">
+                            <i class="fas fa-coins" style="color: #f0b90b;"></i>
+                            <div>
+                                <div style="font-weight: 500;">BNB</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">BNB</div>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-weight: 600;">$605.20</div>
+                            <div class="change-down" style="font-size: 0.8rem;">-0.85%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- News -->
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-bolt"></i>
+                    Hot News
+                </div>
+                <div class="card">
+                    <div class="link-row" style="cursor: default;">
+                        <div class="link-content">
+                            <span class="tag" style="background: rgba(34, 197, 94, 0.1); color: var(--success); border-color: rgba(34, 197, 94, 0.3);">Bullish</span>
+                            <div>Bitcoin test mốc $66,000 - kháng cự quan trọng</div>
+                        </div>
+                    </div>
+                    <div class="link-row" style="cursor: default;">
+                        <div class="link-content">
+                            <span class="tag">Institutional</span>
+                            <div>MicroStrategy mua thêm 15,000 BTC, nâng tổng lên 268,000 BTC</div>
+                        </div>
+                    </div>
+                    <div class="link-row" style="cursor: default;">
+                        <div class="link-content">
+                            <span class="tag">ETF</span>
+                            <div>Dòng vốn ETF Bitcoin tiếp tục dương ngày thứ 6 liên tiếp</div>
+                        </div>
+                    </div>
+                    <div class="link-row" style="cursor: default;">
+                        <div class="link-content">
+                            <span class="tag">Tech</span>
+                            <div>Ethereum Pectra upgrade sắp ra mắt testnet</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Videos Tab -->
+        <div id="videos" class="tab-content">
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-star"></i>
+                    Featured
+                </div>
+                <a href="https://youtube.com/watch?v=W0lMLR0UG4w" target="_blank" class="card-link">
+                    <div class="card">
+                        <div class="video-wrapper">
+                            <iframe src="https://www.youtube.com/embed/W0lMLR0UG4w" 
+                                    title="Crypto Report 02/03/2026" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                                <span class="badge">Latest</span>
+                                <span class="date-badge"><i class="far fa-calendar"></i> 02/03/2026</span>
+                            </div>
+                            <div class="card-title">Crypto Report 02/03/2026 - MicroStrategy Buying Spree</div>
+                            <div class="card-desc" style="margin-top: 0.5rem;">
+                                Bitcoin test $66K | MicroStrategy mua thêm 15,000 BTC | ETF inflow dương | Phân tích kỹ thuật.
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-video"></i>
+                    Previous Videos
+                </div>
+                <div class="bento-grid bento-grid-2">
+                    <a href="https://youtube.com/watch?v=nufFwx0UNQE" target="_blank" class="card-link">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon"><i class="fas fa-film"></i></div>
+                                <div>
+                                    <div class="card-title">Full HD Edition</div>
+                                    <div class="date-badge" style="margin-top: 0.25rem;"><i class="far fa-calendar"></i> 02/03/2026</div>
+                                </div>
+                            </div>
+                            <div class="card-desc">Phiên bản đầy đủ với infographic 4K và audio chất lượng cao.</div>
+                        </div>
+                    </a>
+
+                    <a href="https://youtube.com/watch?v=tcWWaFB2CtE" target="_blank" class="card-link">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-icon"><i class="fas fa-brain"></i></div>
+                                <div>
+                                    <div class="card-title">28/02 Edition</div>
+                                    <div class="date-badge" style="margin-top: 0.25rem;"><i class="far fa-calendar"></i> 28/02/2026</div>
+                                </div>
+                            </div>
+                            <div class="card-desc">AI Thâu Tóm Đào Bitcoin - ZachXBT vạch trần nội gián.</div>
+                        </div>
                     </a>
                 </div>
             </div>
 
-            <div class="pdf-card">
-                <div class="pdf-icon"><i class="fas fa-file-pdf"></i></div>
-                <h3>Báo Cáo Crypto 27/02/2026</h3>
-                <p class="date">27 Tháng 2, 2026</p>
-                <div class="pdf-actions">
-                    <a href="crypto_report_2026-02-27.pdf" target="_blank" class="btn btn-primary btn-small">
-                        <i class="fas fa-download"></i> Tải xuống
-                    </a>
-                </div>
+            <div class="section">
+                <a href="https://www.youtube.com/@ESCBase?sub_confirmation=1" target="_blank" class="card-link">
+                    <div class="card" style="background: linear-gradient(135deg, rgba(255,0,0,0.1) 0%, var(--bg-card) 100%); border-color: rgba(255,0,0,0.3);">
+                        <div class="card-header">
+                            <div class="card-icon" style="background: rgba(255,0,0,0.1); border-color: rgba(255,0,0,0.3); color: #ff0000;"><i class="fab fa-youtube"></i></div>
+                            <div>
+                                <div class="card-title">Subscribe on YouTube</div>
+                                <div class="card-desc" style="margin-top: 0.25rem;">Get daily crypto reports delivered to your feed</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
+        </div>
 
-            <div class="pdf-card">
-                <div class="pdf-icon"><i class="fas fa-file-pdf"></i></div>
-                <h3>Báo Cáo Crypto 26/02/2026</h3>
-                <p class="date">26 Tháng 2, 2026</p>
-                <div class="pdf-actions">
-                    <a href="crypto_report_2026-02-26.pdf" target="_blank" class="btn btn-primary btn-small">
-                        <i class="fas fa-download"></i> Tải xuống
-                    </a>
+        <!-- Archive Tab -->
+        <div id="archive" class="tab-content">
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-archive"></i>
+                    PDF Reports Archive
                 </div>
-            </div>
-
-            <div class="pdf-card">
-                <div class="pdf-icon"><i class="fas fa-file-pdf"></i></div>
-                <h3>Báo Cáo Crypto 25/02/2026</h3>
-                <p class="date">25 Tháng 2, 2026</p>
-                <div class="pdf-actions">
-                    <a href="crypto_report_2026-02-25.pdf" target="_blank" class="btn btn-primary btn-small">
-                        <i class="fas fa-download"></i> Tải xuống
+                <div class="card">
+                    <a href="crypto_report_2026-03-02.pdf" target="_blank" class="link-row">
+                        <div class="link-content">
+                            <i class="far fa-file-pdf" style="color: var(--accent);"></i>
+                            <div>
+                                <div style="font-weight: 500;">02/03/2026 - BTC Test $66K</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">MicroStrategy mua thêm 15,000 BTC</div>
+                            </div>
+                        </div>
+                        <i class="fas fa-arrow-right link-arrow"></i>
                     </a>
-                </div>
-            </div>
-
-            <div class="pdf-card">
-                <div class="pdf-icon"><i class="fas fa-file-pdf"></i></div>
-                <h3>Báo Cáo Crypto 24/02/2026</h3>
-                <p class="date">24 Tháng 2, 2026</p>
-                <div class="pdf-actions">
-                    <a href="crypto_report_2026-02-24.pdf" target="_blank" class="btn btn-primary btn-small">
-                        <i class="fas fa-download"></i> Tải xuống
+                    <a href="crypto_report_2026-02-28.pdf" target="_blank" class="link-row">
+                        <div class="link-content">
+                            <i class="far fa-file-pdf" style="color: var(--accent);"></i>
+                            <div>
+                                <div style="font-weight: 500;">28/02/2026 - AI Thâu Tóm Đào Bitcoin</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">ZachXBT vạch trần nội gián</div>
+                            </div>
+                        </div>
+                        <i class="fas fa-arrow-right link-arrow"></i>
                     </a>
-                </div>
-            </div>
-
-            <div class="pdf-card">
-                <div class="pdf-icon"><i class="fas fa-file-pdf"></i></div>
-                <h3>Báo Cáo Crypto 23/02/2026</h3>
-                <p class="date">23 Tháng 2, 2026</p>
-                <div class="pdf-actions">
-                    <a href="crypto_report_2026-02-23.pdf" target="_blank" class="btn btn-primary btn-small">
-                        <i class="fas fa-download"></i> Tải xuống
+                    <a href="crypto_report_2026-02-27.pdf" target="_blank" class="link-row">
+                        <div class="link-content">
+                            <i class="far fa-file-pdf" style="color: var(--accent);"></i>
+                            <div>
+                                <div style="font-weight: 500;">27/02/2026 - Thị Trường Phục Hồi</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">Các Altcoin bứt phá</div>
+                            </div>
+                        </div>
+                        <i class="fas fa-arrow-right link-arrow"></i>
+                    </a>
+                    <a href="crypto_report_2026-02-26.pdf" target="_blank" class="link-row">
+                        <div class="link-content">
+                            <i class="far fa-file-pdf" style="color: var(--accent);"></i>
+                            <div>
+                                <div style="font-weight: 500;">26/02/2026 - ETF Inflow Tăng Mạnh</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">Bitcoin hướng đến $100K</div>
+                            </div>
+                        </div>
+                        <i class="fas fa-arrow-right link-arrow"></i>
+                    </a>
+                    <a href="crypto_report_2026-02-25.pdf" target="_blank" class="link-row">
+                        <div class="link-content">
+                            <i class="far fa-file-pdf" style="color: var(--accent);"></i>
+                            <div>
+                                <div style="font-weight: 500;">25/02/2026 - Market Correction</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">BTC retest $64K support</div>
+                            </div>
+                        </div>
+                        <i class="fas fa-arrow-right link-arrow"></i>
                     </a>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Escbase. Crypto Daily Reports - Cập nhật hàng ngày.</p>
-    </footer>
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-left">
+                    © 2026 Escbase
+                </div>
+                <div class="footer-links">
+                    <a href="https://www.youtube.com/@ESCBase" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://discord.gg/SMhy8RjDCf" target="_blank"><i class="fab fa-discord"></i></a>
+                    <a href="https://www.facebook.com/escbasexyz" target="_blank"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <script>
-        // Tab switching
-        function switchTab(tabName) {
-            // Remove active class from all tabs
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            
-            // Add active class to selected tab
-            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
-            document.getElementById(tabName).classList.add('active');
-        }
-
-        // Event listeners for tabs
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                switchTab(btn.dataset.tab);
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
             });
         });
     </script>
