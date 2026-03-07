@@ -1,125 +1,348 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Videos - Escbase</title>
+    <title>Videos - ESC Base</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --bg-primary: #0a0a0a;
-            --bg-sidebar: #080808;
-            --bg-card: #111111;
-            --bg-hover: #1a1a1a;
-            --text-primary: #ffffff;
-            --text-secondary: #888888;
-            --text-muted: #555555;
+            --bg: #09090b;
+            --sidebar-bg: #09090b;
+            --card-bg: #18181b;
+            --card-hover: #27272a;
+            --border: #27272a;
+            --border-hover: #3f3f46;
+            --text: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
             --accent: #f7931a;
-            --border: #1a1a1a;
+            --accent-glow: rgba(247, 147, 26, 0.15);
+            --radius-xl: 32px;
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 12px;
+            --yt-red: #ef4444;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        .layout { display: flex; min-height: 100vh; }
+        ::selection {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .video-wrapper iframe {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .video-wrapper.loaded iframe {
+            opacity: 1;
+        }
+
+        /* App Layout */
+        .app-container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
 
         /* Sidebar */
         .sidebar {
-            width: 240px;
-            background: var(--bg-sidebar);
+            width: 300px;
+            flex-shrink: 0;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
             border-right: 1px solid var(--border);
-            position: fixed;
-            top: 0; left: 0; bottom: 0;
-            overflow-y: auto;
-            z-index: 100;
-            padding: 2rem 0;
         }
 
-        .sidebar-logo {
-            padding: 0 1.5rem 1.5rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .sidebar-logo a {
+        .brand {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 1rem;
             text-decoration: none;
-            color: inherit;
-        }
-
-        .sidebar-logo img {
-            width: 40px; height: 40px;
-            border-radius: 10px;
-        }
-
-        .sidebar-logo span {
-            font-size: 1.25rem;
-            font-weight: 700;
-        }
-
-        .nav-section {
+            color: var(--text);
             margin-bottom: 2rem;
-            padding: 0 1rem;
+            transition: opacity 0.2s;
         }
 
-        .nav-section-title {
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--text-muted);
-            margin-bottom: 0.75rem;
-            padding: 0 0.5rem;
+        .brand:hover {
+            opacity: 0.8;
+        }
+
+        .brand img {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            object-fit: cover;
+        }
+
+        .brand-info h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .brand-info p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .bio {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex-grow: 1;
         }
 
         .nav-item {
-            display: block;
-            padding: 0.5rem 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.875rem 1rem;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .nav-item i {
+            width: 20px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: var(--card-bg);
+            color: var(--text);
+            border-color: var(--border);
+        }
+
+        .nav-item:hover {
+            transform: translateX(4px);
+        }
+
+        .social-box {
+            margin-top: auto;
+            padding-top: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-sm);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.9rem;
-            border-radius: 6px;
-            transition: all 0.15s ease;
-            margin-bottom: 0.25rem;
+            transition: all 0.2s;
+            font-size: 1.1rem;
         }
 
-        .nav-item:hover, .nav-item.active {
-            background: rgba(247, 147, 26, 0.15);
-            color: var(--accent);
+        .social-btn:hover {
+            background: var(--text);
+            color: var(--bg);
+            transform: translateY(-2px);
+            border-color: var(--text);
         }
 
-        /* Main */
-        .main {
-            flex: 1;
-            margin-left: 240px;
-            padding: 2rem 3rem;
+        /* Mobile Header */
+        .mobile-header {
+            display: none;
+            padding: 1rem 1.5rem;
+            background: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .mobile-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .mobile-logo img {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            padding: 2.5rem 3rem;
+            max-width: 1100px;
         }
 
         .page-header {
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
         }
 
-        .page-header h1 {
-            font-size: 2rem;
-            font-weight: 700;
+        .page-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
             margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
         .page-header p {
+            font-size: 1.1rem;
             color: var(--text-secondary);
+        }
+
+        /* Featured Video */
+        .featured-video {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .featured-video::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--yt-red), transparent);
+            z-index: 10;
+        }
+
+        .featured-video .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 Aspect Ratio */
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .featured-info {
+            padding: 2rem;
+            background: linear-gradient(to bottom, var(--card-bg), rgba(24, 24, 27, 0.8));
+        }
+
+        .badge-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--yt-red);
+            padding: 0.3rem 0.8rem;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .featured-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .featured-info p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-tags {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .feature-tags span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.4rem 0.8rem;
+            border-radius: var(--radius-sm);
         }
 
         /* Video Grid */
@@ -127,366 +350,327 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .video-grid { grid-template-columns: 1fr; }
-            .main { margin-left: 0; padding: 5rem 1.5rem 2rem; }
-            .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
-            .sidebar.open { transform: translateX(0); }
+            margin-bottom: 4rem;
         }
 
         .video-card {
-            background: var(--bg-card);
+            background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 16px;
+            border-radius: var(--radius-md);
             overflow: hidden;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.1, 0, 0.3, 1);
+            display: flex;
+            flex-direction: column;
         }
 
         .video-card:hover {
-            border-color: var(--accent);
+            border-color: var(--border-hover);
             transform: translateY(-4px);
+            background: var(--card-hover);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
         }
 
-        .video-wrapper {
-            position: relative;
+        .video-card .video-wrapper {
             padding-bottom: 56.25%;
-            background: #000;
         }
 
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: none;
-        }
-
-        .video-info {
+        .video-card-info {
             padding: 1.25rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .video-title {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
             line-height: 1.4;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
         }
 
         .video-meta {
             display: flex;
-            gap: 1rem;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .badge {
-            display: inline-flex;
             align-items: center;
-            gap: 0.3rem;
-            background: var(--accent);
-            color: #000;
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: auto;
         }
 
-        /* Featured Video */
-        .featured-video {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 2rem;
+        .video-meta span.date {
+            font-weight: 500;
         }
 
-        .featured-video .video-wrapper {
-            padding-bottom: 56.25%;
-        }
-
-        .featured-info {
-            padding: 1.5rem;
-        }
-
-        .featured-info h2 {
-            font-size: 1.35rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .featured-info p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        /* Subscribe CTA */
+        /* Subscribe Box */
         .subscribe-box {
-            background: linear-gradient(135deg, rgba(255,0,0,0.1) 0%, var(--bg-card) 100%);
-            border: 1px solid rgba(255,0,0,0.2);
-            border-radius: 16px;
-            padding: 2rem;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, var(--card-bg) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: var(--radius-lg);
+            padding: 3rem 2rem;
             text-align: center;
-            margin-top: 2rem;
+            margin-top: 4rem;
         }
 
         .subscribe-box h3 {
-            margin-bottom: 0.5rem;
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
         }
 
         .subscribe-box p {
             color: var(--text-secondary);
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
         }
 
         .btn-youtube {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.875rem 1.75rem;
-            background: #ff0000;
+            gap: 0.6rem;
+            padding: 1rem 2rem;
+            background: var(--yt-red);
             color: #fff;
             text-decoration: none;
-            border-radius: 10px;
-            font-weight: 600;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 1.05rem;
             transition: all 0.2s;
         }
 
         .btn-youtube:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255,0,0,0.3);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+            background: #f87171;
         }
 
-        /* Mobile Header */
-        .mobile-header {
-            display: none;
-            padding: 1rem;
-            background: var(--bg-sidebar);
-            border-bottom: 1px solid var(--border);
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 99;
-        }
-
-        .menu-toggle {
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.25rem;
-            cursor: pointer;
+        @media (max-width: 1024px) {
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
-            .mobile-header { display: flex; justify-content: space-between; align-items: center; }
+            .app-container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .mobile-header {
+                display: flex;
+            }
+
+            .main-content {
+                padding: 1.5rem;
+            }
+
+            .page-header h2 {
+                font-size: 2rem;
+            }
+
+            .featured-info h3 {
+                font-size: 1.25rem;
+            }
+
+            .subscribe-box {
+                padding: 2rem 1.5rem;
+            }
         }
     </style>
 </head>
+
 <body>
-    <div class="layout">
+    <div class="app-container">
         <!-- Mobile Header -->
-        <div class="mobile-header">
-            <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <img src="esclogo.png" alt="Escbase" style="width: 32px; height: 32px; border-radius: 8px;">
-                <span style="font-weight: 700;">Escbase</span>
+        <header class="mobile-header">
+            <a href="index.html" class="mobile-logo">
+                <img src="esclogo.png" alt="ESC Base">
+                <span>ESC Base</span>
+            </a>
+            <div style="display: flex; gap: 1rem;">
+                <a href="https://www.youtube.com/@ESCBase" target="_blank" style="color: var(--text);"><i
+                        class="fab fa-youtube"></i></a>
             </div>
-            <button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
+        </header>
 
         <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-logo">
-                <a href="index.html">
-                    <img src="esclogo.png" alt="Escbase">
-                    <span>Escbase</span>
-                </a>
-            </div>
+        <aside class="sidebar">
+            <a href="index.html" class="brand">
+                <img src="esclogo.png" alt="ESC Base Logo">
+                <div class="brand-info">
+                    <h1>ESC Base</h1>
+                    <p>Crypto Intelligence</p>
+                </div>
+            </a>
 
-            <div class="nav-section">
-                <div class="nav-section-title">Menu</div>
-                <a href="index.html" class="nav-item">Home</a>
-                <a href="posts.html" class="nav-item">Posts</a>
-                <a href="videos.html" class="nav-item active">Videos</a>
-                <a href="index.html#reports" class="nav-item">Reports</a>
-            </div>
+            <p class="bio">
+                Báo cáo thị trường Crypto hàng ngày, phân tích chuyên sâu về công nghệ Blockchain, và các xu hướng mới
+                nhất trong Web3.
+            </p>
 
-            <div class="nav-section">
-                <div class="nav-section-title">Connect</div>
-                <a href="https://www.youtube.com/@ESCBase" target="_blank" class="nav-item"><i class="fab fa-youtube" style="color: #ff0000; margin-right: 0.5rem;"></i> YouTube</a>
-                <a href="https://discord.gg/SMhy8RjDCf" target="_blank" class="nav-item"><i class="fab fa-discord" style="color: #5865F2; margin-right: 0.5rem;"></i> Discord</a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item"><i class="fas fa-home"></i> Home</a>
+                <a href="posts.html" class="nav-item"><i class="fas fa-newspaper"></i> Articles</a>
+                <a href="videos.html" class="nav-item active"><i class="fas fa-play-circle"
+                        style="color: var(--yt-red);"></i> Videos</a>
+                <a href="index.html#reports" class="nav-item"><i class="fas fa-file-alt"></i> Daily Reports</a>
+            </nav>
+
+            <div class="social-box">
+                <h4
+                    style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600; letter-spacing: 0.05em;">
+                    Connect</h4>
+                <div class="social-links">
+                    <a href="https://www.youtube.com/@ESCBase" target="_blank" class="social-btn" title="YouTube"><i
+                            class="fab fa-youtube"></i></a>
+                    <a href="https://discord.gg/SMhy8RjDCf" target="_blank" class="social-btn" title="Discord"><i
+                            class="fab fa-discord"></i></a>
+                    <a href="https://twitter.com/escbase" target="_blank" class="social-btn" title="X (Twitter)"><i
+                            class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://t.me/escbase" target="_blank" class="social-btn" title="Telegram"><i
+                            class="fab fa-telegram"></i></a>
+                </div>
             </div>
         </aside>
 
-        <!-- Main -->
-        <main class="main">
+        <!-- Main Content -->
+        <main class="main-content">
             <div class="page-header">
-                <h1><i class="fab fa-youtube" style="color: #ff0000;"></i> Videos</h1>
+                <h2><i class="fab fa-youtube" style="color: var(--yt-red);"></i> Video Archive</h2>
                 <p>Báo cáo thị trường crypto hàng ngày trên YouTube</p>
             </div>
 
-            <!-- Featured Latest Video -->
+            <!-- Featured Video -->
             <div class="featured-video">
                 <div class="video-wrapper">
-                    <iframe src="https://www.youtube.com/embed/kpL7Dc1Vt9M?rel=0" 
-                            title="Crypto Daily 05/03: BTC Phá $72K - Rally Mạnh Khi Lo Ngại Chiến Tranh Giảm" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
+                    <iframe src="https://www.youtube.com/embed/kpL7Dc1Vt9M?rel=0" title="Crypto Daily 05/03"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
                     </iframe>
                 </div>
                 <div class="featured-info">
-                    <span class="badge"><i class="fas fa-play"></i> Latest</span>
-                    <h2 style="margin-top: 0.75rem;">Crypto Daily 05/03: BTC Phá $72K - Rally Mạnh Khi Lo Ngại Chiến Tranh Giảm</h2>
-                    <p>Bản Full — Đăng ký kênh để nhận thông báo báo cáo crypto mỗi ngày. Tất cả videos đều có bản Full HD, AI Edition và Audio Podcast.</p>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
-                        <span style="font-size: 0.85rem; color: var(--text-muted);"><i class="fas fa-video"></i> Daily Reports</span>
-                        <span style="font-size: 0.85rem; color: var(--text-muted);"><i class="fas fa-film"></i> Full HD</span>
-                        <span style="font-size: 0.85rem; color: var(--text-muted);"><i class="fas fa-robot"></i> AI Edition</span>
-                        <span style="font-size: 0.85rem; color: var(--text-muted);"><i class="fas fa-headphones"></i> Audio</span>
+                    <div class="badge-live"><i class="fas fa-satellite-dish"></i> Latest Episode</div>
+                    <h3>Crypto Daily 05/03: BTC Phá $72K - Rally Mạnh Khi Lo Ngại Chiến Tranh Giảm</h3>
+                    <p>Bản Full — Đăng ký kênh YouTube để nhận thông báo báo cáo crypto mỗi ngày. Tất cả videos đều có
+                        bản Full HD, AI Edition và Audio Podcast để nghe khi lái xe.</p>
+                    <div class="feature-tags">
+                        <span><i class="fas fa-video"></i> Daily Reports</span>
+                        <span><i class="fas fa-film"></i> Full HD</span>
+                        <span><i class="fas fa-robot"></i> AI Edition</span>
+                        <span><i class="fas fa-headphones"></i> Audio</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Video Grid -->
+            <!-- Grid -->
             <div class="video-grid">
+
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/hxU8UdTBV5w?rel=0" 
-                                title="Crypto Daily 05/03: BTC Phá $72K" 
-                                allowfullscreen>
-                        </iframe>
+                        <iframe src="https://www.youtube.com/embed/hxU8UdTBV5w?rel=0" title="Short"
+                            allowfullscreen></iframe>
                     </div>
-                    <div class="video-info">
+                    <div class="video-card-info">
                         <div class="video-title">Crypto Daily 05/03: BTC Phá $72K (Short Version)</div>
                         <div class="video-meta">
-                            <span><i class="far fa-calendar"></i> 05/03/2026</span>
+                            <span class="date"><i class="far fa-calendar"></i> 05/03/2026</span>
+                            <span><i class="fas fa-clock"></i> 2 mins</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/EzxiOyVatQU?rel=0" 
-                                title="Vitalik Buterin: Sanctuary Technologies - Full" 
-                                allowfullscreen>
-                        </iframe>
+                        <iframe src="https://www.youtube.com/embed/EzxiOyVatQU?rel=0" title="Vitalik"
+                            allowfullscreen></iframe>
                     </div>
-                    <div class="video-info">
-                        <div class="video-title">Vitalik Buterin: Sanctuary Technologies - Full</div>
+                    <div class="video-card-info">
+                        <div class="video-title">Vitalik Buterin: Sanctuary Technologies - Full Tech Dive</div>
                         <div class="video-meta">
-                            <span><i class="far fa-calendar"></i> 04/03/2026</span>
+                            <span class="date"><i class="far fa-calendar"></i> 04/03/2026</span>
+                            <span><i class="fas fa-clock"></i> 15 mins</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/ZXcoWfIiYAM?rel=0" 
-                                title="Vitalik Buterin: Sanctuary Technologies" 
-                                allowfullscreen>
-                        </iframe>
+                        <iframe src="https://www.youtube.com/embed/sv5B62ZgWiI?rel=0" title="BTC"
+                            allowfullscreen></iframe>
                     </div>
-                    <div class="video-info">
-                        <div class="video-title">Vitalik Buterin: Sanctuary Technologies</div>
-                        <div class="video-meta">
-                            <span><i class="far fa-calendar"></i> 04/03/2026</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/sv5B62ZgWiI?rel=0" 
-                                title="BTC Áp Sát $70,000 - Tin Crypto 04/03 - Full" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-info">
+                    <div class="video-card-info">
                         <div class="video-title">BTC Áp Sát $70,000 - Tin Crypto 04/03 - Full</div>
                         <div class="video-meta">
-                            <span><i class="far fa-calendar"></i> 04/03/2026</span>
+                            <span class="date"><i class="far fa-calendar"></i> 04/03/2026</span>
+                            <span><i class="fas fa-clock"></i> 12 mins</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/KYWPDeCPREs?rel=0" 
-                                title="BTC Áp Sát $70,000 - Tin Crypto 04/03" 
-                                allowfullscreen>
-                        </iframe>
+                        <iframe src="https://www.youtube.com/embed/mAtdjdVb2Sk?rel=0" title="BTC"
+                            allowfullscreen></iframe>
                     </div>
-                    <div class="video-info">
-                        <div class="video-title">BTC Áp Sát $70,000 - Tin Crypto 04/03</div>
-                        <div class="video-meta">
-                            <span><i class="far fa-calendar"></i> 04/03/2026</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/mUJFT7bNdXs?rel=0" 
-                                title="Vitalik: Tiến Hóa Ethereum - Block Builder" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">Vitalik: Tiến Hóa Ethereum - Block Builder</div>
-                        <div class="video-meta">
-                            <span><i class="far fa-calendar"></i> 03/03/2026</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/mAtdjdVb2Sk?rel=0" 
-                                title="Bitcoin Phục Hồi $68,793 - Tin Crypto 03/03 - Full" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-info">
+                    <div class="video-card-info">
                         <div class="video-title">Bitcoin Phục Hồi $68,793 - Tin Crypto 03/03 - Full</div>
                         <div class="video-meta">
-                            <span><i class="far fa-calendar"></i> 03/03/2026</span>
+                            <span class="date"><i class="far fa-calendar"></i> 03/03/2026</span>
+                            <span><i class="fas fa-clock"></i> 14 mins</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="video-card">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/EPlwmKuoPjA?rel=0" 
-                                title="Bitcoin Phục Hồi $68,793 - Tin Crypto 03/03" 
-                                allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-info">
-                        <div class="video-title">Bitcoin Phục Hồi $68,793 - Tin Crypto 03/03</div>
-                        <div class="video-meta">
-                            <span><i class="far fa-calendar"></i> 03/03/2026</span>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <!-- Subscribe -->
+            <!-- CTA -->
             <div class="subscribe-box">
-                <h3><i class="fab fa-youtube" style="color: #ff0000;"></i> Subscribe to ESCBase</h3>
-                <p>Nhận thông báo video mới mỗi ngày. Đừng bỏ lỡ bất kỳ báo cáo thị trường nào!</p>
+                <h3><i class="fab fa-youtube" style="color: var(--yt-red);"></i> Join the Community on YouTube</h3>
+                <p>Hàng ngàn nhà đầu tư đang theo dõi chúng tôi mỗi ngày. Đừng bỏ lỡ insight quý giá nào!</p>
                 <a href="https://www.youtube.com/@ESCBase?sub_confirmation=1" target="_blank" class="btn-youtube">
-                    <i class="fab fa-youtube"></i> Subscribe Now
+                    Subscribe Now
                 </a>
             </div>
 
-            <!-- YouTube Channel Link -->
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="https://www.youtube.com/@ESCBase/videos" target="_blank" style="color: var(--text-secondary); text-decoration: none; font-size: 0.95rem;">
-                    Xem tất cả videos trên YouTube <i class="fas fa-external-link-alt" style="margin-left: 0.25rem;"></i>
-                </a>
-            </div>
+            <footer
+                style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+                <p>&copy; 2026 ESC Base. Crypto Daily Insights & Analysis.</p>
+            </footer>
+
         </main>
     </div>
+
+    <script>
+        // Scroll animation observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.video-card, .featured-video, .report-item').forEach(el => {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
+
+        // Iframe load handler
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.video-wrapper iframe').forEach(frame => {
+                frame.onload = () => {
+                    frame.parentElement.classList.add('loaded');
+                };
+            });
+        });
+    </script>
 </body>
+
 </html>
