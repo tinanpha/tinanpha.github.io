@@ -5,239 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ESC Base - Crypto Daily Reports & Analysis</title>
+    <meta name="description" content="Báo cáo thị trường Crypto hàng ngày, phân tích chuyên sâu về công nghệ Blockchain, và các xu hướng mới nhất trong Web3 từ ESC Base.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ESC Base">
+    <meta property="og:title" content="ESC Base - Crypto Daily Reports & Analysis">
+    <meta property="og:description" content="Báo cáo thị trường Crypto hàng ngày, phân tích chuyên sâu về công nghệ Blockchain, và các xu hướng mới nhất trong Web3.">
+    <meta property="og:url" content="https://escbase.xyz/">
+    <meta property="og:image" content="https://escbase.xyz/page.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@escbase">
+    <meta name="twitter:title" content="ESC Base - Crypto Daily Reports & Analysis">
+    <meta name="twitter:description" content="Báo cáo thị trường Crypto hàng ngày, phân tích chuyên sâu về Blockchain và Web3.">
+    <meta name="twitter:image" content="https://escbase.xyz/page.jpg">
+
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
     <style>
-        :root {
-            --bg: #09090b;
-            --sidebar-bg: #09090b;
-            --card-bg: #18181b;
-            --card-hover: #27272a;
-            --border: #27272a;
-            --border-hover: #3f3f46;
-            --text: #fafafa;
-            --text-secondary: #a1a1aa;
-            --text-muted: #71717a;
-            --accent: #f7931a;
-            --accent-glow: rgba(247, 147, 26, 0.15);
-            --radius-xl: 32px;
-            --radius-lg: 24px;
-            --radius-md: 16px;
-            --radius-sm: 12px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
-
-        ::selection {
-            background: var(--accent);
-            color: #000;
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .video-wrapper iframe {
-            opacity: 0;
-            transition: opacity 0.8s ease;
-        }
-
-        .video-wrapper.loaded iframe {
-            opacity: 1;
-        }
-
-        /* App Layout */
-        .app-container {
-            display: flex;
-            max-width: 1400px;
-            margin: 0 auto;
-            min-height: 100vh;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 300px;
-            flex-shrink: 0;
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            padding: 2.5rem 2rem;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid var(--border);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            text-decoration: none;
-            color: var(--text);
-            margin-bottom: 2rem;
-            transition: opacity 0.2s;
-        }
-
-        .brand:hover {
-            opacity: 0.8;
-        }
-
-        .brand img {
-            width: 56px;
-            height: 56px;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border);
-            object-fit: cover;
-        }
-
-        .brand-info h1 {
-            font-size: 1.25rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-        }
-
-        .brand-info p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .bio {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
-            font-weight: 400;
-        }
-
-        .nav-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            flex-grow: 1;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.875rem 1rem;
-            border-radius: var(--radius-sm);
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.2s;
-            border: 1px solid transparent;
-        }
-
-        .nav-item i {
-            width: 20px;
-            font-size: 1.1rem;
-            text-align: center;
-        }
-
-        .nav-item:hover,
-        .nav-item.active {
-            background: var(--card-bg);
-            color: var(--text);
-            border-color: var(--border);
-        }
-
-        .nav-item:hover {
-            transform: translateX(4px);
-        }
-
-        .social-box {
-            margin-top: auto;
-            padding-top: 2rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .social-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: var(--radius-sm);
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.2s;
-            font-size: 1.1rem;
-        }
-
-        .social-btn:hover {
-            background: var(--text);
-            color: var(--bg);
-            transform: translateY(-2px);
-            border-color: var(--text);
-        }
-
-        /* Mobile Header */
-        .mobile-header {
-            display: none;
-            padding: 1rem 1.5rem;
-            background: rgba(9, 9, 11, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .mobile-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .mobile-logo img {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-        }
-
-        /* Main Content */
-        .main-content {
-            flex-grow: 1;
-            padding: 2.5rem 3rem;
-            max-width: 1100px;
-        }
-
         /* Hero Section */
         .hero {
             background: var(--card-bg);
@@ -320,244 +111,18 @@
             background: #fff;
         }
 
-        /* Bento Grid */
-        .section-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            letter-spacing: -0.02em;
-        }
-
-        .section-title i {
+        .animate-text {
             color: var(--accent);
-            font-size: 1.25rem;
+            border-right: 3px solid var(--accent);
+            padding-right: 5px;
+            animation: blink 0.7s infinite;
         }
 
-        .btn-view-all {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-view-all:hover {
-            color: var(--text);
-        }
-
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 1.25rem;
-            margin-bottom: 4rem;
-        }
-
-        .bento-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-md);
-            padding: 1.5rem;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s cubic-bezier(0.1, 0, 0.3, 1);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .bento-item:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-4px);
-            background: var(--card-hover);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-        }
-
-        .col-12 {
-            grid-column: span 12;
-        }
-
-        .col-8 {
-            grid-column: span 8;
-        }
-
-        .col-6 {
-            grid-column: span 6;
-        }
-
-        .col-4 {
-            grid-column: span 4;
-        }
-
-        /* Card Contents */
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            font-size: 0.85rem;
-        }
-
-        .card-tag {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text);
-            padding: 0.25rem 0.75rem;
-            border-radius: 99px;
-            font-weight: 500;
-            border: 1px solid var(--border);
-        }
-
-        .card-tag.highlight {
-            background: rgba(247, 147, 26, 0.1);
-            color: var(--accent);
-            border-color: rgba(247, 147, 26, 0.2);
-        }
-
-        .card-date {
-            color: var(--text-muted);
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            line-height: 1.4;
-            letter-spacing: -0.01em;
-        }
-
-        .col-8 .card-title {
-            font-size: 1.5rem;
-        }
-
-        .card-excerpt {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .card-footer {
-            margin-top: auto;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        .card-footer i {
-            margin-right: 0.25rem;
-        }
-
-        /* Video specific */
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            /* 16:9 Aspect Ratio */
-            border-radius: var(--radius-sm);
-            overflow: hidden;
-            margin-bottom: 1.25rem;
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Reports List */
-        .reports-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-bottom: 4rem;
-        }
-
-        .report-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-sm);
-            padding: 1.25rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.2s;
-        }
-
-        .report-item:hover {
-            border-color: var(--accent);
-            transform: translateX(4px);
-            background: var(--card-hover);
-        }
-
-        .report-info h4 {
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .report-info p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .report-action {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--accent);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        @media (max-width: 1024px) {
-
-            .col-8,
-            .col-6,
-            .col-4 {
-                grid-column: span 12;
-            }
-
-            .main-content {
-                padding: 2rem;
-            }
+        @keyframes blink {
+            50% { border-color: transparent; }
         }
 
         @media (max-width: 768px) {
-            .app-container {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                display: none;
-            }
-
-            .mobile-header {
-                display: flex;
-            }
-
-            .main-content {
-                padding: 1.25rem;
-            }
-
             .hero {
                 padding: 2.5rem 1.5rem;
                 border-radius: var(--radius-md);
@@ -565,21 +130,6 @@
 
             .hero h2 {
                 font-size: 2rem;
-            }
-
-            .bento-grid {
-                gap: 1rem;
-            }
-
-            .bento-item {
-                padding: 1.25rem;
-            }
-
-            .report-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-                padding: 1rem;
             }
         }
     </style>
@@ -591,20 +141,34 @@
 
         <!-- Mobile Header -->
         <header class="mobile-header">
-            <a href="#" class="mobile-logo">
-                <img src="esclogo.png" alt="ESC Base">
+            <a href="index.html" class="mobile-logo">
+                <img src="esclogo.png" alt="ESC Base - Trang phân tích Crypto hàng ngày">
                 <span>ESC Base</span>
             </a>
-            <div style="display: flex; gap: 1rem;">
-                <a href="https://www.youtube.com/@ESCBase" target="_blank" style="color: var(--text);"><i
-                        class="fab fa-youtube"></i></a>
-            </div>
+            <button class="hamburger" onclick="toggleMobileNav()" aria-label="Mở menu điều hướng">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </header>
+
+        <!-- Mobile Nav Overlay -->
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="index.html" class="nav-item active" onclick="toggleMobileNav()"><i class="fas fa-home"></i> Home</a>
+            <a href="posts.html" class="nav-item" onclick="toggleMobileNav()"><i class="fas fa-newspaper"></i> Blog</a>
+            <a href="videos.html" class="nav-item" onclick="toggleMobileNav()"><i class="fas fa-play-circle"></i> Videos</a>
+            <div class="social-links">
+                <a href="https://www.youtube.com/@ESCBase" target="_blank" class="social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://discord.gg/SMhy8RjDCf" target="_blank" class="social-btn" title="Discord"><i class="fab fa-discord"></i></a>
+                <a href="https://twitter.com/escbase" target="_blank" class="social-btn" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://t.me/escbase" target="_blank" class="social-btn" title="Telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+        </nav>
 
         <!-- Sidebar -->
         <aside class="sidebar">
-            <a href="#" class="brand">
-                <img src="esclogo.png" alt="ESC Base Logo">
+            <a href="index.html" class="brand">
+                <img src="esclogo.png" alt="ESC Base - Trang phân tích Crypto và Blockchain hàng ngày">
                 <div class="brand-info">
                     <h1>ESC Base</h1>
                     <p>Crypto Intelligence</p>
@@ -623,18 +187,12 @@
             </nav>
 
             <div class="social-box">
-                <h4
-                    style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600; letter-spacing: 0.05em;">
-                    Connect</h4>
+                <h4 style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600; letter-spacing: 0.05em;">Connect</h4>
                 <div class="social-links">
-                    <a href="https://www.youtube.com/@ESCBase" target="_blank" class="social-btn" title="YouTube"><i
-                            class="fab fa-youtube"></i></a>
-                    <a href="https://discord.gg/SMhy8RjDCf" target="_blank" class="social-btn" title="Discord"><i
-                            class="fab fa-discord"></i></a>
-                    <a href="https://twitter.com/escbase" target="_blank" class="social-btn" title="X (Twitter)"><i
-                            class="fa-brands fa-x-twitter"></i></a>
-                    <a href="https://t.me/escbase" target="_blank" class="social-btn" title="Telegram"><i
-                            class="fab fa-telegram"></i></a>
+                    <a href="https://www.youtube.com/@ESCBase" target="_blank" class="social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://discord.gg/SMhy8RjDCf" target="_blank" class="social-btn" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="https://twitter.com/escbase" target="_blank" class="social-btn" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://t.me/escbase" target="_blank" class="social-btn" title="Telegram"><i class="fab fa-telegram"></i></a>
                 </div>
             </div>
         </aside>
@@ -648,8 +206,7 @@
                 <div class="hero-content">
                     <div class="badge"><i class="fas fa-bolt"></i> Daily Insights</div>
                     <h2>Phân Tích Chuyên Sâu & <br><span class="animate-text"></span></h2>
-                    <p>Cập nhật những chuyển động quan trọng nhất của thị trường, ETF flows, và đột phá công nghệ
-                        blockchain mỗi ngày.</p>
+                    <p>Cập nhật những chuyển động quan trọng nhất của thị trường, ETF flows, và đột phá công nghệ blockchain mỗi ngày.</p>
                     <a href="https://www.youtube.com/@ESCBase?sub_confirmation=1" target="_blank" class="btn-primary">
                         <i class="fab fa-youtube"></i> Subscribe on YouTube
                     </a>
@@ -663,7 +220,6 @@
             </div>
 
             <div class="bento-grid">
-                <!-- Main Feature (Span 8) -->
                 <a href="blog/gpt5_prompt_guide_2026_03_07.html" class="bento-item col-8">
                     <div class="card-meta">
                         <span class="card-tag highlight"><i class="fas fa-robot"></i> AI</span>
@@ -677,7 +233,6 @@
                     </div>
                 </a>
 
-                <!-- Secondary Feature 1 (Span 4) -->
                 <a href="blog/crypto_daily_2026_03_07.html" class="bento-item col-4">
                     <div class="card-meta">
                         <span class="card-tag">Market</span>
@@ -689,154 +244,99 @@
                     </div>
                 </a>
 
-
-                <!-- Main Feature (Span 8) -->
                 <a href="blog/binance_ai_skills_2026_03_05.html" class="bento-item col-8">
                     <div class="card-meta">
                         <span class="card-tag highlight"><i class="fas fa-microchip"></i> AI & Tools</span>
                         <span class="card-date">Mar 5, 2026</span>
                     </div>
                     <h3 class="card-title">Binance AI Agent Skills — 7 Kỹ Năng Cho AI Agents</h3>
-                    <p class="card-excerpt">Binance ra mắt 7 AI Agent Skills cho OpenClaw, Claude và các AI Agents:
-                        Smart Money tracking, wallet analysis, token audit, trading signals. Game-changer cho crypto
-                        analytics và tự động hóa giao dịch on-chain.</p>
+                    <p class="card-excerpt">Binance ra mắt 7 AI Agent Skills cho OpenClaw, Claude và các AI Agents: Smart Money tracking, wallet analysis, token audit, trading signals.</p>
                     <div class="card-footer">
                         <span><i class="far fa-clock"></i> 8 min read</span>
                         <span style="margin-left:auto; color:var(--text);"><i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
 
-                <!-- Secondary Feature 1 (Span 4) -->
                 <a href="blog/crypto_daily_2026_03_05.html" class="bento-item col-4">
                     <div class="card-meta">
                         <span class="card-tag">Market</span>
                     </div>
-                    <h3 class="card-title" style="font-size: 1.1rem;">BTC Phá $72K — Rally Mạnh Lên Tiến Vào Vùng Kỷ Lục
-                        Mới</h3>
-                    <p class="card-excerpt" style="font-size: 0.9rem;">Bitcoin phá vỡ mốc $72,000 lần đầu kể từ đợt
-                        crash 05/02. ETF hút $1.7 tỷ trong 2 tuần.</p>
+                    <h3 class="card-title" style="font-size: 1.1rem;">BTC Phá $72K — Rally Mạnh Lên Tiến Vào Vùng Kỷ Lục Mới</h3>
+                    <p class="card-excerpt" style="font-size: 0.9rem;">Bitcoin phá vỡ mốc $72,000 lần đầu kể từ đợt crash 05/02. ETF hút $1.7 tỷ trong 2 tuần.</p>
                     <div class="card-footer">
                         <span class="card-date">Mar 5, 2026</span>
                     </div>
                 </a>
 
-                <!-- Standard Article (Span 4) -->
                 <a href="blog/vitalik_sanctuary_tech.html" class="bento-item col-4">
                     <div class="card-meta">
                         <span class="card-tag">Ethereum</span>
                     </div>
-                    <h3 class="card-title" style="font-size: 1.1rem;">Sanctuary Technologies: Tương Lai Của Ethereum
-                    </h3>
-                    <p class="card-excerpt" style="font-size: 0.9rem;">Vitalik chia sẻ tầm nhìn về nền tảng bảo mật thế
-                        hệ mới kết hợp TEE, MPC, và ZK-proofs.</p>
+                    <h3 class="card-title" style="font-size: 1.1rem;">Sanctuary Technologies: Tương Lai Của Ethereum</h3>
+                    <p class="card-excerpt" style="font-size: 0.9rem;">Vitalik chia sẻ tầm nhìn về nền tảng bảo mật thế hệ mới kết hợp TEE, MPC, và ZK-proofs.</p>
                     <div class="card-footer">
                         <span class="card-date">Mar 4, 2026</span>
                     </div>
                 </a>
 
-                <!-- Standard Article (Span 4) -->
                 <a href="blog/amazon_openai_partnership.html" class="bento-item col-4">
                     <div class="card-meta">
                         <span class="card-tag">AI & Cloud</span>
                     </div>
-                    <h3 class="card-title" style="font-size: 1.1rem;">Amazon Đầu Tư $50B Vào OpenAI Thỏa Thuận Bước
-                        Ngoặt</h3>
-                    <p class="card-excerpt" style="font-size: 0.9rem;">AWS và OpenAI công bố đối tác chiến lược. Phát
-                        triển Stateful Runtime Environment độc quyền.</p>
+                    <h3 class="card-title" style="font-size: 1.1rem;">Amazon Đầu Tư $50B Vào OpenAI Thỏa Thuận Bước Ngoặt</h3>
+                    <p class="card-excerpt" style="font-size: 0.9rem;">AWS và OpenAI công bố đối tác chiến lược. Phát triển Stateful Runtime Environment độc quyền.</p>
                     <div class="card-footer">
                         <span class="card-date">Feb 27, 2026</span>
                     </div>
                 </a>
 
-                <!-- Standard Article (Span 4) -->
                 <a href="blog/zachxbt_axiom_insider.html" class="bento-item col-4">
                     <div class="card-meta">
-                        <span class="card-tag"
-                            style="color: #ef4444; border-color: rgba(239, 68, 68, 0.2); background: rgba(239, 68, 68, 0.1);">Security
-                            Alert</span>
+                        <span class="card-tag" style="color: #ef4444; border-color: rgba(239, 68, 68, 0.2); background: rgba(239, 68, 68, 0.1);">Security Alert</span>
                     </div>
-                    <h3 class="card-title" style="font-size: 1.1rem;">Vạch Trần Nội Gián Sàn Axiom - Lạm Dụng Dữ Liệu
-                    </h3>
-                    <p class="card-excerpt" style="font-size: 0.9rem;">Nhân viên lạm dụng công cụ nội bộ để theo dõi ví
-                        riêng của KOLs phục vụ insider trading.</p>
+                    <h3 class="card-title" style="font-size: 1.1rem;">Vạch Trần Nội Gián Sàn Axiom - Lạm Dụng Dữ Liệu</h3>
+                    <p class="card-excerpt" style="font-size: 0.9rem;">Nhân viên lạm dụng công cụ nội bộ để theo dõi ví riêng của KOLs phục vụ insider trading.</p>
                     <div class="card-footer">
                         <span class="card-date">Feb 26, 2026</span>
                     </div>
                 </a>
-
             </div>
 
-            <!-- Videos Section Grid -->
+            <!-- Videos Section -->
             <div class="section-header" id="videos">
                 <h3 class="section-title"><i class="fas fa-play-circle" style="color: #ef4444;"></i> Latest Videos</h3>
                 <a href="videos.html" class="btn-view-all">All Videos <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <div class="bento-grid">
-                <!-- Main Feature (Span 8) -->
-                <a href="blog/gpt5_prompt_guide_2026_03_07.html" class="bento-item col-8">
-                    <div class="card-meta">
-                        <span class="card-tag highlight"><i class="fas fa-robot"></i> AI</span>
-                        <span class="card-date">Mar 7, 2026</span>
-                    </div>
-                    <h3 class="card-title">GPT-5.4 Prompt Guide: Cách Viết Prompt Hiệu Quả</h3>
-                    <p class="card-excerpt">Hướng dẫn viết prompt cho GPT-5.4 từ OpenAI. Output contracts, follow-through policies, tool use persistence.</p>
-                    <div class="card-footer">
-                        <span><i class="far fa-clock"></i> 10 min read</span>
-                        <span style="margin-left:auto; color:var(--text);"><i class="fas fa-arrow-right"></i></span>
-                    </div>
-                </a>
-
-                <!-- Secondary Feature 1 (Span 4) -->
-                <a href="blog/crypto_daily_2026_03_07.html" class="bento-item col-4">
-                    <div class="card-meta">
-                        <span class="card-tag">Market</span>
-                    </div>
-                    <h3 class="card-title" style="font-size: 1.1rem;">Báo Cáo Crypto 07/03: BTC Mất 110 Tỷ Đô</h3>
-                    <p class="card-excerpt" style="font-size: 0.9rem;">Bitcoin giảm mạnh từ $74,200 về $68,100 sau tin Trump-Iran.</p>
-                    <div class="card-footer">
-                        <span class="card-date">Mar 7, 2026</span>
-                    </div>
-                </a>
-
-
-                <!-- Main Video (Span 6) -->
                 <div class="bento-item col-6" style="padding: 1rem;">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/kpL7Dc1Vt9M?rel=0" title="Crypto Daily 05/03"
-                            allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/kpL7Dc1Vt9M?rel=0" title="Crypto Daily 05/03/2026: BTC Phá $72K - Rally Mạnh Khi Lo Ngại Chiến Tranh Giảm" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 0.5rem">
                         <div class="card-meta">
-                            <span class="card-tag"><i class="fab fa-youtube" style="color: #ef4444;"></i> Market
-                                Update</span>
+                            <span class="card-tag"><i class="fab fa-youtube" style="color: #ef4444;"></i> Market Update</span>
                             <span class="card-date">05/03/2026</span>
                         </div>
-                        <h3 class="card-title" style="margin-bottom:0">BTC Phá $72K - Rally Mạnh Khi Lo Ngại Chiến Tranh
-                            Giảm</h3>
+                        <h3 class="card-title" style="margin-bottom:0">BTC Phá $72K - Rally Mạnh Khi Lo Ngại Chiến Tranh Giảm</h3>
                     </div>
                 </div>
 
-                <!-- Secondary Video (Span 6) -->
                 <div class="bento-item col-6" style="padding: 1rem;">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/EzxiOyVatQU?rel=0" title="Vitalik Buterin"
-                            allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/EzxiOyVatQU?rel=0" title="Vitalik Buterin: Sanctuary Technologies - Tầm Nhìn Mới Cho Ethereum" loading="lazy" allowfullscreen></iframe>
                     </div>
                     <div style="padding: 0.5rem">
                         <div class="card-meta">
-                            <span class="card-tag"><i class="fab fa-youtube" style="color: #ef4444;"></i> Tech Deep
-                                Dive</span>
+                            <span class="card-tag"><i class="fab fa-youtube" style="color: #ef4444;"></i> Tech Deep Dive</span>
                             <span class="card-date">04/03/2026</span>
                         </div>
-                        <h3 class="card-title" style="margin-bottom:0">Vitalik Buterin: Tầm Nhìn Mới Cho Ethereum -
-                            Sanctuary Technologies</h3>
+                        <h3 class="card-title" style="margin-bottom:0">Vitalik Buterin: Tầm Nhìn Mới Cho Ethereum - Sanctuary Technologies</h3>
                     </div>
                 </div>
-
             </div>
-            <footer
-                style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+
+            <footer class="site-footer">
                 <p>&copy; 2026 ESC Base. Crypto Daily Insights & Analysis.</p>
             </footer>
 
@@ -844,12 +344,18 @@
     </div>
 
     <script>
+        // Mobile nav toggle
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobileNav');
+            const hamburger = document.querySelector('.hamburger');
+            nav.classList.toggle('open');
+            hamburger.classList.toggle('active');
+            document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+        }
+
         // Text cycling animation
         const words = ["Crypto Reports", "Blockchain Tech", "Web3 Trends", "Market Insights"];
-        let i = 0;
-        let j = 0;
-        let currentWord = "";
-        let isDeleting = false;
+        let i = 0, j = 0, currentWord = "", isDeleting = false;
         const textElement = document.querySelector(".animate-text");
 
         function type() {
@@ -857,51 +363,23 @@
             if (isDeleting) {
                 textElement.textContent = currentWord.substring(0, j - 1);
                 j--;
-                if (j === 0) {
-                    isDeleting = false;
-                    i = (i + 1) % words.length;
-                }
+                if (j === 0) { isDeleting = false; i = (i + 1) % words.length; }
             } else {
                 textElement.textContent = currentWord.substring(0, j + 1);
                 j++;
-                if (j === currentWord.length) {
-                    isDeleting = true;
-                    setTimeout(type, 2000); // Wait before deleting
-                    return;
-                }
+                if (j === currentWord.length) { isDeleting = true; setTimeout(type, 2000); return; }
             }
             setTimeout(type, isDeleting ? 100 : 200);
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            type();
-        });
+        document.addEventListener("DOMContentLoaded", () => { type(); });
 
-        // Add some CSS for the animated text cursor
-        const style = document.createElement('style');
-        style.textContent = `
-            .animate-text {
-                color: var(--accent);
-                border-right: 3px solid var(--accent);
-                padding-right: 5px;
-                animation: blink 0.7s infinite;
-            }
-            @keyframes blink {
-                50% { border-color: transparent; }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Scroll animation observer
+        // Scroll animation
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.bento-item, .hero, .report-item').forEach(el => {
+        document.querySelectorAll('.bento-item, .hero').forEach(el => {
             el.classList.add('fade-in');
             observer.observe(el);
         });

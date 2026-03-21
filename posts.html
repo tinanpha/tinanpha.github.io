@@ -4,247 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Posts - ESC Base</title>
+    <title>Blog - ESC Base | Phân Tích Crypto & Blockchain</title>
+    <meta name="description" content="Tổng hợp bài viết phân tích thị trường Crypto, tin tức Blockchain, và báo cáo chuyên sâu về Web3 từ ESC Base.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ESC Base">
+    <meta property="og:title" content="Blog - ESC Base | Phân Tích Crypto & Blockchain">
+    <meta property="og:description" content="Tổng hợp bài viết phân tích thị trường Crypto, tin tức Blockchain, và báo cáo chuyên sâu về Web3.">
+    <meta property="og:url" content="https://escbase.xyz/posts.html">
+    <meta property="og:image" content="https://escbase.xyz/page.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@escbase">
+    <meta name="twitter:title" content="Blog - ESC Base | Phân Tích Crypto & Blockchain">
+    <meta name="twitter:description" content="Tổng hợp bài viết phân tích thị trường Crypto, tin tức Blockchain, và báo cáo chuyên sâu về Web3.">
+    <meta name="twitter:image" content="https://escbase.xyz/page.jpg">
+
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
     <style>
-        :root {
-            --bg: #09090b;
-            --sidebar-bg: #09090b;
-            --card-bg: #18181b;
-            --card-hover: #27272a;
-            --border: #27272a;
-            --border-hover: #3f3f46;
-            --text: #fafafa;
-            --text-secondary: #a1a1aa;
-            --text-muted: #71717a;
-            --accent: #f7931a;
-            --accent-glow: rgba(247, 147, 26, 0.15);
-            --radius-xl: 32px;
-            --radius-lg: 24px;
-            --radius-md: 16px;
-            --radius-sm: 12px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
-
-        ::selection {
-            background: var(--accent);
-            color: #000;
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* App Layout */
-        .app-container {
-            display: flex;
-            max-width: 1400px;
-            margin: 0 auto;
-            min-height: 100vh;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 300px;
-            flex-shrink: 0;
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            padding: 2.5rem 2rem;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid var(--border);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            text-decoration: none;
-            color: var(--text);
-            margin-bottom: 2rem;
-            transition: opacity 0.2s;
-        }
-
-        .brand:hover {
-            opacity: 0.8;
-        }
-
-        .brand img {
-            width: 56px;
-            height: 56px;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border);
-            object-fit: cover;
-        }
-
-        .brand-info h1 {
-            font-size: 1.25rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-        }
-
-        .brand-info p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .bio {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
-        }
-
-        .nav-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            flex-grow: 1;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.875rem 1rem;
-            border-radius: var(--radius-sm);
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.2s;
-            border: 1px solid transparent;
-        }
-
-        .nav-item i {
-            width: 20px;
-            font-size: 1.1rem;
-            text-align: center;
-        }
-
-        .nav-item:hover,
-        .nav-item.active {
-            background: var(--card-bg);
-            color: var(--text);
-            border-color: var(--border);
-        }
-
-        .nav-item:hover {
-            transform: translateX(4px);
-        }
-
-        .social-box {
-            margin-top: auto;
-            padding-top: 2rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .social-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: var(--radius-sm);
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.2s;
-            font-size: 1.1rem;
-        }
-
-        .social-btn:hover {
-            background: var(--text);
-            color: var(--bg);
-            transform: translateY(-2px);
-            border-color: var(--text);
-        }
-
-        /* Mobile Header */
-        .mobile-header {
-            display: none;
-            padding: 1rem 1.5rem;
-            background: rgba(9, 9, 11, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .mobile-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 700;
-        }
-
-        .mobile-logo img {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-        }
-
-        /* Main Content */
-        .main-content {
-            flex-grow: 1;
-            padding: 2.5rem 3rem;
-            max-width: 900px;
-        }
-
-        .page-header {
-            margin-bottom: 3rem;
-        }
-
-        .page-header h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .page-header p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-        }
-
-        /* Posts List */
+        /* Posts-specific styles */
         .posts-list {
             display: flex;
             flex-direction: column;
@@ -275,22 +60,6 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 1rem;
-        }
-
-        .card-tag {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text);
-            padding: 0.25rem 0.75rem;
-            border-radius: 99px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            border: 1px solid var(--border);
-        }
-
-        .card-tag.highlight {
-            background: rgba(247, 147, 26, 0.1);
-            color: var(--accent);
-            border-color: rgba(247, 147, 26, 0.2);
         }
 
         .post-date {
@@ -343,22 +112,6 @@
         }
 
         @media (max-width: 768px) {
-            .app-container {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                display: none;
-            }
-
-            .mobile-header {
-                display: flex;
-            }
-
-            .main-content {
-                padding: 1.25rem;
-            }
-
             .post-card {
                 padding: 1.25rem;
             }
@@ -375,19 +128,33 @@
         <!-- Mobile Header -->
         <header class="mobile-header">
             <a href="index.html" class="mobile-logo">
-                <img src="esclogo.png" alt="ESC Base">
+                <img src="esclogo.png" alt="ESC Base - Trang phân tích Crypto hàng ngày">
                 <span>ESC Base</span>
             </a>
-            <div style="display: flex; gap: 1rem;">
-                <a href="https://www.youtube.com/@ESCBase" target="_blank" style="color: var(--text);"><i
-                        class="fab fa-youtube"></i></a>
-            </div>
+            <button class="hamburger" onclick="toggleMobileNav()" aria-label="Mở menu điều hướng">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </header>
+
+        <!-- Mobile Nav Overlay -->
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="index.html" class="nav-item" onclick="toggleMobileNav()"><i class="fas fa-home"></i> Home</a>
+            <a href="posts.html" class="nav-item active" onclick="toggleMobileNav()"><i class="fas fa-newspaper"></i> Blog</a>
+            <a href="videos.html" class="nav-item" onclick="toggleMobileNav()"><i class="fas fa-play-circle"></i> Videos</a>
+            <div class="social-links">
+                <a href="https://www.youtube.com/@ESCBase" target="_blank" class="social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="https://discord.gg/SMhy8RjDCf" target="_blank" class="social-btn" title="Discord"><i class="fab fa-discord"></i></a>
+                <a href="https://twitter.com/escbase" target="_blank" class="social-btn" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="https://t.me/escbase" target="_blank" class="social-btn" title="Telegram"><i class="fab fa-telegram"></i></a>
+            </div>
+        </nav>
 
         <!-- Sidebar -->
         <aside class="sidebar">
             <a href="index.html" class="brand">
-                <img src="esclogo.png" alt="ESC Base Logo">
+                <img src="esclogo.png" alt="ESC Base - Trang phân tích Crypto và Blockchain hàng ngày">
                 <div class="brand-info">
                     <h1>ESC Base</h1>
                     <p>Crypto Intelligence</p>
@@ -395,8 +162,7 @@
             </a>
 
             <p class="bio">
-                Báo cáo thị trường Crypto hàng ngày, phân tích chuyên sâu về công nghệ Blockchain, và các xu hướng mới
-                nhất trong Web3.
+                Báo cáo thị trường Crypto hàng ngày, phân tích chuyên sâu về công nghệ Blockchain, và các xu hướng mới nhất trong Web3.
             </p>
 
             <nav class="nav-menu">
@@ -406,24 +172,18 @@
             </nav>
 
             <div class="social-box">
-                <h4
-                    style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600; letter-spacing: 0.05em;">
-                    Connect</h4>
+                <h4 style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 600; letter-spacing: 0.05em;">Connect</h4>
                 <div class="social-links">
-                    <a href="https://www.youtube.com/@ESCBase" target="_blank" class="social-btn" title="YouTube"><i
-                            class="fab fa-youtube"></i></a>
-                    <a href="https://discord.gg/SMhy8RjDCf" target="_blank" class="social-btn" title="Discord"><i
-                            class="fab fa-discord"></i></a>
-                    <a href="https://twitter.com/escbase" target="_blank" class="social-btn" title="X (Twitter)"><i
-                            class="fa-brands fa-x-twitter"></i></a>
-                    <a href="https://t.me/escbase" target="_blank" class="social-btn" title="Telegram"><i
-                            class="fab fa-telegram"></i></a>
+                    <a href="https://www.youtube.com/@ESCBase" target="_blank" class="social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://discord.gg/SMhy8RjDCf" target="_blank" class="social-btn" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="https://twitter.com/escbase" target="_blank" class="social-btn" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://t.me/escbase" target="_blank" class="social-btn" title="Telegram"><i class="fab fa-telegram"></i></a>
                 </div>
             </div>
         </aside>
 
         <!-- Main Content -->
-        <main class="main-content">
+        <main class="main-content" style="max-width: 900px;">
             <div class="page-header">
                 <h2>All Articles</h2>
                 <p>Báo cáo thị trường crypto, tin tức, và phân tích chuyên sâu</p>
@@ -463,9 +223,7 @@
                         <span class="post-date">Mar 5, 2026</span>
                     </div>
                     <h2 class="post-title">BTC Phá $72K — Rally Mạnh Khi Lo Ngại Chiến Tranh Giảm</h2>
-                    <p class="post-excerpt">Bitcoin phá vỡ mốc $72,000 khi thị trường hồi phục mạnh mẽ sau khi lo ngại
-                        chiến tranh giảm bớt. Dòng tiền tổ chức tiếp tục đổ vào, ETF inflow đạt kỷ lục mới trong tuần...
-                    </p>
+                    <p class="post-excerpt">Bitcoin phá vỡ mốc $72,000 khi thị trường hồi phục mạnh mẽ sau khi lo ngại chiến tranh giảm bớt. Dòng tiền tổ chức tiếp tục đổ vào, ETF inflow đạt kỷ lục mới trong tuần...</p>
                     <div class="post-footer">
                         <span><i class="far fa-clock"></i> 7 min read</span>
                         <span class="pdf-link"><i class="far fa-file-pdf"></i> Download PDF</span>
@@ -478,8 +236,7 @@
                         <span class="post-date">Mar 4, 2026</span>
                     </div>
                     <h2 class="post-title">Vitalik Buterin - Sanctuary Technologies</h2>
-                    <p class="post-excerpt">Vitalik Buterin giới thiệu Sanctuary Technologies — dự án kết hợp AI và
-                        blockchain nhằm tạo ra không gian kỹ thuật số an toàn, phi tập trung cho dữ liệu cá nhân...</p>
+                    <p class="post-excerpt">Vitalik Buterin giới thiệu Sanctuary Technologies — dự án kết hợp AI và blockchain nhằm tạo ra không gian kỹ thuật số an toàn, phi tập trung cho dữ liệu cá nhân...</p>
                     <div class="post-footer">
                         <span><i class="far fa-clock"></i> 8 min read</span>
                         <span class="pdf-link"><i class="far fa-file-pdf"></i> Download PDF</span>
@@ -492,8 +249,7 @@
                         <span class="post-date">Mar 2, 2026</span>
                     </div>
                     <h2 class="post-title">BTC Test $66K - MicroStrategy Mua Thêm 15,000 BTC</h2>
-                    <p class="post-excerpt">Bitcoin tiếp tục đà phục hồi và test mốc $66,000. MicroStrategy công bố mua
-                        thêm 15,000 BTC với giá trung bình $65,500, nâng tổng nắm giữ lên 268,000 BTC.</p>
+                    <p class="post-excerpt">Bitcoin tiếp tục đà phục hồi và test mốc $66,000. MicroStrategy công bố mua thêm 15,000 BTC với giá trung bình $65,500, nâng tổng nắm giữ lên 268,000 BTC.</p>
                     <div class="post-footer">
                         <span><i class="far fa-clock"></i> 6 min read</span>
                         <span class="pdf-link"><i class="far fa-file-pdf"></i> Download PDF</span>
@@ -508,8 +264,7 @@
                         <span class="post-date">Feb 28, 2026</span>
                     </div>
                     <h2 class="post-title">AI Thâu Tóm Đào Bitcoin - ZachXBT Vạch Trần Nội Gián</h2>
-                    <p class="post-excerpt">OpenAI công bố kế hoạch chi $110B thâu tóm công ty đào Bitcoin. ZachXBT tiếp
-                        dẫn expose mạng lưới nội gián trong các sàn giao dịch lớn.</p>
+                    <p class="post-excerpt">OpenAI công bố kế hoạch chi $110B thâu tóm công ty đào Bitcoin. ZachXBT tiếp dẫn expose mạng lưới nội gián trong các sàn giao dịch lớn.</p>
                     <div class="post-footer">
                         <span><i class="far fa-clock"></i> 8 min read</span>
                         <span class="pdf-link"><i class="far fa-file-pdf"></i> Download PDF</span>
@@ -522,8 +277,7 @@
                         <span class="post-date">Feb 27, 2026</span>
                     </div>
                     <h2 class="post-title">Thị Trường Phục Hồi - Các Altcoin Bứt Phá Mạnh</h2>
-                    <p class="post-excerpt">Bitcoin phục hồi về vùng $64,000 sau đợt điều chỉnh. SOL, AVAX, và các
-                        altcoin layer 1 dẫn dắt đà tăng. Dòng tiền ETF Bitcoin quay lại dương.</p>
+                    <p class="post-excerpt">Bitcoin phục hồi về vùng $64,000 sau đợt điều chỉnh. SOL, AVAX, và các altcoin layer 1 dẫn dắt đà tăng. Dòng tiền ETF Bitcoin quay lại dương.</p>
                     <div class="post-footer">
                         <span><i class="far fa-clock"></i> 6 min read</span>
                         <span class="pdf-link"><i class="far fa-file-pdf"></i> Download PDF</span>
@@ -534,14 +288,11 @@
 
                 <a href="blog/bitcoin.html" class="post-card">
                     <div class="post-meta-top">
-                        <span class="card-tag" style="background:#f59e0b; color:#18181b;"><i class="fab fa-bitcoin"></i>
-                            Bitcoin</span>
+                        <span class="card-tag" style="background:#f59e0b; color:#18181b;"><i class="fab fa-bitcoin"></i> Bitcoin</span>
                         <span class="post-date">Analysis Series</span>
                     </div>
                     <h2 class="post-title">Bitcoin Deep Analysis - Tiềm Năng Tăng Trưởng 2026</h2>
-                    <p class="post-excerpt">Phân tích toàn diện về Bitcoin: halving cycle, dòng tiền tổ chức, ETF
-                        impact, và các kịch bản giá cho năm 2026. Liệu BTC có thể đạt $150K trong bull run tiếp theo?
-                    </p>
+                    <p class="post-excerpt">Phân tích toàn diện về Bitcoin: halving cycle, dòng tiền tổ chức, ETF impact, và các kịch bản giá cho năm 2026.</p>
                     <div class="post-footer">
                         <span><i class="far fa-clock"></i> 12 min read</span>
                     </div>
@@ -549,35 +300,34 @@
 
                 <a href="blog/ethereum.html" class="post-card">
                     <div class="post-meta-top">
-                        <span class="card-tag" style="background:#6366f1; color:#fff;"><i class="fab fa-ethereum"></i>
-                            Ethereum</span>
+                        <span class="card-tag" style="background:#6366f1; color:#fff;"><i class="fab fa-ethereum"></i> Ethereum</span>
                         <span class="post-date">Analysis Series</span>
                     </div>
                     <h2 class="post-title">Ethereum 2025 Roadmap & Tương Lai</h2>
-                    <p class="post-excerpt">Tổng quan về Ethereum roadmap: Pectra upgrade, L2 scaling, và tầm nhìn của
-                        Vitalik Buterin. Phân tích cạnh tranh với các L1 mới và tiềm năng của ETH...</p>
+                    <p class="post-excerpt">Tổng quan về Ethereum roadmap: Pectra upgrade, L2 scaling, và tầm nhìn của Vitalik Buterin.</p>
                     <div class="post-footer">
                         <span><i class="far fa-clock"></i> 10 min read</span>
                     </div>
                 </a>
-
             </div>
 
-            <footer
-                style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+            <footer class="site-footer">
                 <p>&copy; 2026 ESC Base. Crypto Daily Insights & Analysis.</p>
             </footer>
         </main>
     </div>
 
     <script>
-        // Scroll animation observer
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobileNav');
+            const hamburger = document.querySelector('.hamburger');
+            nav.classList.toggle('open');
+            hamburger.classList.toggle('active');
+            document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+        }
+
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.post-card, .month-divider').forEach(el => {
