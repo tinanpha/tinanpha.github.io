@@ -189,9 +189,11 @@
                 <p>Báo cáo thị trường crypto, tin tức, và phân tích chuyên sâu</p>
             </div>
 
-            <div class="posts-list">
-                <div class="month-divider">March 2026</div>
+            <div class="posts-list" id="blogList">
+                <p style="color:var(--text-muted);">Đang tải...</p>
+            </div>
 
+            <div style="display:none">
                 <a href="blog/crypto_daily_2026_03_23.html" class="post-card">
                     <div class="post-meta-top">
                         <span class="card-tag" style="color: #f7931a; border-color: rgba(247,147,26,.2); background: rgba(247,147,26,.1);"><i class="fas fa-chart-line"></i> Báo Cáo Hàng Ngày</span>
@@ -522,10 +524,45 @@
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.post-card, .month-divider').forEach(el => {
-            el.classList.add('fade-in');
-            observer.observe(el);
-        });
+        // Auto-load posts from blog.json
+        fetch('blog.json')
+            .then(r => r.json())
+            .then(posts => {
+                const list = document.getElementById('blogList');
+                list.innerHTML = '';
+                let currentMonth = '';
+
+                posts.forEach(p => {
+                    // Month divider
+                    const month = p.date.replace(/\d+,/, '').trim();
+                    if (month !== currentMonth) {
+                        currentMonth = month;
+                        list.innerHTML += `<div class="month-divider fade-in">${currentMonth}</div>`;
+                    }
+
+                    const tagStyle = p.tag === 'AI'
+                        ? `background:${p.tagColor}; color:#fff;`
+                        : `color: ${p.tagColor}; border-color: ${p.tagColor}33; background: ${p.tagColor}1a;`;
+
+                    list.innerHTML += `
+                        <a href="${p.url}" class="post-card fade-in">
+                            <div class="post-meta-top">
+                                <span class="card-tag" style="${tagStyle}"><i class="${p.tagIcon}"></i> ${p.tag}</span>
+                                <span class="post-date">${p.date}</span>
+                            </div>
+                            <h2 class="post-title">${p.title}</h2>
+                            <p class="post-excerpt">${p.excerpt}</p>
+                            <div class="post-footer">
+                                <span><i class="far fa-clock"></i> ${p.readTime || '8 min read'}</span>
+                            </div>
+                        </a>`;
+                });
+
+                list.querySelectorAll('.post-card, .month-divider').forEach(el => observer.observe(el));
+            })
+            .catch(() => {
+                document.getElementById('blogList').innerHTML = '<p style="color:var(--text-muted);">Không thể tải bài viết.</p>';
+            });
     </script>
 </body>
 

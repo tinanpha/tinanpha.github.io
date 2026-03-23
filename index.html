@@ -220,7 +220,7 @@
             </div>
 
             <div class="bento-grid" id="postsGrid">
-                <!-- Auto-loaded from posts.json -->
+                <!-- Auto-loaded from blog.json -->
             </div>
 
             <footer class="site-footer">
@@ -271,8 +271,8 @@
             observer.observe(el);
         });
 
-        // Auto-load posts from posts.json
-        fetch('posts.json')
+        // Auto-load posts from blog.json
+        fetch('blog.json')
             .then(r => r.json())
             .then(posts => {
                 const grid = document.getElementById('postsGrid');
