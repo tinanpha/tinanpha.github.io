@@ -1,0 +1,123 @@
+[
+  {
+    "url": "blog/binance_mod_vn_phap_ly_2026_03_23.html",
+    "title": "Mod Binance Rời Nhóm VN: Cuộc Siết Pháp Lý Crypto",
+    "excerpt": "Mod rời nhóm, Bộ TC siết sàn ngoài, sàn nội địa sắp ra mắt.",
+    "date": "Mar 23, 2026",
+    "tag": "Pháp Lý",
+    "tagIcon": "fas fa-gavel",
+    "tagColor": "#f7931a",
+    "readTime": "8 min read"
+  },
+  {
+    "url": "blog/a16z_agentic_commerce_2026_03_22.html",
+    "title": "Agentic Commerce: AI Agents Định Hình Lại Thương Mại Số",
+    "excerpt": "AOL vs HTTP tái hiện. Marketplace đóng hay protocol mở sẽ thắng?",
+    "date": "Mar 23, 2026",
+    "tag": "AI & Crypto",
+    "tagIcon": "fas fa-robot",
+    "tagColor": "#3b82f6",
+    "readTime": "10 min read"
+  },
+  {
+    "url": "blog/siren_1_2b_binance_2026_03_22.html",
+    "title": "$SIREN Tăng Gấp Đôi Lên $1.2B: Binance Effect",
+    "excerpt": "Triple listing Binance Futures + Alpha + Hashkey. Market cap x2 trong 1 ngày.",
+    "date": "Mar 23, 2026",
+    "tag": "Market Analysis",
+    "tagIcon": "fas fa-chart-line",
+    "tagColor": "#22c55e",
+    "readTime": "8 min read"
+  },
+  {
+    "url": "blog/trump_iran_48h_2026_03_22.html",
+    "title": "Trump Ra Tối Hậu Thư 48h Cho Iran: \"Mở Hormuz Hoặc Bị Tấn Công\"",
+    "excerpt": "Nhà Trắng công bố: Iran có 48 giờ để mở eo biển Hormuz. Phân tích 3 kịch bản và tác động đến crypto.",
+    "date": "Mar 22, 2026",
+    "tag": "Breaking",
+    "tagIcon": "fas fa-exclamation-triangle",
+    "tagColor": "#ef4444",
+    "readTime": "8 min read",
+    "featured": true
+  },
+  {
+    "url": "blog/crypto_daily_2026_03_22.html",
+    "title": "BTC Rơi Về $69K — Extreme Fear, $232M Liquidations",
+    "excerpt": "Fear Index chạm 10. Whales vẫn tích lũy 270,000 BTC.",
+    "date": "Mar 22, 2026",
+    "tag": "Đỏ Lửa",
+    "tagIcon": "fas fa-chart-line",
+    "tagColor": "#ef4444",
+    "readTime": "8 min read"
+  },
+  {
+    "url": "blog/ai_crypto_narrative_2026_03_22.html",
+    "title": "AI Coins Bùng Nổ +40.9% — Narrative Lớn Nhất 2026?",
+    "excerpt": "$AKT, $PIPPIN, $ARC dẫn đầu. DePIN + AI agents on-chain.",
+    "date": "Mar 22, 2026",
+    "tag": "AI",
+    "tagIcon": "fas fa-robot",
+    "tagColor": "#10a37f",
+    "readTime": "12 min read"
+  },
+  {
+    "url": "blog/hormuz_geopolitics_2026_03_22.html",
+    "title": "Eo Biển Hormuz: 34km Quyết Định Toàn Bộ Thị Trường Tài Chính",
+    "excerpt": "Tại sao eo biển 34km ảnh hưởng trực tiếp đến BTC, AI, năng lượng toàn cầu.",
+    "date": "Mar 22, 2026",
+    "tag": "Geopolitics",
+    "tagIcon": "fas fa-globe",
+    "tagColor": "#f7931a",
+    "readTime": "10 min read"
+  },
+  {
+    "url": "blog/crypto_events_march_2026.html",
+    "title": "Sự Kiện Crypto Cuối Tháng 3: TGEs & Launches",
+    "excerpt": "Backpack, BASED, EdgeX, MEZO, EthCC Paris.",
+    "date": "Mar 22, 2026",
+    "tag": "Events",
+    "tagIcon": "fas fa-calendar-alt",
+    "tagColor": "#8b5cf6",
+    "readTime": "9 min read"
+  },
+  {
+    "url": "blog/ai_research_lab_autoresearch_2026_03_22.html",
+    "title": "AI Research Lab 24/7: Một Người Bằng Cả Phòng R&D",
+    "excerpt": "Autoresearch framework + local models. Solo founders cạnh tranh cả lab.",
+    "date": "Mar 22, 2026",
+    "tag": "AI & Tech",
+    "tagIcon": "fas fa-flask",
+    "tagColor": "#3b82f6",
+    "readTime": "11 min read"
+  },
+  {
+    "url": "blog/resolv_usr_exploit_2026_03_22.html",
+    "title": "Resolv USR Exploit: $23M Bốc Hơi Vì Một Private Key",
+    "excerpt": "Attacker biến $200K thành $23M. USR depeg từ $1 → $0.14.",
+    "date": "Mar 22, 2026",
+    "tag": "DeFi Security",
+    "tagIcon": "fas fa-shield-alt",
+    "tagColor": "#ef4444",
+    "readTime": "9 min read"
+  },
+  {
+    "url": "blog/crypto_daily_2026_03_21.html",
+    "title": "BTC $70K, Ledger Chuẩn Bị IPO, Kalshi $22 Tỷ Đô",
+    "excerpt": "Bitcoin giữ $70K. Ledger chuẩn bị IPO. Kalshi đạt volume $22B.",
+    "date": "Mar 21, 2026",
+    "tag": "Market",
+    "tagIcon": "fas fa-chart-line",
+    "tagColor": "#f7931a",
+    "readTime": "7 min read"
+  },
+  {
+    "url": "blog/crypto_daily_2026_03_20.html",
+    "title": "SEC Công Nhận 16 Coin, BTC Giữ $70K, AI Agents",
+    "excerpt": "SEC công nhận 16 loại coin. Kỷ nguyên AI Agents bùng nổ.",
+    "date": "Mar 20, 2026",
+    "tag": "Market",
+    "tagIcon": "fas fa-chart-line",
+    "tagColor": "#f7931a",
+    "readTime": "8 min read"
+  }
+]
