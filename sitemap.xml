@@ -2,9 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://escbase.xyz/</loc>
-    <lastmod>2026-03-23</lastmod>
+    <lastmod>2026-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://escbase.xyz/blog/trump_iran_insider_trading_2026_03_24.html</loc>
+    <lastmod>2026-03-24</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://escbase.xyz/blog/crypto_daily_2026_03_23.html</loc>
