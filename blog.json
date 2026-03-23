@@ -11,6 +11,26 @@
     "featured": true
   },
   {
+    "url": "blog/xhunt_frontrun_security_2026_03_23.html",
+    "title": "xHunt & Frontrun: Open Source Nhưng Track Mọi Thứ Bạn Làm",
+    "excerpt": "xHunt gửi IP, fingerprint, mọi URL về server. Wallet injection sẵn sàng kích hoạt.",
+    "date": "Mar 23, 2026",
+    "tag": "Security",
+    "tagIcon": "fas fa-shield-alt",
+    "tagColor": "#ef4444",
+    "readTime": "12 min read"
+  },
+  {
+    "url": "blog/zachxbt_scam_network_2026_03_23.html",
+    "title": "ZachXBT: 10+ Account Giả Tung Tin Chiến Tranh, Pump & Dump",
+    "excerpt": "Mạng lưới phối hợp, AI personas, millions views/ngày, $ORAMAMA profit 6 figures.",
+    "date": "Mar 23, 2026",
+    "tag": "Investigation",
+    "tagIcon": "fas fa-user-secret",
+    "tagColor": "#ef4444",
+    "readTime": "10 min read"
+  },
+  {
     "url": "blog/binance_mod_vn_phap_ly_2026_03_23.html",
     "title": "Mod Binance Rời Nhóm VN: Cuộc Siết Pháp Lý Crypto",
     "excerpt": "Mod rời nhóm, Bộ TC siết sàn ngoài, sàn nội địa sắp ra mắt.",
