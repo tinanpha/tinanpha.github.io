@@ -1,5 +1,26 @@
 [
   {
+    "url": "blog/swift_ethereum_banks_2026_03_24.html",
+    "title": "SWIFT & 25+ Ngân Hàng Thanh Toán Trên Ethereum: Bước Ngoặt Hay Chỉ Là PR?",
+    "excerpt": "SWIFT xác nhận 25+ ngân hàng go live trước tháng 6, thanh toán xuyên biên giới trên Ethereum L2 (Consensys Linea). Permissioned chain hay cách mạng TradFi?",
+    "date": "Mar 24, 2026",
+    "tag": "TradFi & Blockchain",
+    "tagIcon": "fas fa-university",
+    "tagColor": "#3b82f6",
+    "readTime": "11 min read",
+    "featured": true
+  },
+  {
+    "url": "blog/campunance_money_laundering_2026_03_24.html",
+    "title": "Sàn Campunance Bị Bắt: Nhân Viên Mở Backdoor Rửa Tiền — Tiền Bạn Có Sạch Không?",
+    "excerpt": "Cảnh sát Campuchia bắt nhân viên sàn Campunance mở backdoor cho rửa tiền. Insider money laundering — rủi ro mới cho mọi user.",
+    "date": "Mar 24, 2026",
+    "tag": "Pháp Lý & An Ninh",
+    "tagIcon": "fas fa-gavel",
+    "tagColor": "#ef4444",
+    "readTime": "9 min read"
+  },
+  {
     "url": "blog/moonpay_ows_ai_wallet_2026_03_24.html",
     "title": "Open Wallet Standard: MoonPay + PayPal + Solana Định Nghĩa Chuẩn Ví Cho AI Agents",
     "excerpt": "OWS — giao thức local-first cho AI agents: một seed phrase, mọi chain, private key không bao giờ lộ. 21 tổ chức sáng lập bao gồm PayPal, Solana, Circle.",
